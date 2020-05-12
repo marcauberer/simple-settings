@@ -26,11 +26,15 @@ class SimpleSettingsActivity : AppCompatActivity() {
             }
         }
 
+
+
         // Initialize SettingsFragment
         initSettingsFragment()
     }
 
     private fun initSettingsFragment() {
-
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.settingsFragment, SimpleSettingsFragment())
+            .commit()
     }
 }

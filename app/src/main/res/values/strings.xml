@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Simple Settings Sample</string>
+    <string name="open_settings">Open Settings</string>
 </resources>

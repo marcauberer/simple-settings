@@ -5,6 +5,6 @@ import androidx.preference.PreferenceFragmentCompat
 
 class SimpleSettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        TODO("Not yet implemented")
+
     }
 }
