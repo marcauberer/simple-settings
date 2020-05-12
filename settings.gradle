@@ -1,0 +1,3 @@
+rootProject.name='Simple Settings Sample'
+include ':app'
+include ':simplesettings'
