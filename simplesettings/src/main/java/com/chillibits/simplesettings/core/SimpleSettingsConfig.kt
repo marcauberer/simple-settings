@@ -1,20 +1,28 @@
 package com.chillibits.simplesettings.core
 
+import android.os.Parcel
 import androidx.annotation.IdRes
 import androidx.annotation.MenuRes
+import java.io.Serializable
 
-class SimpleSettingsConfig {
+class SimpleSettingsConfig(): Serializable {
 
     // Attributes
     @MenuRes
     var optionsMenuRes: Int? = null
-    var optionsMenuCallback: OptionsItemSelectedCallback? = null
+    // var optionsMenuCallback: OptionsItemSelectedCallback? = null
     var displayHomeAsUpEnabled = true
     var showResetOption = false
 
+    constructor(parcel: Parcel) : this() {
+        optionsMenuRes = parcel.readValue(Int::class.java.classLoader) as? Int
+        displayHomeAsUpEnabled = parcel.readByte() != 0.toByte()
+        showResetOption = parcel.readByte() != 0.toByte()
+    }
+
     // Interfaces
-    interface OptionsItemSelectedCallback {
-        fun onOptionsItemSelected(@IdRes int: Int)
+    interface OptionsItemSelectedCallback: Serializable {
+        fun onSettingsOptionsItemSelected(@IdRes itemId: Int)
     }
 
     class Builder {
@@ -26,7 +34,7 @@ class SimpleSettingsConfig {
 
         fun setOptionsMenu(@MenuRes menuRes: Int, callback: OptionsItemSelectedCallback): Builder {
             config.optionsMenuRes = menuRes
-            config.optionsMenuCallback = callback
+            // config.optionsMenuCallback = callback
             return this
         }
 

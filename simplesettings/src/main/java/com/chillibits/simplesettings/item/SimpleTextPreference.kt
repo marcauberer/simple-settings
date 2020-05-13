@@ -1,6 +1,8 @@
 package com.chillibits.simplesettings.item
 
-class SimpleTextPreference: SimplePreference() {
+import java.io.Serializable
+
+class SimpleTextPreference: SimplePreference(), Serializable {
     // Attributes
 
 }

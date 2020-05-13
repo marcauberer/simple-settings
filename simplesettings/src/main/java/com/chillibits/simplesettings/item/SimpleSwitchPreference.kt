@@ -1,6 +1,8 @@
 package com.chillibits.simplesettings.item
 
-class SimpleSwitchPreference: SimplePreference() {
+import java.io.Serializable
+
+class SimpleSwitchPreference: SimplePreference(), Serializable {
     // Attributes
     var defaultValue = OFF
 

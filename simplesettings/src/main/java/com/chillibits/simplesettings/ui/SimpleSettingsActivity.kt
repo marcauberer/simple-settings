@@ -2,12 +2,18 @@ package com.chillibits.simplesettings.ui
 
 import android.os.Build
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.chillibits.simplesettings.R
+import com.chillibits.simplesettings.core.SimpleSettingsConfig
 import kotlinx.android.synthetic.main.toolbar.*
 
 class SimpleSettingsActivity : AppCompatActivity() {
+
+    // Variables as objects
+    private lateinit var config: SimpleSettingsConfig
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,10 +32,29 @@ class SimpleSettingsActivity : AppCompatActivity() {
             }
         }
 
+        config = intent.getSerializableExtra("config") as SimpleSettingsConfig
+        val sections = intent.getSerializableExtra("sections") as ArrayList<*>
 
+        // DisplayHomeAsUpEnabled
+        if(config.displayHomeAsUpEnabled) supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Initialize SettingsFragment
         initSettingsFragment()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        config.optionsMenuRes?.let { menuInflater.inflate(it, menu) }
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(val id = item.itemId) {
+            android.R.id.home -> finish()
+            else -> {
+                // config.optionsMenuCallback?.onSettingsOptionsItemSelected(id)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun initSettingsFragment() {

@@ -1,6 +1,8 @@
 package com.chillibits.simplesettings.item
 
-class SimpleInputPreference: SimplePreference() {
+import java.io.Serializable
+
+class SimpleInputPreference: SimplePreference(), Serializable {
     // Attributes
     var defaultValue = ""
 }

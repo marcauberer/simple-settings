@@ -2,25 +2,24 @@ package com.chillibits.simplesettings.core
 
 import android.content.Context
 import android.content.Intent
-import com.chillibits.simplesettings.item.SimpleInputPreference
-import com.chillibits.simplesettings.item.SimplePreference
-import com.chillibits.simplesettings.item.SimpleSwitchPreference
-import com.chillibits.simplesettings.item.SimpleTextPreference
+import com.chillibits.simplesettings.item.PreferenceSection
 import com.chillibits.simplesettings.ui.SimpleSettingsActivity
+import java.io.Serializable
 
 class SimpleSettings(
     val context: Context,
     val config: SimpleSettingsConfig = DEFAULT_CONFIG
-) {
+): Serializable {
 
     // Variables as objects
-    private val data = ArrayList<SimplePreference>()
+    private val sections = ArrayList<PreferenceSection>()
 
     // Variables
 
     fun show() {
         context.startActivity(Intent(context, SimpleSettingsActivity::class.java).apply {
-
+            putExtra("sections", sections)
+            putExtra("config", config)
         })
     }
 
@@ -33,20 +32,10 @@ class SimpleSettings(
         @JvmStatic val DEFAULT_CONFIG = SimpleSettingsConfig.Builder().build()
     }
 
-    // ------------------------------------ Preferences types --------------------------------------
+    // ----------------------------------- Preference section --------------------------------------
 
-    fun SimpleTextPref(func: SimpleTextPreference.() -> Unit) = SimpleTextPreference().apply {
+    fun Section(func: PreferenceSection.() -> Unit) = PreferenceSection().apply {
         this.func()
-        data.add(this)
-    }
-
-    fun SimpleSwitchPref(func: SimpleSwitchPreference.() -> Unit) = SimpleSwitchPreference().apply {
-        this.func()
-        data.add(this)
-    }
-
-    fun SimpleInputPref(func: SimpleInputPreference.() -> Unit) = SimpleInputPreference().apply {
-        this.func()
-        data.add(this)
+        sections.add(this)
     }
 }
