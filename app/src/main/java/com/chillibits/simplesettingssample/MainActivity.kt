@@ -21,10 +21,11 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         setSupportActionBar(toolbar)
 
         // Setup layout components
-        openSettings.setOnClickListener { openSettings() }
+        openSettings1.setOnClickListener { openSettingsCodeConfig() }
+        openSettings2.setOnClickListener { openSettingsXmlConfig() }
     }
 
-    private fun openSettings() {
+    private fun openSettingsCodeConfig() {
         val config = SimpleSettingsConfig.Builder()
             .displayHomeAsUpEnabled(true)
             .enableLibsActivityPreference()
@@ -32,26 +33,41 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
             .showResetOption(true)
             .build()
 
+        // Programmatic settings data (especially useful for generating settings options at runtime)
         val settings = SimpleSettings(this, config).show {
             Section {
                 title = "Test section"
-                SimpleSwitchPref {
-                    title = "Test"
-                    summary = "Dies ist ein Test1"
-                    defaultValue = SimpleSwitchPreference.ON
+                for (i in 0..5) {
+                    SimpleSwitchPref {
+                        title = "Test 1.$i"
+                        summary = "This is a Test 1.$i"
+                        defaultValue = if(i % 2 == 0) SimpleSwitchPreference.ON else SimpleSwitchPreference.OFF
+                    }
                 }
                 SimpleTextPref {
-                    title = "Test1"
-                    summary = "Dies ist ein Test1"
+                    title = "Test 2"
+                    summary = "This is a Test 2"
                 }
             }
             Section {
                 SimpleInputPref {
-                    title = "Test 2"
-                    summary = "asdflkjasdflk"
+                    title = "Test 3"
+                    summary = "This is a Test 3"
                 }
             }
         }
+    }
+
+    private fun openSettingsXmlConfig() {
+        val config = SimpleSettingsConfig.Builder()
+            .displayHomeAsUpEnabled(true)
+            .enableLibsActivityPreference()
+            .setOptionsMenu(R.menu.menu_settings, this)
+            .showResetOption(true)
+            .build()
+
+        // Settings data from xml resource to keep a better overview
+        val settings = SimpleSettings(this, config).show(R.xml.preferences)
     }
 
     override fun onSettingsOptionsItemSelected(@IdRes itemId: Int) {

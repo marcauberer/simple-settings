@@ -9,20 +9,27 @@
 
     <include layout="@layout/toolbar" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical">
 
         <Button
-            android:id="@+id/openSettings"
+            android:id="@+id/openSettings1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:text="@string/open_settings"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_gravity="center_horizontal"
+            android:text="@string/open_settings_code"/>
+
+        <Button
+            android:id="@+id/openSettings2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/open_settings_xml"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

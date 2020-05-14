@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:title="Test section">
+
+        <SwitchPreferenceCompat
+            app:key="test1"
+            app:defaultValue="false"
+            app:title="Test 1"
+            app:summary="This is a test 1"/>
+
+        <Preference
+            app:key="test2"
+            app:title="Test 1"
+            app:summary="This is a test 2"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory>
+
+        <EditTextPreference
+            app:key="test3"
+            app:defaultValue="Test 3"
+            app:title="Test 3"
+            app:summary="This is a test 3"
+            app:useSimpleSummaryProvider="true"/>
+    </PreferenceCategory>
+</PreferenceScreen>

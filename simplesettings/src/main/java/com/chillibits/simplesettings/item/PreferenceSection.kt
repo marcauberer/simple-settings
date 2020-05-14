@@ -6,7 +6,7 @@ class PreferenceSection: Serializable {
 
     // Attributes
     var title: String = "Section title"
-    private val items = ArrayList<SimplePreference>()
+    val items = ArrayList<SimplePreference>()
 
     // ----------------------------------------- Item types ----------------------------------------
 

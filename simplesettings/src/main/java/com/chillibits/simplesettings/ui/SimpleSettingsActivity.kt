@@ -33,19 +33,19 @@ class SimpleSettingsActivity : AppCompatActivity() {
         }
 
         config = intent.getSerializableExtra("config") as SimpleSettingsConfig
-        val sections = intent.getSerializableExtra("sections") as ArrayList<*>
 
         // DisplayHomeAsUpEnabled
         if(config.displayHomeAsUpEnabled) supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Initialize SettingsFragment
-        initSettingsFragment()
+        initSettingsFragment(intent.extras)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         config.optionsMenuRes?.let { menuInflater.inflate(it, menu) }
         return super.onCreateOptionsMenu(menu)
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(val id = item.itemId) {
@@ -57,9 +57,12 @@ class SimpleSettingsActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun initSettingsFragment() {
+    private fun initSettingsFragment(arguments: Bundle?) {
+        val fragment = SimpleSettingsFragment()
+        fragment.arguments = arguments
+
         supportFragmentManager.beginTransaction()
-            .replace(R.id.settingsFragment, SimpleSettingsFragment())
+            .replace(R.id.settingsFragment, fragment)
             .commit()
     }
 }

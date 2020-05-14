@@ -2,6 +2,7 @@ package com.chillibits.simplesettings.core
 
 import android.content.Context
 import android.content.Intent
+import androidx.annotation.XmlRes
 import com.chillibits.simplesettings.item.PreferenceSection
 import com.chillibits.simplesettings.ui.SimpleSettingsActivity
 import java.io.Serializable
@@ -16,7 +17,7 @@ class SimpleSettings(
 
     // Variables
 
-    fun show() {
+    private fun show() {
         context.startActivity(Intent(context, SimpleSettingsActivity::class.java).apply {
             putExtra("sections", sections)
             putExtra("config", config)
@@ -26,6 +27,13 @@ class SimpleSettings(
     fun show(func: SimpleSettings.() -> Unit): SimpleSettings = apply {
         this.func()
         this.show()
+    }
+
+    fun show(@XmlRes preferenceResource: Int) {
+        context.startActivity(Intent(context, SimpleSettingsActivity::class.java).apply {
+            putExtra("xml", preferenceResource)
+            putExtra("config", config)
+        })
     }
 
     companion object {

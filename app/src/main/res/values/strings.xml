@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Simple Settings Sample</string>
-    <string name="open_settings">Open Settings</string>
+    <string name="open_settings_code">Open Settings with code config</string>
+    <string name="open_settings_xml">Open Settings with xml config</string>
 </resources>
