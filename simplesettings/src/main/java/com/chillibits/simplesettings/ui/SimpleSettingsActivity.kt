@@ -7,13 +7,13 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.chillibits.simplesettings.R
-import com.chillibits.simplesettings.core.SimpleSettingsConfig
+import com.chillibits.simplesettings.core.SimpleSettings
 import kotlinx.android.synthetic.main.toolbar.*
 
 class SimpleSettingsActivity : AppCompatActivity() {
 
     // Variables as objects
-    private lateinit var config: SimpleSettingsConfig
+    private val config = SimpleSettings.config
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,13 +32,11 @@ class SimpleSettingsActivity : AppCompatActivity() {
             }
         }
 
-        config = intent.getSerializableExtra("config") as SimpleSettingsConfig
-
         // DisplayHomeAsUpEnabled
         if(config.displayHomeAsUpEnabled) supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Initialize SettingsFragment
-        initSettingsFragment(intent.extras)
+        initSettingsFragment()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -57,12 +55,9 @@ class SimpleSettingsActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun initSettingsFragment(arguments: Bundle?) {
-        val fragment = SimpleSettingsFragment()
-        fragment.arguments = arguments
-
+    private fun initSettingsFragment() {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.settingsFragment, fragment)
+            .replace(R.id.settingsFragment, SimpleSettingsFragment())
             .commit()
     }
 }

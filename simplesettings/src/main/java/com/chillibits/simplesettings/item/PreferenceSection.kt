@@ -1,8 +1,6 @@
 package com.chillibits.simplesettings.item
 
-import java.io.Serializable
-
-class PreferenceSection: Serializable {
+class PreferenceSection {
 
     // Attributes
     var title: String = "Section title"

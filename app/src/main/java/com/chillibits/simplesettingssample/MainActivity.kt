@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.chillibits.simplesettings.core.SimpleSettings
 import com.chillibits.simplesettings.core.SimpleSettingsConfig
 import com.chillibits.simplesettings.item.SimpleSwitchPreference
+import com.chillibits.simplesettings.tool.WebsiteClickListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -37,16 +38,18 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         val settings = SimpleSettings(this, config).show {
             Section {
                 title = "Test section"
-                for (i in 0..5) {
+                for (i in 0..4) {
                     SimpleSwitchPref {
                         title = "Test 1.$i"
-                        summary = "This is a Test 1.$i"
+                        summaryOn = "This is a Test 1.$i - On"
+                        summaryOff = "This is a Test 1.$i - Off"
                         defaultValue = if(i % 2 == 0) SimpleSwitchPreference.ON else SimpleSwitchPreference.OFF
                     }
                 }
                 SimpleTextPref {
                     title = "Test 2"
                     summary = "This is a Test 2"
+                    onClick = WebsiteClickListener(this@MainActivity, getString(R.string.github_link))
                 }
             }
             Section {

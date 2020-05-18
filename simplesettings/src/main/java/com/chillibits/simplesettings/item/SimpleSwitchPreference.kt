@@ -1,10 +1,10 @@
 package com.chillibits.simplesettings.item
 
-import java.io.Serializable
-
-class SimpleSwitchPreference: SimplePreference(), Serializable {
+class SimpleSwitchPreference: SimplePreference() {
     // Attributes
     var defaultValue = OFF
+    var summaryOn = ""
+    var summaryOff = ""
 
     companion object {
         const val OFF = false

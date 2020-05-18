@@ -5,7 +5,7 @@ import androidx.annotation.IdRes
 import androidx.annotation.MenuRes
 import java.io.Serializable
 
-class SimpleSettingsConfig(): Serializable {
+class SimpleSettingsConfig() {
 
     // Attributes
     @MenuRes

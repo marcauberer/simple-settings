@@ -5,23 +5,22 @@ import android.content.Intent
 import androidx.annotation.XmlRes
 import com.chillibits.simplesettings.item.PreferenceSection
 import com.chillibits.simplesettings.ui.SimpleSettingsActivity
-import java.io.Serializable
 
 class SimpleSettings(
-    val context: Context,
-    val config: SimpleSettingsConfig = DEFAULT_CONFIG
-): Serializable {
+    private val context: Context,
+    configuration: SimpleSettingsConfig = DEFAULT_CONFIG
+) {
 
     // Variables as objects
-    private val sections = ArrayList<PreferenceSection>()
 
     // Variables
 
+    init {
+        config = configuration
+    }
+
     private fun show() {
-        context.startActivity(Intent(context, SimpleSettingsActivity::class.java).apply {
-            putExtra("sections", sections)
-            putExtra("config", config)
-        })
+        context.startActivity(Intent(context, SimpleSettingsActivity::class.java))
     }
 
     fun show(func: SimpleSettings.() -> Unit): SimpleSettings = apply {
@@ -30,14 +29,16 @@ class SimpleSettings(
     }
 
     fun show(@XmlRes preferenceResource: Int) {
-        context.startActivity(Intent(context, SimpleSettingsActivity::class.java).apply {
-            putExtra("xml", preferenceResource)
-            putExtra("config", config)
-        })
+        preferenceRes = preferenceResource
+        context.startActivity(Intent(context, SimpleSettingsActivity::class.java))
     }
 
     companion object {
         @JvmStatic val DEFAULT_CONFIG = SimpleSettingsConfig.Builder().build()
+        var config: SimpleSettingsConfig = DEFAULT_CONFIG
+        @XmlRes
+        var preferenceRes: Int = 0
+        var sections = ArrayList<PreferenceSection>()
     }
 
     // ----------------------------------- Preference section --------------------------------------
