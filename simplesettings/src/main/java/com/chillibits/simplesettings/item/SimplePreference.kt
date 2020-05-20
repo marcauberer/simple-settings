@@ -1,12 +1,17 @@
 package com.chillibits.simplesettings.item
 
+import androidx.preference.Preference
+
 abstract class SimplePreference {
+
     // Attributes
+    var key = ""
     var title = ""
     var summary = ""
-    var onClick: OnPreferenceClickListener? = null
+    var dependency = ""
+    var onClick: Preference.OnPreferenceClickListener? = null
 
-    interface OnPreferenceClickListener {
-        fun onClick(pref: SimplePreference)
+    companion object {
+        const val SUMMARY_VALUE = "%s"
     }
 }

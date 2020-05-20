@@ -33,7 +33,7 @@ dependencies {
 
     // Google dependencies
     implementation 'com.google.android.material:material:1.1.0'
-    implementation 'androidx.preference:preference:1.1.1'
+    api 'androidx.preference:preference:1.1.1'
 
     // External dependencies
     implementation 'com.mikepenz:aboutlibraries-core:8.1.2'

@@ -9,6 +9,7 @@ import com.chillibits.simplesettings.core.SimpleSettings
 import com.chillibits.simplesettings.core.SimpleSettingsConfig
 import com.chillibits.simplesettings.item.SimpleSwitchPreference
 import com.chillibits.simplesettings.tool.WebsiteClickListener
+import com.chillibits.simplesettings.tool.toCamelCase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
                     title = "Test 2"
                     summary = "This is a Test 2"
                     onClick = WebsiteClickListener(this@MainActivity, getString(R.string.github_link))
+                    dependency = "Test 1.4".toCamelCase()
                 }
             }
             Section {

@@ -3,15 +3,16 @@ package com.chillibits.simplesettings.tool
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import com.chillibits.simplesettings.item.SimplePreference
+import androidx.preference.Preference
 
 class WebsiteClickListener(
     private val context: Context,
     private val url: String
-): SimplePreference.OnPreferenceClickListener {
-    override fun onClick(pref: SimplePreference) {
+): Preference.OnPreferenceClickListener {
+    override fun onPreferenceClick(preference: Preference?): Boolean {
         context.startActivity(Intent(Intent.ACTION_VIEW).apply {
             data = Uri.parse(url)
         })
+        return true
     }
 }

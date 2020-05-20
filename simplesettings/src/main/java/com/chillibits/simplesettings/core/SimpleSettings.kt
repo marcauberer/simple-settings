@@ -16,7 +16,11 @@ class SimpleSettings(
     // Variables
 
     init {
+        // Init with configuration
         config = configuration
+        // Reset static attributes
+        preferenceRes = 0
+        sections.clear()
     }
 
     private fun show() {

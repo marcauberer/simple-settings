@@ -14,7 +14,8 @@
         <Preference
             app:key="test2"
             app:title="Test 1"
-            app:summary="This is a test 2"/>
+            app:summary="This is a test 2"
+            app:dependency="test1"/>
     </PreferenceCategory>
 
     <PreferenceCategory>
@@ -23,7 +24,7 @@
             app:key="test3"
             app:defaultValue="Test 3"
             app:title="Test 3"
-            app:summary="This is a test 3"
+            app:summary="%s"
             app:useSimpleSummaryProvider="true"/>
     </PreferenceCategory>
 </PreferenceScreen>

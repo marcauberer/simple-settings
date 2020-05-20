@@ -2,11 +2,11 @@
 <resources>
     <color name="colorPrimaryVariant">#3DDC84</color>
     <color name="colorPrimaryDarkVariant">#32B56C</color>
-    <color name="colorSecondaryVariant">#03DAC5</color>
+    <color name="colorSecondaryVariant">#FF9800</color>
     <color name="colorSurface">#FAFAFA</color>
-    <color name="colorOnPrimary">#03DAC5</color>
-    <color name="colorOnSecondary">#03DAC5</color>
-    <color name="colorOnBackground">#FAFAFA</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+    <color name="colorOnBackground">#000000</color>
     <color name="colorOnError">#810000</color>
-    <color name="colorOnSurface">#03DAC5</color>
+    <color name="colorOnSurface">@color/colorPrimaryVariant</color>
 </resources>

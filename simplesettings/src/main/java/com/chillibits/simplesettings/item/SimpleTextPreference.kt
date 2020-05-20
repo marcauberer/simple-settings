@@ -1,6 +1,3 @@
 package com.chillibits.simplesettings.item
 
-class SimpleTextPreference: SimplePreference() {
-    // Attributes
-
-}
+class SimpleTextPreference: SimplePreference()

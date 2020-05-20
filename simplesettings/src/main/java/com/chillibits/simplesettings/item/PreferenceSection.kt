@@ -22,4 +22,9 @@ class PreferenceSection {
         this.func()
         items.add(this)
     }
+
+    fun SimpleLibsPreference(func: SimpleLibsPreference.() -> Unit) = SimpleLibsPreference().apply {
+        this.func()
+        items.add(this)
+    }
 }
