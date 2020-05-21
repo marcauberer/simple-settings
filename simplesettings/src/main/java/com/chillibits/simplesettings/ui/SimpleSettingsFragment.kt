@@ -22,14 +22,14 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
             setPreferencesFromResource(preferenceRes, rootKey)
         } else {
             // Build preferences from sections array
-            val screen = preferenceManager.createPreferenceScreen(context)
+            preferenceScreen = preferenceManager.createPreferenceScreen(context)
 
             // Add sections
             sections.forEach { section ->
                 // Add category itself
                 val category = PreferenceCategory(context)
                 category.title = section.title
-                screen.addPreference(category)
+                preferenceScreen.addPreference(category)
 
                 // Add items to category
                 section.items.forEach { item ->
@@ -43,7 +43,16 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
                 }
             }
 
-            preferenceScreen = screen
+            // Post processing
+            sections.forEach {
+                it.items.forEach { item ->
+                    if(item.dependency.isNotBlank()) {
+                        val key = if(item.key.isBlank()) item.title.toCamelCase() else item.key
+                        val pref = findPreference<Preference>(key)
+                        pref?.dependency = item.dependency
+                    }
+                }
+            }
         }
     }
 
@@ -73,6 +82,7 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
         dialogTitle = sp.dialogTitle
         dialogMessage = sp.dialogMessage
         dialogIcon = sp.dialogIcon
+
         if(sp.dialogLayoutRes != 0) dialogLayoutResource = sp.dialogLayoutRes
         setDefaultValue(sp.defaultValue)
     }
@@ -84,11 +94,6 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
             key = if(sp.key.isBlank()) sp.title.toCamelCase() else sp.key
             title = sp.title
             summary = sp.summary
-            val dependentFrom = preferenceScreen.findPreference<SwitchPreferenceCompat>(sp.dependency)
-            dependentFrom?.setOnPreferenceChangeListener { _, newValue ->
-                isEnabled = newValue == true
-                true
-            }
             onPreferenceClickListener = sp.onClick
         }
     }
