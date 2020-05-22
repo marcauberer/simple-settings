@@ -9,6 +9,7 @@ abstract class SimplePreference {
     var title = ""
     var summary = ""
     var dependency = ""
+    var enabled = true
     var onClick: Preference.OnPreferenceClickListener? = null
 
     companion object {

@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 100
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -36,8 +36,9 @@ dependencies {
     api 'androidx.preference:preference:1.1.1'
 
     // External dependencies
-    implementation 'com.mikepenz:aboutlibraries-core:8.1.2'
+    api 'com.mikepenz:aboutlibraries-core:8.1.2'
     implementation 'com.mikepenz:aboutlibraries:8.1.2@aar'
+    implementation 'com.mikepenz:fastadapter:5.0.2'
 
     // Test dependencies
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

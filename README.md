@@ -13,7 +13,7 @@ Simple Settings is a library, which provides a simple to use, lightweight soluti
 ## Usage
 The first step for using this library is, to add it to the dependency section in your project:
 ```gradle
-implementation 'com.github.ChilliBits:simle-settings:1.0.0'
+implementation 'com.chillibits:simle-settings:1.0.0'
 ```
 
 The library accepts two different ways, for providing the settings screen information.

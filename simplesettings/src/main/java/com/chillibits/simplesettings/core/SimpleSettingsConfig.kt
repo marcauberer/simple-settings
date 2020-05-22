@@ -38,11 +38,6 @@ class SimpleSettingsConfig() {
             return this
         }
 
-        fun enableLibsActivityPreference(): Builder {
-
-            return this
-        }
-
         fun displayHomeAsUpEnabled(enabled: Boolean): Builder {
             config.displayHomeAsUpEnabled = enabled
             return this

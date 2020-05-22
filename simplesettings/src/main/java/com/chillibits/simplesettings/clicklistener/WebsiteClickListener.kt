@@ -1,4 +1,4 @@
-package com.chillibits.simplesettings.tool
+package com.chillibits.simplesettings.clicklistener
 
 import android.content.Context
 import android.content.Intent

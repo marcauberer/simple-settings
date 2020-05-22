@@ -1,1 +1,4 @@
-<resources></resources>
+<resources>
+    <string name="libsPreferenceTitle">Used Libs</string>
+    <string name="libsPreferenceSummary">Tap to see view all libraries in use</string>
+</resources>

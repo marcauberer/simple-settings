@@ -47,7 +47,7 @@ class SimpleSettings(
 
     // ----------------------------------- Preference section --------------------------------------
 
-    fun Section(func: PreferenceSection.() -> Unit) = PreferenceSection().apply {
+    fun Section(func: PreferenceSection.() -> Unit) = PreferenceSection(context).apply {
         this.func()
         sections.add(this)
     }

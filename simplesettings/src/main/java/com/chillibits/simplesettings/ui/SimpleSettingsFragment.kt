@@ -4,11 +4,9 @@ import android.os.Bundle
 import androidx.core.content.res.ResourcesCompat
 import androidx.preference.*
 import com.chillibits.simplesettings.core.SimpleSettings
-import com.chillibits.simplesettings.item.SimpleInputPreference
-import com.chillibits.simplesettings.item.SimplePreference
-import com.chillibits.simplesettings.item.SimpleSwitchPreference
-import com.chillibits.simplesettings.item.SimpleTextPreference
+import com.chillibits.simplesettings.item.*
 import com.chillibits.simplesettings.tool.toCamelCase
+import com.mikepenz.aboutlibraries.LibsBuilder
 
 class SimpleSettingsFragment : PreferenceFragmentCompat() {
 
@@ -29,6 +27,7 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
                 // Add category itself
                 val category = PreferenceCategory(context)
                 category.title = section.title
+                category.isEnabled = section.enabled
                 preferenceScreen.addPreference(category)
 
                 // Add items to category
@@ -37,6 +36,7 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
                         is SimpleTextPreference -> genTextPref(item)
                         is SimpleSwitchPreference -> genSwitchPref(item)
                         is SimpleInputPreference -> genInputPref(item)
+                        is SimpleLibsPreference -> genLibsPref(item)
                         else -> Preference(context)
                     }
                     category.addPreference(preferenceItem)
@@ -87,6 +87,43 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
         setDefaultValue(sp.defaultValue)
     }
 
+    private fun genLibsPref(sp: SimpleLibsPreference) = Preference(context).apply {
+        initializeGeneralAttributes(sp, this)
+        setOnPreferenceClickListener {
+            LibsBuilder().apply {
+                activityTitle = sp.activityTitle
+                edgeToEdge = sp.edgeToEdge
+                aboutAppName = sp.aboutAppName
+                aboutAppSpecial1 = sp.aboutAppSpecial1
+                aboutAppSpecial1Description = sp.aboutAppSpecial1Description
+                aboutAppSpecial2 = sp.aboutAppSpecial2
+                aboutAppSpecial2Description = sp.aboutAppSpecial2Description
+                aboutAppSpecial3 = sp.aboutAppSpecial3
+                aboutAppSpecial3Description = sp.aboutAppSpecial3Description
+                aboutDescription = sp.aboutDescription
+                aboutMinimalDesign = sp.aboutMinimalDesign
+                aboutShowIcon = sp.aboutShowIcon
+                aboutShowVersion = sp.aboutShowVersion
+                aboutShowVersionCode = sp.aboutShowVersionCode
+                aboutShowVersionName = sp.aboutShowVersionName
+                aboutVersionString = sp.aboutVersionString
+                autoDetect = sp.autoDetect
+                checkCachedDetection = sp.checkCachedDetection
+                fields = sp.fields
+                internalLibraries = sp.internalLibraries
+                excludeLibraries = sp.excludeLibraries
+                libraryComparator = sp.libraryComparator
+                ownLibsActivityClass = sp.ownLibsActivityClass
+                showLicense = sp.showLicense
+                showLicenseDialog = sp.showLicenseDialog
+                showLoadingProgress = sp.showLoadingProgress
+                showVersion = sp.showVersion
+                sort = sp.sort
+            }.start(context)
+            true
+        }
+    }
+
     // -------------------------------------- Utility methods --------------------------------------
 
     private fun initializeGeneralAttributes(sp: SimplePreference, pref: Preference) {
@@ -94,6 +131,7 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
             key = if(sp.key.isBlank()) sp.title.toCamelCase() else sp.key
             title = sp.title
             summary = sp.summary
+            isEnabled = sp.enabled
             onPreferenceClickListener = sp.onClick
         }
     }

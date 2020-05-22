@@ -5,10 +5,12 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
+import com.chillibits.simplesettings.clicklistener.LibsClickListener
+import com.chillibits.simplesettings.clicklistener.PlayStoreClickListener
+import com.chillibits.simplesettings.clicklistener.WebsiteClickListener
 import com.chillibits.simplesettings.core.SimpleSettings
 import com.chillibits.simplesettings.core.SimpleSettingsConfig
 import com.chillibits.simplesettings.item.SimpleSwitchPreference
-import com.chillibits.simplesettings.tool.WebsiteClickListener
 import com.chillibits.simplesettings.tool.toCamelCase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -30,13 +32,12 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
     private fun openSettingsCodeConfig() {
         val config = SimpleSettingsConfig.Builder()
             .displayHomeAsUpEnabled(true)
-            .enableLibsActivityPreference()
             .setOptionsMenu(R.menu.menu_settings, this)
             .showResetOption(true)
             .build()
 
         // Programmatic settings data (especially useful for generating settings options at runtime)
-        val settings = SimpleSettings(this, config).show {
+        SimpleSettings(this, config).show {
             Section {
                 title = "Test section"
                 for (i in 0..4) {
@@ -59,6 +60,19 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
                     title = "Test 3"
                     summary = "This is a Test 3"
                 }
+                SimpleTextPref {
+                    title = "PlayStore test"
+                    summary = "Click here to open PlayStore site of this app"
+                    onClick = PlayStoreClickListener(this@MainActivity)
+                }
+                SimpleTextPref {
+                    title = "Libs test"
+                    summary = "Click here to open PlayStore site of this app"
+                    onClick = LibsClickListener(this@MainActivity)
+                }
+                SimpleLibsPreference {
+                    activityTitle = "Test"
+                }
             }
         }
     }
@@ -66,13 +80,12 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
     private fun openSettingsXmlConfig() {
         val config = SimpleSettingsConfig.Builder()
             .displayHomeAsUpEnabled(true)
-            .enableLibsActivityPreference()
             .setOptionsMenu(R.menu.menu_settings, this)
             .showResetOption(true)
             .build()
 
         // Settings data from xml resource to keep a better overview
-        val settings = SimpleSettings(this, config).show(R.xml.preferences)
+        SimpleSettings(this, config).show(R.xml.preferences)
     }
 
     override fun onSettingsOptionsItemSelected(@IdRes itemId: Int) {

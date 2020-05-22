@@ -1,9 +1,14 @@
 package com.chillibits.simplesettings.item
 
-class PreferenceSection {
+import android.content.Context
+
+class PreferenceSection(
+    private val context: Context
+) {
 
     // Attributes
-    var title: String = "Section title"
+    var title = ""
+    var enabled = true
     val items = ArrayList<SimplePreference>()
 
     // ----------------------------------------- Item types ----------------------------------------
