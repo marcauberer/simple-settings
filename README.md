@@ -1,4 +1,5 @@
 # Simple Settings Activity
+[![Download](https://api.bintray.com/packages/marcauberer/simplesettings/com.chillibits%3Asimplesettings/images/download.svg)](https://bintray.com/marcauberer/simplesettings/com.chillibits%3Asimplesettings/_latestVersion)
 ![Android CI](https://github.com/marcauberer/simple-settings/workflows/Android%20CI/badge.svg)
 [![API](https://img.shields.io/badge/API-21%2B-red.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
@@ -13,7 +14,7 @@ If you want to test the library, please visit the sample app on [https://play.go
 ## Usage
 The first step for using this library is, to add it to the dependency section in your project:
 ```gradle
-implementation 'com.chillibits:simple-settings:1.0.0-alpha01'
+implementation 'com.chillibits:simplesettings:1.0.0-alpha01'
 ```
 
 The library accepts two different ways, for providing the settings screen information.

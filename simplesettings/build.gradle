@@ -5,6 +5,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 29
@@ -51,4 +53,54 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     // implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+publish {
+    def libGroupId = 'com.chillibits'
+    def libArtifactId = 'simplesettings'
+    def libVersion = '1.0.0-alpha01'
+    def libDesc = 'Simple to use, lightweight solution to create a settings screen without any boilerplate code.'
+    def libLicenses = ['MIT']
+    def libVCSUrl = 'https://github.com/marcauberer/simple-settings.git'
+
+    // Generate Source Jar
+    task sourceJar(type: Jar) {
+        from android.sourceSets.main.java.srcDirs
+        classifier "sources"
+    }
+
+    // Create the publication with the pom configuration
+    publishing {
+        publications {
+            MyPublication(MavenPublication) {
+                groupId libGroupId
+                artifactId libArtifactId
+                version libVersion
+                artifact(sourceJar)
+                artifact("$buildDir/outputs/aar/$libArtifactId-release.aar")
+            }
+        }
+    }
+
+    // Bintray config
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    bintray {
+        user = properties.getProperty("bintray.user")
+        key = properties.getProperty("bintray.apikey")
+        publications = ['MyPublication']
+        pkg {
+            repo = "simplesettings"
+            name = "$libGroupId:$libArtifactId"
+            desc = libDesc
+            licenses = libLicenses
+            vcsUrl = libVCSUrl
+            version {
+                name = libVersion
+                vcsTag = libVersion
+                released = new Date()
+            }
+        }
+    }
 }
