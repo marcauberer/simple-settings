@@ -1,3 +1,7 @@
+/*
+ * Copyright © Marc Auberer 2020. All rights reserved
+ */
+
 package com.chillibits.simplesettings.item
 
 import android.content.Context
@@ -28,7 +32,7 @@ class PreferenceSection(
         items.add(this)
     }
 
-    fun SimpleLibsPreference(func: SimpleLibsPreference.() -> Unit) = SimpleLibsPreference().apply {
+    fun SimpleLibsPreference(func: SimpleLibsPreference.() -> Unit) = SimpleLibsPreference(context).apply {
         this.func()
         items.add(this)
     }

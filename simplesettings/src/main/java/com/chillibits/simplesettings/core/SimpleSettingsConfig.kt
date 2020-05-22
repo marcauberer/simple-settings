@@ -1,24 +1,24 @@
+/*
+ * Copyright © Marc Auberer 2020. All rights reserved
+ */
+
 package com.chillibits.simplesettings.core
 
-import android.os.Parcel
+import android.content.Context
 import androidx.annotation.IdRes
 import androidx.annotation.MenuRes
+import androidx.annotation.StringRes
 import java.io.Serializable
 
-class SimpleSettingsConfig() {
+class SimpleSettingsConfig {
 
     // Attributes
+    var activityTitle: String? = null
     @MenuRes
     var optionsMenuRes: Int? = null
-    // var optionsMenuCallback: OptionsItemSelectedCallback? = null
+    var optionsMenuCallback: OptionsItemSelectedCallback? = null
     var displayHomeAsUpEnabled = true
     var showResetOption = false
-
-    constructor(parcel: Parcel) : this() {
-        optionsMenuRes = parcel.readValue(Int::class.java.classLoader) as? Int
-        displayHomeAsUpEnabled = parcel.readByte() != 0.toByte()
-        showResetOption = parcel.readByte() != 0.toByte()
-    }
 
     // Interfaces
     interface OptionsItemSelectedCallback: Serializable {
@@ -34,9 +34,17 @@ class SimpleSettingsConfig() {
 
         fun setOptionsMenu(@MenuRes menuRes: Int, callback: OptionsItemSelectedCallback): Builder {
             config.optionsMenuRes = menuRes
-            // config.optionsMenuCallback = callback
+            config.optionsMenuCallback = callback
             return this
         }
+
+        fun setActivityTitle(title: String): Builder {
+            config.activityTitle = title
+            return this
+        }
+
+        fun setActivityTitle(context: Context, @StringRes stringRes: Int) =
+            setActivityTitle(context.getString(stringRes))
 
         fun displayHomeAsUpEnabled(enabled: Boolean): Builder {
             config.displayHomeAsUpEnabled = enabled

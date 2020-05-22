@@ -1,0 +1,10 @@
+/*
+ * Copyright © Marc Auberer 2020. All rights reserved
+ */
+
+package com.chillibits.simplesettings.tool
+
+object Constants {
+    const val MENU_ITEM_RESET = 10001
+    const val SHARED_PREFS_NAME = "SharedPreferences"
+}

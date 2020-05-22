@@ -1,5 +1,11 @@
+<!--
+  ~ Copyright © Marc Auberer 2020. All rights reserved
+  -->
+
 <resources>
     <string name="app_name">Simple Settings Sample</string>
     <string name="open_settings_code">Open Settings with code config</string>
     <string name="open_settings_xml">Open Settings with xml config</string>
+    <string name="app_on_github">App on GitHub</string>
+    <string name="rate_app">Rate App</string>
 </resources>

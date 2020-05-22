@@ -8,12 +8,12 @@ Simple Settings is a library, which provides a simple to use, lightweight soluti
 ## Screenshots
 
 ## Try it
-
+If you want to test the library, please visit the sample app on [https://play.google.com/store/apps/details?id=com.chillibits.simplesettingssample](Google Play)!
 
 ## Usage
 The first step for using this library is, to add it to the dependency section in your project:
 ```gradle
-implementation 'com.chillibits:simle-settings:1.0.0'
+implementation 'com.chillibits:simple-settings:1.0.0-alpha01'
 ```
 
 The library accepts two different ways, for providing the settings screen information.
@@ -64,19 +64,46 @@ You also can specify your preference screen [https://developer.android.com/guide
             app:key="preference_test"
             app:title="Test"
             app:summary="This is a test preference"/>
+
+        <SwitchPreferenceCompat
+            app:key="test"
+            app:defaultValue="true"
+            app:title="Test"
+            app:summary="This is a test"/>
     </PreferenceCategory>
 </PreferenceScreen>
 ```
 
-to 
+to build the settings screen in its default configuration, you can simply call the `show` method of SimpleSettings and pass the prepared xml resource file to it.
+
+```kotlin
+SimpleSettings(this@MainActivity).show(R.xml.preferences)
+```
 
 ## Customization
 The library offers a few customization options. For applying those options, you have to pass an object of `SimpleSettingsConfig` to the constructor of your `SimpleSettings` instance.
 
+| Method                            | Description                                                                                                                                    |
+|-----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| `setActivityTitle(String)`        | Sets the toolbar title for the SettingsActivity. The default value is 'Settings', translated to all supported languages                        |
+| `setActivityTitle(Context, Int)`  | Sets the toolbar title for the SettingsActivity with a string resource. The default value is 'Settings', translated to all supported languages |
+| `displayHomeAsUpEnabled(Boolean)` | Enables or disables the arrow icon in the top left corner of the activity to return to the calling activity. Default is `true`                 |
+| `showResetOption(Boolean)`        | Enables or disables an options menu item for resetting all preferences to the default values. Default is `false`                               |
+
+If you miss a customization option, please let us know, by opening an issue.
+
+## Supported languages
+Here are the currently supported languages for this library.
+
+- English
+- German
+
+New translations are highly appreciated. If you want to translate the lib, please open a pr.
+
 ## Contribute to the project
-If you want to contribute to this project, please feel free to send me a pull request.
+If you want to contribute to this project, please feel free to send us a pull request.
 
 ## Credits
-
+Thanks to all contributors and translators!
 
 © Marc Auberer 2020

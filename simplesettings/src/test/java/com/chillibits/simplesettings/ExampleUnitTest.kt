@@ -1,8 +1,11 @@
+/*
+ * Copyright © Marc Auberer 2020. All rights reserved
+ */
+
 package com.chillibits.simplesettings
 
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).

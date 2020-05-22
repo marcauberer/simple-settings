@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © Marc Auberer 2020. All rights reserved
+  -->
+
+<resources>
+    <string name="app_name">Simple Settings Sample</string>
+    <string name="open_settings_code">Eintellungen mit Code-Konfiguration</string>
+    <string name="open_settings_xml">Einstellungen mit XML-Dtei</string>
+    <string name="app_on_github">App auf GitHub</string>
+    <string name="rate_app">App bewerten</string>
+</resources>

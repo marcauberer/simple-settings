@@ -1,10 +1,16 @@
+/*
+ * Copyright © Marc Auberer 2020. All rights reserved
+ */
+
 package com.chillibits.simplesettings.item
 
+import android.content.Context
+import com.chillibits.simplesettings.R
 import com.mikepenz.aboutlibraries.entity.Library
 import com.mikepenz.aboutlibraries.ui.LibsActivity
 import java.util.*
 
-class SimpleLibsPreference: SimplePreference() {
+class SimpleLibsPreference(context: Context): SimplePreference() {
 
     // Attributes
     var activityTitle: String? = null
@@ -35,4 +41,9 @@ class SimpleLibsPreference: SimplePreference() {
     var showLoadingProgress = true
     var showVersion = true
     var sort = true
+
+    init {
+        title = context.getString(R.string.libsPreferenceTitle)
+        summary = context.getString(R.string.libsPreferenceSummary)
+    }
 }

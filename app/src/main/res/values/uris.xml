@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © Marc Auberer 2020. All rights reserved
+  -->
+
 <resources>
-    <string name="github_link">https://github.com/marcauberer/simple-settings</string>
+    <string name="github_link" translatable="false">https://github.com/marcauberer/simple-settings</string>
 </resources>

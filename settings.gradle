@@ -1,3 +1,7 @@
+/*
+ * Copyright © Marc Auberer 2020. All rights reserved
+ */
+
 rootProject.name='Simple Settings Sample'
 include ':app'
 include ':simplesettings'

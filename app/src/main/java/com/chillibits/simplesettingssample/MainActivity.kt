@@ -1,3 +1,7 @@
+/*
+ * Copyright © Marc Auberer 2020. All rights reserved
+ */
+
 package com.chillibits.simplesettingssample
 
 import android.content.Intent
@@ -11,6 +15,7 @@ import com.chillibits.simplesettings.clicklistener.WebsiteClickListener
 import com.chillibits.simplesettings.core.SimpleSettings
 import com.chillibits.simplesettings.core.SimpleSettingsConfig
 import com.chillibits.simplesettings.item.SimpleSwitchPreference
+import com.chillibits.simplesettings.tool.openGooglePlayAppSite
 import com.chillibits.simplesettings.tool.toCamelCase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -31,6 +36,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
 
     private fun openSettingsCodeConfig() {
         val config = SimpleSettingsConfig.Builder()
+
             .displayHomeAsUpEnabled(true)
             .setOptionsMenu(R.menu.menu_settings, this)
             .showResetOption(true)
@@ -40,7 +46,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         SimpleSettings(this, config).show {
             Section {
                 title = "Test section"
-                for (i in 0..4) {
+                for (i in 0..3) {
                     SimpleSwitchPref {
                         title = "Test 1.$i"
                         summaryOn = "This is a Test 1.$i - On"
@@ -52,7 +58,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
                     title = "Test 2"
                     summary = "This is a Test 2"
                     onClick = WebsiteClickListener(this@MainActivity, getString(R.string.github_link))
-                    dependency = "Test 1.4".toCamelCase()
+                    dependency = "Test 1.3".toCamelCase()
                 }
             }
             Section {
@@ -72,6 +78,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
                 }
                 SimpleLibsPreference {
                     activityTitle = "Test"
+                    edgeToEdge = true
                 }
             }
         }
@@ -90,11 +97,14 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
 
     override fun onSettingsOptionsItemSelected(@IdRes itemId: Int) {
         when(itemId) {
-            R.id.actionGitHub -> {
-                startActivity(Intent(Intent.ACTION_VIEW).apply {
-                    data = Uri.parse(getString(R.string.github_link))
-                })
-            }
+            R.id.actionGitHub -> openGitHubPage()
+            R.id.actionRate -> openGooglePlayAppSite()
         }
+    }
+
+    private fun openGitHubPage() {
+        startActivity(Intent(Intent.ACTION_VIEW).apply {
+            data = Uri.parse(getString(R.string.github_link))
+        })
     }
 }

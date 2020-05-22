@@ -1,4 +1,10 @@
+<!--
+  ~ Copyright © Marc Auberer 2020. All rights reserved
+  -->
+
 <resources>
+    <string name="settings">Settings</string>
     <string name="libsPreferenceTitle">Used Libs</string>
     <string name="libsPreferenceSummary">Tap to see view all libraries in use</string>
+    <string name="resetSettings">Reset preferences</string>
 </resources>

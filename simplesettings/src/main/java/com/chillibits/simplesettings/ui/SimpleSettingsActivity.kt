@@ -1,5 +1,10 @@
+/*
+ * Copyright © Marc Auberer 2020. All rights reserved
+ */
+
 package com.chillibits.simplesettings.ui
 
+import android.content.res.XmlResourceParser
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
@@ -8,6 +13,9 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.chillibits.simplesettings.R
 import com.chillibits.simplesettings.core.SimpleSettings
+import com.chillibits.simplesettings.tool.Constants
+import com.chillibits.simplesettings.tool.getPrefs
+import com.chillibits.simplesettings.tool.toCamelCase
 import kotlinx.android.synthetic.main.toolbar.*
 
 class SimpleSettingsActivity : AppCompatActivity() {
@@ -21,6 +29,7 @@ class SimpleSettingsActivity : AppCompatActivity() {
 
         // Initialize toolbar
         setSupportActionBar(toolbar)
+        supportActionBar?.title = config.activityTitle ?: getString(R.string.settings)
 
         // Set window insets
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -41,6 +50,8 @@ class SimpleSettingsActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         config.optionsMenuRes?.let { menuInflater.inflate(it, menu) }
+        if(config.showResetOption)
+            menu?.add(Menu.NONE, Constants.MENU_ITEM_RESET, 100, getString(R.string.resetSettings))
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -48,9 +59,8 @@ class SimpleSettingsActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(val id = item.itemId) {
             android.R.id.home -> finish()
-            else -> {
-                // config.optionsMenuCallback?.onSettingsOptionsItemSelected(id)
-            }
+            Constants.MENU_ITEM_RESET -> resetSettings()
+            else -> config.optionsMenuCallback?.onSettingsOptionsItemSelected(id)
         }
         return super.onOptionsItemSelected(item)
     }
@@ -59,5 +69,45 @@ class SimpleSettingsActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.settingsFragment, SimpleSettingsFragment())
             .commit()
+    }
+
+    private fun resetSettings() {
+        // Delete all affected keys from SharedPreferences
+        getPrefs().edit().run {
+            // Code-Config
+            SimpleSettings.sections.forEach { it.items.forEach { item ->
+                val key = if(item.key.isBlank()) item.title.toCamelCase() else item.key
+                remove(key)
+            }}
+            // XML-Config
+            if(SimpleSettings.preferenceRes != 0) {
+                val xrp = resources.getXml(SimpleSettings.preferenceRes)
+                var eventType = -1
+                while(eventType != XmlResourceParser.END_DOCUMENT) {
+                    if(eventType == XmlResourceParser.START_TAG) {
+                        try {
+                            if(xrp.name != "PreferenceScreen" && xrp.name != "PreferenceCategory") {
+                                var key = ""
+                                for(i in 0..xrp.attributeCount) {
+                                    if(xrp.getAttributeName(i) == "key") {
+                                        key = xrp.getAttributeValue(i)
+                                        break
+                                    }
+                                }
+                                remove(key)
+                            }
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+                    }
+                    eventType = xrp.next()
+                }
+            }
+            // Commit changes to disk
+            commit()
+        }
+
+        // Re-inflate settings fragment
+        initSettingsFragment()
     }
 }

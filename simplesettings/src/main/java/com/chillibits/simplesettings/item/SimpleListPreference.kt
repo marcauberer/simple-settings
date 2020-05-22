@@ -8,7 +8,7 @@ import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 
-class SimpleInputPreference: SimplePreference() {
+class SimpleListPreference: SimplePreference() {
     // Attributes
     var defaultValue = ""
     var dialogTitle = ""
@@ -19,4 +19,6 @@ class SimpleInputPreference: SimplePreference() {
     @LayoutRes
     var dialogLayoutRes = 0
     var simpleSummaryProvider = false
+    var entries: List<String> = emptyList()
+    var entryValues: List<Int> = emptyList()
 }

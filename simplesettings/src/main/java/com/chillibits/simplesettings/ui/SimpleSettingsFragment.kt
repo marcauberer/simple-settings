@@ -1,8 +1,13 @@
+/*
+ * Copyright © Marc Auberer 2020. All rights reserved
+ */
+
 package com.chillibits.simplesettings.ui
 
 import android.os.Bundle
 import androidx.core.content.res.ResourcesCompat
 import androidx.preference.*
+import com.chillibits.simplesettings.clicklistener.LibsClickListener
 import com.chillibits.simplesettings.core.SimpleSettings
 import com.chillibits.simplesettings.item.*
 import com.chillibits.simplesettings.tool.toCamelCase
@@ -18,6 +23,10 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
         if(preferenceRes != 0) {
             // Inflate preferences from xml resource
             setPreferencesFromResource(preferenceRes, rootKey)
+
+            // Search for possible LibsPreference and attach LibsClickListener
+            val libsPref = findPreference<Preference>("libs")
+            libsPref?.onPreferenceClickListener = LibsClickListener(requireContext())
         } else {
             // Build preferences from sections array
             preferenceScreen = preferenceManager.createPreferenceScreen(context)
@@ -122,6 +131,10 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
             }.start(context)
             true
         }
+    }
+
+    private fun genListPref(sp: SimpleListPreference) = ListPreference(context).apply {
+
     }
 
     // -------------------------------------- Utility methods --------------------------------------

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © Marc Auberer 2020. All rights reserved
+  -->
+
 <PreferenceScreen
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -15,16 +19,26 @@
             app:key="test2"
             app:title="Test 1"
             app:summary="This is a test 2"
-            app:dependency="test1"/>
+            app:dependency="test1" />
     </PreferenceCategory>
 
-    <PreferenceCategory>
+    <PreferenceCategory
+        app:title="Test section 2">
 
         <EditTextPreference
             app:key="test3"
             app:defaultValue="Test 3"
             app:title="Test 3"
-            app:summary="%s"
+            app:useSimpleSummaryProvider="true"/>
+
+        <Preference
+            app:key="libs"
+            app:title="@string/libsPreferenceTitle"
+            app:summary="@string/libsPreferenceSummary"/>
+
+        <ListPreference
+            app:key="test4"
+            app:title="Test 4"
             app:useSimpleSummaryProvider="true"/>
     </PreferenceCategory>
 </PreferenceScreen>
