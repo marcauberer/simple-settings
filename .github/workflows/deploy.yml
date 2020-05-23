@@ -1,0 +1,24 @@
+# Workflow for Android CI release
+
+name: Deploy to Bintray
+
+on:
+  release:
+    branches: [ master, beta ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Android Build
+        uses: vgaidarji/android-github-actions-build@v1.0.1
+        with:
+          args: "./gradlew build"
+      - name: Deploy to Bintray
+        env:
+          bintrayUser: ${{ secrets.BINTRAY_USERNAME }}
+          bintrayApiKey: ${{ secrets.bintrayApiKey }}
+        run: ./gradlew bintrayUpload
