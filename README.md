@@ -9,7 +9,7 @@ Simple Settings is a library, which provides a simple to use, lightweight soluti
 ## Screenshots
 
 ## Try it
-If you want to test the library, please visit the sample app on [https://play.google.com/store/apps/details?id=com.chillibits.simplesettingssample](Google Play)!
+If you want to test the library, please visit the sample app on [Google Play](https://play.google.com/store/apps/details?id=com.chillibits.simplesettingssample)!
 
 ## Usage
 The first step for using this library is, to add it to the dependency section in your project:
@@ -49,10 +49,10 @@ val settings = SimpleSettings(this, config).show {
 ```
 This is especially useful, when you need to generate your preferences at runtime. You can use loops and conditions as you can see above.
 
-You can optionally pass an object of `SimpleSettingsConfig` to the constructor of your `SimpleSettings` instance, to customize the appearance of the settings activity. The different customization options are listed [#customization](below).
+You can optionally pass an object of `SimpleSettingsConfig` to the constructor of your `SimpleSettings` instance, to customize the appearance of the settings activity. The different customization options are listed [below](#customization).
 
 ### Provide items with xml file
-You also can specify your preference screen [https://developer.android.com/guide/topics/ui/settings#create_a_hierarchy](as an usual xml file):
+You also can specify your preference screen [as an usual xml file](https://developer.android.com/guide/topics/ui/settings#create_a_hierarchy):
 ```xml
 <PreferenceScreen
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -92,6 +92,9 @@ The library offers a few customization options. For applying those options, you 
 | `showResetOption(Boolean)`        | Enables or disables an options menu item for resetting all preferences to the default values. Default is `false`                               |
 
 If you miss a customization option, please let us know, by opening an issue.
+
+## Dive in deeper into the project
+Please visit the wiki, if you want to understand the perks of this library or if you want to learn more about certain preference types.
 
 ## Supported languages
 Here are the currently supported languages for this library.
