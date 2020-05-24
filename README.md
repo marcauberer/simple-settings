@@ -15,6 +15,17 @@ If you want to test the library, please visit the sample app on [Google Play](ht
 The first step for using this library is, to add it to the dependency section in your project:
 ```gradle
 implementation 'com.chillibits:simplesettings:1.0.0-alpha01'
+
+// Required dependencies
+implementation 'com.google.android.material:material:<latest-version>'
+implementation 'androidx.preference:preference:<latest-version>'
+```
+
+You also have to register the activity in your manifest:
+```xml
+<activity
+    android:name="com.chillibits.simplesettings.ui.SimpleSettingsActivity"
+    android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
 ```
 
 The library accepts two different ways, for providing the settings screen information.
@@ -22,7 +33,7 @@ The library accepts two different ways, for providing the settings screen inform
 ### Provide items programmatically
 You can create the settings items, by using the `show()` method with the callback like this:
 ```kotlin
-val settings = SimpleSettings(this, config).show {
+SimpleSettings(this).show {
     Section {
         title = "Test section"
         for (i in 0..4) {

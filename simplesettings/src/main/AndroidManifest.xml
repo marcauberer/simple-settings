@@ -3,11 +3,13 @@
   ~ Copyright © Marc Auberer 2020. All rights reserved
   -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chillibits.simplesettings">
 
     <application>
-        <activity android:name=".ui.SimpleSettingsActivity"></activity>
+        <activity
+            android:name=".ui.SimpleSettingsActivity"
+            android:theme="@style/settingsStyle"/>
     </application>
-
 </manifest>

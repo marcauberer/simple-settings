@@ -4,7 +4,7 @@
   -->
 
 <resources>
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="settingsStyle" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- MaterialComponents colors -->
         <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
         <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
@@ -17,7 +17,7 @@
         <item name="android:statusBarColor">@color/colorPrimaryDarkVariant</item>
     </style>
 
-    <style name="toolbarStyle" parent="Theme.MaterialComponents">
+    <style name="settingsToolbarStyle" parent="Theme.MaterialComponents">
         <item name="popupTheme">@style/Theme.MaterialComponents.Light</item>
     </style>
 </resources>
