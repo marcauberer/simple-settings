@@ -58,7 +58,7 @@ dependencies {
 publish {
     def libGroupId = 'com.chillibits'
     def libArtifactId = 'simplesettings'
-    def libVersion = '1.0.0-alpha01'
+    def libVersion = '1.0.0-alpha02'
     def libDesc = 'Simple to use, lightweight solution to create a settings screen without any boilerplate code.'
     def libLicenses = ['MIT']
     def libVCSUrl = 'https://github.com/marcauberer/simple-settings.git'
