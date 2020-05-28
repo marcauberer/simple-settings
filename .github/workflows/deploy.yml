@@ -25,6 +25,6 @@ jobs:
           api_key: ${{ secrets.BINTRAY_API_KEY }}
           repository_user: marcauberer
           repository: simple-settings
-          package: simplesettings
+          package: com.chillibits:simplesettings
           version: '1.0.0-alpha03'
           publish: 1
