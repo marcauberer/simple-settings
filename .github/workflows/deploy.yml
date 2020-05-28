@@ -15,7 +15,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Android Build
         uses: vgaidarji/android-github-actions-build@v1.0.1
-        with: './gradlew build'
+        with:
+          args: './gradlew build'
       - name: Deploy to Bintray
         uses: bpicode/github-action-upload-bintray@master
         with:
