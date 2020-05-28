@@ -15,10 +15,15 @@ jobs:
         uses: actions/checkout@v2
       - name: Android Build
         uses: vgaidarji/android-github-actions-build@v1.0.1
-        with:
-          args: "./gradlew build"
+        with: './gradlew build'
       - name: Deploy to Bintray
-        env:
-          bintrayUser: ${{ secrets.BINTRAY_USERNAME }}
-          bintrayApiKey: ${{ secrets.bintrayApiKey }}
-        run: ./gradlew bintrayUpload
+        uses: bpicode/github-action-upload-bintray@master
+        with:
+          file: ./simplesettings/build/outputs/aar/simplesettings-release.aar
+          api_user: ${{ secrets.BINTRAY_USERNAME }}
+          api_key: ${{ secrets.BINTRAY_API_KEY }}
+          repository_user: marcauberer
+          repository: simple-settings
+          package: simplesettings
+          version: '1.0.0-alpha03'
+          publish: 1

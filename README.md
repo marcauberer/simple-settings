@@ -14,7 +14,7 @@ If you want to test the library, please visit the sample app on [Google Play](ht
 ## Usage
 The first step for using this library is, to add it to the dependency section in your project:
 ```gradle
-implementation 'com.chillibits:simplesettings:1.0.0-alpha01'
+implementation 'com.chillibits:simplesettings:1.0.0-alpha03'
 
 // Required dependencies
 implementation 'com.google.android.material:material:<latest-version>'
