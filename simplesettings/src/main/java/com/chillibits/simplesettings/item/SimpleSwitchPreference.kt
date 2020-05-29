@@ -4,7 +4,9 @@
 
 package com.chillibits.simplesettings.item
 
-class SimpleSwitchPreference: SimplePreference() {
+class SimpleSwitchPreference(
+    iconSpaceReservedByDefault: Boolean
+): SimplePreference(iconSpaceReservedByDefault) {
     // Attributes
     var defaultValue = OFF
     var summaryOn = ""

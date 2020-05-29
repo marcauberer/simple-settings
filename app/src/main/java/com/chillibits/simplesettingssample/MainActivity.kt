@@ -36,10 +36,10 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
 
     private fun openSettingsCodeConfig() {
         val config = SimpleSettingsConfig.Builder()
-
             .displayHomeAsUpEnabled(true)
             .setOptionsMenu(R.menu.menu_settings, this)
             .showResetOption(true)
+            .setIconSpaceReservedByDefault(false)
             .build()
 
         // Programmatic settings data (especially useful for generating settings options at runtime)
@@ -47,14 +47,14 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
             Section {
                 title = "Test section"
                 for (i in 0..3) {
-                    SimpleSwitchPref {
+                    SwitchPref {
                         title = "Test 1.$i"
                         summaryOn = "This is a Test 1.$i - On"
                         summaryOff = "This is a Test 1.$i - Off"
                         defaultValue = if(i % 2 == 0) SimpleSwitchPreference.ON else SimpleSwitchPreference.OFF
                     }
                 }
-                SimpleTextPref {
+                TextPref {
                     title = "Test 2"
                     summary = "This is a Test 2"
                     onClick = WebsiteClickListener(this@MainActivity, getString(R.string.github_link))
@@ -62,21 +62,21 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
                 }
             }
             Section {
-                SimpleInputPref {
+                InputPref {
                     title = "Test 3"
                     summary = "This is a Test 3"
                 }
-                SimpleTextPref {
+                TextPref {
                     title = "PlayStore test"
                     summary = "Click here to open PlayStore site of this app"
                     onClick = PlayStoreClickListener(this@MainActivity)
                 }
-                SimpleTextPref {
+                TextPref {
                     title = "Libs test"
                     summary = "Click here to open PlayStore site of this app"
                     onClick = LibsClickListener(this@MainActivity)
                 }
-                SimpleLibsPreference {
+                LibsPref {
                     activityTitle = "Test"
                     edgeToEdge = true
                 }

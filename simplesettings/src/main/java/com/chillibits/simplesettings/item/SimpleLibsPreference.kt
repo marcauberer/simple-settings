@@ -10,7 +10,10 @@ import com.mikepenz.aboutlibraries.entity.Library
 import com.mikepenz.aboutlibraries.ui.LibsActivity
 import java.util.*
 
-class SimpleLibsPreference(context: Context): SimplePreference() {
+class SimpleLibsPreference(
+    context: Context,
+    iconSpaceReservedByDefault: Boolean
+): SimplePreference(iconSpaceReservedByDefault) {
 
     // Attributes
     var activityTitle: String? = null

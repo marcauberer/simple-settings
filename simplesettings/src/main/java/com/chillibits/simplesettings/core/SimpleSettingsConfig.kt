@@ -19,6 +19,7 @@ class SimpleSettingsConfig {
     var optionsMenuCallback: OptionsItemSelectedCallback? = null
     var displayHomeAsUpEnabled = true
     var showResetOption = false
+    var iconSpaceReservedByDefault = true
 
     // Interfaces
     interface OptionsItemSelectedCallback: Serializable {
@@ -53,6 +54,11 @@ class SimpleSettingsConfig {
 
         fun showResetOption(enabled: Boolean): Builder {
             config.showResetOption = enabled
+            return this
+        }
+
+        fun setIconSpaceReservedByDefault(iconSpaceReservedByDefault: Boolean): Builder {
+            config.iconSpaceReservedByDefault = iconSpaceReservedByDefault
             return this
         }
 

@@ -4,9 +4,12 @@
 
 package com.chillibits.simplesettings.item
 
+import androidx.annotation.DrawableRes
 import androidx.preference.Preference
 
-abstract class SimplePreference {
+abstract class SimplePreference(
+    iconSpaceReservedByDefault: Boolean
+) {
 
     // Attributes
     var key = ""
@@ -14,6 +17,9 @@ abstract class SimplePreference {
     var summary = ""
     var dependency = ""
     var enabled = true
+    @DrawableRes
+    var icon: Int = 0
+    var iconSpaceReserved = iconSpaceReservedByDefault
     var onClick: Preference.OnPreferenceClickListener? = null
 
     companion object {

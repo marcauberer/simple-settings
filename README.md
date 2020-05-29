@@ -37,21 +37,21 @@ SimpleSettings(this).show {
     Section {
         title = "Test section"
         for (i in 0..4) {
-            SimpleSwitchPref {
+            SwitchPref {
                 title = "Test 1.$i"
                 summary = "This is a Test 1.$i"
                 defaultValue = if(i % 2 == 0) SimpleSwitchPreference.ON else SimpleSwitchPreference.OFF
             }
         }
         if(true) {
-            SimpleTextPref {
+            TextPref {
                 title = "Test 2"
                 summary = "This is a Test 2"
             }
         }
     }
     Section {
-        SimpleInputPref {
+        InputPref {
             title = "Test 3"
             summary = "This is a Test 3"
         }
@@ -110,8 +110,8 @@ Please visit the wiki, if you want to understand the perks of this library or if
 ## Supported languages
 Here are the currently supported languages for this library.
 
-- English
-- German
+-   English
+-   German
 
 New translations are highly appreciated. If you want to translate the lib, please open a pr.
 

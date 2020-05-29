@@ -8,7 +8,10 @@ import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 
-class SimpleListPreference: SimplePreference() {
+class SimpleListPreference(
+    iconSpaceReservedByDefault: Boolean
+): SimplePreference(iconSpaceReservedByDefault) {
+
     // Attributes
     var defaultValue = ""
     var dialogTitle = ""

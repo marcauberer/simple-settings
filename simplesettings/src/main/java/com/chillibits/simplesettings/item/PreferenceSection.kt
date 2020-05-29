@@ -7,7 +7,8 @@ package com.chillibits.simplesettings.item
 import android.content.Context
 
 class PreferenceSection(
-    private val context: Context
+    private val context: Context,
+    val iconSpaceReserved: Boolean
 ) {
 
     // Attributes
@@ -17,22 +18,26 @@ class PreferenceSection(
 
     // ----------------------------------------- Item types ----------------------------------------
 
-    fun SimpleTextPref(func: SimpleTextPreference.() -> Unit) = SimpleTextPreference().apply {
+    fun TextPref(func: SimpleTextPreference.() -> Unit)
+            = SimpleTextPreference(iconSpaceReserved).apply {
         this.func()
         items.add(this)
     }
 
-    fun SimpleSwitchPref(func: SimpleSwitchPreference.() -> Unit) = SimpleSwitchPreference().apply {
+    fun SwitchPref(func: SimpleSwitchPreference.() -> Unit)
+            = SimpleSwitchPreference(iconSpaceReserved).apply {
         this.func()
         items.add(this)
     }
 
-    fun SimpleInputPref(func: SimpleInputPreference.() -> Unit) = SimpleInputPreference().apply {
+    fun InputPref(func: SimpleInputPreference.() -> Unit)
+            = SimpleInputPreference(iconSpaceReserved).apply {
         this.func()
         items.add(this)
     }
 
-    fun SimpleLibsPreference(func: SimpleLibsPreference.() -> Unit) = SimpleLibsPreference(context).apply {
+    fun LibsPref(func: SimpleLibsPreference.() -> Unit)
+            = SimpleLibsPreference(context, iconSpaceReserved).apply {
         this.func()
         items.add(this)
     }

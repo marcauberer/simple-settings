@@ -13,12 +13,14 @@
             app:key="test1"
             app:defaultValue="false"
             app:title="Test 1"
-            app:summary="This is a test 1"/>
+            app:summary="This is a test 1"
+            app:icon="@drawable/android"/>
 
         <Preference
             app:key="test2"
             app:title="Test 1"
             app:summary="This is a test 2"
+            app:icon="@drawable/settings"
             app:dependency="test1" />
     </PreferenceCategory>
 
@@ -39,6 +41,6 @@
         <ListPreference
             app:key="test4"
             app:title="Test 4"
-            app:useSimpleSummaryProvider="true"/>
+            app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 </PreferenceScreen>

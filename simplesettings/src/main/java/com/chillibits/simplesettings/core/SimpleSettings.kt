@@ -15,10 +15,6 @@ class SimpleSettings(
     configuration: SimpleSettingsConfig = DEFAULT_CONFIG
 ) {
 
-    // Variables as objects
-
-    // Variables
-
     init {
         // Init with configuration
         config = configuration
@@ -51,7 +47,7 @@ class SimpleSettings(
 
     // ----------------------------------- Preference section --------------------------------------
 
-    fun Section(func: PreferenceSection.() -> Unit) = PreferenceSection(context).apply {
+    fun Section(func: PreferenceSection.() -> Unit) = PreferenceSection(context, config.iconSpaceReservedByDefault).apply {
         this.func()
         sections.add(this)
     }

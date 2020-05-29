@@ -34,9 +34,11 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
             // Add sections
             sections.forEach { section ->
                 // Add category itself
-                val category = PreferenceCategory(context)
-                category.title = section.title
-                category.isEnabled = section.enabled
+                val category = PreferenceCategory(context).apply {
+                    title = section.title
+                    isEnabled = section.enabled
+                    isIconSpaceReserved = section.iconSpaceReserved
+                }
                 preferenceScreen.addPreference(category)
 
                 // Add items to category
@@ -134,6 +136,7 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
     }
 
     private fun genListPref(sp: SimpleListPreference) = ListPreference(context).apply {
+        initializeGeneralAttributes(sp, this)
 
     }
 
@@ -145,6 +148,8 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
             title = sp.title
             summary = sp.summary
             isEnabled = sp.enabled
+            if(sp.icon != 0) setIcon(sp.icon)
+            isIconSpaceReserved = sp.iconSpaceReserved
             onPreferenceClickListener = sp.onClick
         }
     }
