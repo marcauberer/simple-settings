@@ -47,6 +47,7 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
                         is SimpleTextPreference -> genTextPref(item)
                         is SimpleSwitchPreference -> genSwitchPref(item)
                         is SimpleInputPreference -> genInputPref(item)
+                        is SimpleListPreference -> genListPref(item)
                         is SimpleLibsPreference -> genLibsPref(item)
                         else -> Preference(context)
                     }
@@ -98,6 +99,23 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
         setDefaultValue(sp.defaultValue)
     }
 
+    private fun genListPref(sp: SimpleListPreference) = ListPreference(context).apply {
+        initializeGeneralAttributes(sp, this)
+        dialogTitle = if(sp.dialogTitle.isNotEmpty()) sp.dialogTitle else sp.title
+        dialogMessage = sp.dialogMessage
+        if(sp.dialogIcon != null) {
+            dialogIcon = sp.dialogIcon
+        } else if(sp.dialogIconRes != 0) {
+            setDialogIcon(sp.dialogIconRes)
+        }
+        if(sp.dialogLayoutRes != 0) dialogLayoutResource = sp.dialogLayoutRes
+        if(sp.simpleSummaryProvider) summary = SimplePreference.SUMMARY_VALUE
+        entries = sp.entries.toTypedArray()
+        entryValues = (sp.entries.indices).map { it.toString() }.toTypedArray()
+        (sp.entries.indices).map { it.toString() }.toTypedArray().forEach { item -> println(item) }
+        setDefaultValue(sp.defaultIndex.toString())
+    }
+
     private fun genLibsPref(sp: SimpleLibsPreference) = Preference(context).apply {
         initializeGeneralAttributes(sp, this)
         setOnPreferenceClickListener {
@@ -133,11 +151,6 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
             }.start(context)
             true
         }
-    }
-
-    private fun genListPref(sp: SimpleListPreference) = ListPreference(context).apply {
-        initializeGeneralAttributes(sp, this)
-
     }
 
     // -------------------------------------- Utility methods --------------------------------------

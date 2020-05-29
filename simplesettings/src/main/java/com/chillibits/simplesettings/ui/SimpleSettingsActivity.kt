@@ -4,6 +4,7 @@
 
 package com.chillibits.simplesettings.ui
 
+import android.content.SharedPreferences
 import android.content.res.XmlResourceParser
 import android.os.Build
 import android.os.Bundle
@@ -75,39 +76,49 @@ class SimpleSettingsActivity : AppCompatActivity() {
         // Delete all affected keys from SharedPreferences
         getPrefs().edit().run {
             // Code-Config
-            SimpleSettings.sections.forEach { it.items.forEach { item ->
-                val key = if(item.key.isBlank()) item.title.toCamelCase() else item.key
-                remove(key)
-            }}
+            resetSettingsCodeConfig(this)
             // XML-Config
-            if(SimpleSettings.preferenceRes != 0) {
-                val xrp = resources.getXml(SimpleSettings.preferenceRes)
-                var eventType = -1
-                while(eventType != XmlResourceParser.END_DOCUMENT) {
-                    if(eventType == XmlResourceParser.START_TAG) {
-                        try {
-                            if(xrp.name != "PreferenceScreen" && xrp.name != "PreferenceCategory") {
-                                var key = ""
-                                for(i in 0..xrp.attributeCount) {
-                                    if(xrp.getAttributeName(i) == "key") {
-                                        key = xrp.getAttributeValue(i)
-                                        break
-                                    }
-                                }
-                                remove(key)
-                            }
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                        }
-                    }
-                    eventType = xrp.next()
-                }
-            }
+            resetSettingsXmlConfig(this)
             // Commit changes to disk
             commit()
         }
 
         // Re-inflate settings fragment
         initSettingsFragment()
+    }
+
+    private fun resetSettingsXmlConfig(e: SharedPreferences.Editor) {
+        if (SimpleSettings.preferenceRes != 0) {
+            val xrp = resources.getXml(SimpleSettings.preferenceRes)
+            var eventType = -1
+            while (eventType != XmlResourceParser.END_DOCUMENT) {
+                if (eventType == XmlResourceParser.START_TAG) {
+                    try {
+                        if (xrp.name != "PreferenceScreen" && xrp.name != "PreferenceCategory") {
+                            var key = ""
+                            for (i in 0..xrp.attributeCount) {
+                                if (xrp.getAttributeName(i) == "key") {
+                                    key = xrp.getAttributeValue(i)
+                                    break
+                                }
+                            }
+                            e.remove(key)
+                        }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
+                eventType = xrp.next()
+            }
+        }
+    }
+
+    private fun resetSettingsCodeConfig(e: SharedPreferences.Editor) {
+        SimpleSettings.sections.forEach {
+            it.items.forEach { item ->
+                val key = if (item.key.isBlank()) item.title.toCamelCase() else item.key
+                e.remove(key)
+            }
+        }
     }
 }

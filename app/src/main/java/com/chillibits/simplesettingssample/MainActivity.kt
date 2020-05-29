@@ -14,6 +14,7 @@ import com.chillibits.simplesettings.clicklistener.PlayStoreClickListener
 import com.chillibits.simplesettings.clicklistener.WebsiteClickListener
 import com.chillibits.simplesettings.core.SimpleSettings
 import com.chillibits.simplesettings.core.SimpleSettingsConfig
+import com.chillibits.simplesettings.item.SimplePreference
 import com.chillibits.simplesettings.item.SimpleSwitchPreference
 import com.chillibits.simplesettings.tool.openGooglePlayAppSite
 import com.chillibits.simplesettings.tool.toCamelCase
@@ -45,39 +46,45 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         // Programmatic settings data (especially useful for generating settings options at runtime)
         SimpleSettings(this, config).show {
             Section {
-                title = "Test section"
+                title = "Section"
                 for (i in 0..3) {
                     SwitchPref {
-                        title = "Test 1.$i"
-                        summaryOn = "This is a Test 1.$i - On"
-                        summaryOff = "This is a Test 1.$i - Off"
+                        title = "SwitchPreference $i"
+                        summaryOn = "Click to switch - On"
+                        summaryOff = "Click to switch - Off"
                         defaultValue = if(i % 2 == 0) SimpleSwitchPreference.ON else SimpleSwitchPreference.OFF
                     }
                 }
                 TextPref {
-                    title = "Test 2"
-                    summary = "This is a Test 2"
+                    title = "TextPreference"
+                    summary = "Click to open GH page"
                     onClick = WebsiteClickListener(this@MainActivity, getString(R.string.github_link))
-                    dependency = "Test 1.3".toCamelCase()
+                    dependency = "SwitchPreference 3".toCamelCase()
                 }
             }
             Section {
                 InputPref {
-                    title = "Test 3"
-                    summary = "This is a Test 3"
+                    title = "InputPreference"
+                    summary = "Click to set text"
+                    defaultValue = "Default text"
                 }
                 TextPref {
-                    title = "PlayStore test"
+                    title = "PlayStoreClickListener"
                     summary = "Click here to open PlayStore site of this app"
                     onClick = PlayStoreClickListener(this@MainActivity)
                 }
+                ListPref {
+                    title = "ListPreference"
+                    summary = SimplePreference.SUMMARY_VALUE
+                    entries = listOf("Apple", "Banana", "Avocado", "Pineapple")
+                    defaultIndex = 2
+                }
                 TextPref {
-                    title = "Libs test"
-                    summary = "Click here to open PlayStore site of this app"
+                    title = "LibsClickListener"
                     onClick = LibsClickListener(this@MainActivity)
                 }
                 LibsPref {
-                    activityTitle = "Test"
+                    activityTitle = "LibsPreference"
                     edgeToEdge = true
                 }
             }

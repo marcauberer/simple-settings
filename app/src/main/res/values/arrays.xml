@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © Marc Auberer 2020. All rights reserved
+  -->
+
+<resources>
+    <string-array name="fruits">
+        <item>Avocado</item>
+        <item>Apple</item>
+        <item>Banana</item>
+        <item>Pineapple</item>
+    </string-array>
+    <string-array name="fruits_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+</resources>

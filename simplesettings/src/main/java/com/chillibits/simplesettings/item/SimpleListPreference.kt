@@ -13,7 +13,7 @@ class SimpleListPreference(
 ): SimplePreference(iconSpaceReservedByDefault) {
 
     // Attributes
-    var defaultValue = ""
+    var defaultIndex = 0
     var dialogTitle = ""
     var dialogMessage: String? = null
     @DrawableRes
@@ -23,5 +23,4 @@ class SimpleListPreference(
     var dialogLayoutRes = 0
     var simpleSummaryProvider = false
     var entries: List<String> = emptyList()
-    var entryValues: List<Int> = emptyList()
 }

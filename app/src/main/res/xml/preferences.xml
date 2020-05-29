@@ -7,30 +7,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-        app:title="Test section">
+        app:title="Preference Category">
 
         <SwitchPreferenceCompat
-            app:key="test1"
+            app:key="switch_preference"
             app:defaultValue="false"
-            app:title="Test 1"
-            app:summary="This is a test 1"
+            app:title="Switch Preference"
+            app:summary="Summary"
             app:icon="@drawable/android"/>
 
         <Preference
-            app:key="test2"
-            app:title="Test 1"
-            app:summary="This is a test 2"
+            app:key="preference"
+            app:title="Plain Preference"
+            app:summary="Another summary"
             app:icon="@drawable/settings"
-            app:dependency="test1" />
+            app:dependency="switch_preference" />
     </PreferenceCategory>
 
     <PreferenceCategory
-        app:title="Test section 2">
+        app:title="Second Preference Category">
 
         <EditTextPreference
-            app:key="test3"
-            app:defaultValue="Test 3"
-            app:title="Test 3"
+            app:key="editTextPreference"
+            app:defaultValue="Default value"
+            app:title="EditTextPreference"
             app:useSimpleSummaryProvider="true"/>
 
         <Preference
@@ -39,8 +39,11 @@
             app:summary="@string/libsPreferenceSummary"/>
 
         <ListPreference
-            app:key="test4"
-            app:title="Test 4"
+            app:key="listPreference"
+            app:title="List Preference"
+            app:entries="@array/fruits"
+            app:entryValues="@array/fruits_values"
+            app:defaultValue="2"
             app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 </PreferenceScreen>
