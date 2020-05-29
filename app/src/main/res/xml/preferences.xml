@@ -3,8 +3,8 @@
   ~ Copyright © Marc Auberer 2020. All rights reserved
   -->
 
-<PreferenceScreen
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
         app:title="Preference Category">
@@ -28,7 +28,7 @@
         app:title="Second Preference Category">
 
         <EditTextPreference
-            app:key="editTextPreference"
+            app:key="edit_text_preference"
             app:defaultValue="Default value"
             app:title="EditTextPreference"
             app:useSimpleSummaryProvider="true"/>
@@ -39,7 +39,7 @@
             app:summary="@string/libsPreferenceSummary"/>
 
         <ListPreference
-            app:key="listPreference"
+            app:key="list_preference"
             app:title="List Preference"
             app:entries="@array/fruits"
             app:entryValues="@array/fruits_values"
@@ -47,10 +47,17 @@
             app:useSimpleSummaryProvider="true" />
 
         <MultiSelectListPreference
-            app:key="multiSelectListPreference"
+            app:key="multi_select_list_preference"
             app:title="Multi Select List Preference"
             app:entries="@array/fruits"
             app:entryValues="@array/fruits_values"
             app:defaultValue="@array/fruits_default_values" />
+
+        <CheckBoxPreference
+            app:key="checkbox_preference"
+            app:title="Checkbox Preference"
+            android:defaultValue="true"
+            android:summaryOn="On"
+            android:summaryOff="Off"/>
     </PreferenceCategory>
 </PreferenceScreen>

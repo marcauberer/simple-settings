@@ -27,25 +27,10 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
             setPreferencesFromResource(preferenceRes, rootKey)
 
             // Search for possible MSListPreferences and attach SimpleMSListPReferenceSummaryProvider
-            if(config.enableMSListPreferenceSummaryProvider) {
-                for(i in 0 until preferenceScreen.preferenceCount) {
-                    val pref = preferenceScreen.getPreference(i)
-                    if(pref is MultiSelectListPreference) {
-                        pref.summaryProvider = SimpleMSListPreferenceSummaryProvider()
-                    } else if(pref is PreferenceCategory) {
-                        // Preference is a Category -> search for children
-                        for(j in 0 until pref.preferenceCount) {
-                            val childPref = pref.getPreference(j)
-                            if(childPref is MultiSelectListPreference)
-                                childPref.summaryProvider = SimpleMSListPreferenceSummaryProvider()
-                        }
-                    }
-                }
-            }
+            configureMSListPreferences()
 
             // Search for possible LibsPreference and attach LibsClickListener
-            val libsPref = findPreference<Preference>("libs")
-            libsPref?.onPreferenceClickListener = LibsClickListener(requireContext())
+            configureLibsPreference()
         } else {
             // Build preferences from sections array
             preferenceScreen = preferenceManager.createPreferenceScreen(context)
@@ -65,6 +50,7 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
                     val preferenceItem = when(item) {
                         is SimpleTextPreference -> genTextPref(item)
                         is SimpleSwitchPreference -> genSwitchPref(item)
+                        is SimpleCheckboxPreference -> genCheckboxPref(item)
                         is SimpleInputPreference -> genInputPref(item)
                         is SimpleListPreference -> genListPref(item)
                         is SimpleMSListPreference -> genMSListPref(item)
@@ -88,6 +74,29 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
         }
     }
 
+    private fun configureLibsPreference() {
+        val libsPref = findPreference<Preference>("libs")
+        libsPref?.onPreferenceClickListener = LibsClickListener(requireContext())
+    }
+
+    private fun configureMSListPreferences() {
+        if (config.enableMSListPreferenceSummaryProvider) {
+            for (i in 0 until preferenceScreen.preferenceCount) {
+                val pref = preferenceScreen.getPreference(i)
+                if (pref is MultiSelectListPreference) {
+                    pref.summaryProvider = SimpleMSListPreferenceSummaryProvider()
+                } else if (pref is PreferenceCategory) {
+                    // Preference is a Category -> search for children
+                    for (j in 0 until pref.preferenceCount) {
+                        val childPref = pref.getPreference(j)
+                        if (childPref is MultiSelectListPreference)
+                            childPref.summaryProvider = SimpleMSListPreferenceSummaryProvider()
+                    }
+                }
+            }
+        }
+    }
+
     // -------------------------------- Preference creator methods ---------------------------------
 
     private fun genTextPref(sp: SimpleTextPreference) = Preference(context).apply {
@@ -95,6 +104,15 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
     }
 
     private fun genSwitchPref(sp: SimpleSwitchPreference) = SwitchPreferenceCompat(context).apply {
+        initializeGeneralAttributes(sp, this)
+        if(sp.summaryOff.isNotEmpty() && sp.summaryOn.isNotEmpty()) {
+            summaryOff = sp.summaryOff
+            summaryOn = sp.summaryOn
+        }
+        setDefaultValue(sp.defaultValue)
+    }
+
+    private fun genCheckboxPref(sp: SimpleCheckboxPreference) = CheckBoxPreference(context).apply {
         initializeGeneralAttributes(sp, this)
         if(sp.summaryOff.isNotEmpty() && sp.summaryOn.isNotEmpty()) {
             summaryOff = sp.summaryOff

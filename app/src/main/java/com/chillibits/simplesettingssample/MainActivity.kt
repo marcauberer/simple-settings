@@ -91,6 +91,11 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
                     activityTitle = "LibsPreference"
                     edgeToEdge = true
                 }
+                CheckboxPref {
+                    title = "CheckboxPreference"
+                    summaryOn = "On"
+                    summaryOff = "Off"
+                }
             }
         }
     }

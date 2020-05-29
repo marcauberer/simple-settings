@@ -4,7 +4,7 @@
 
 package com.chillibits.simplesettings.item
 
-class SimpleSwitchPreference(
+class SimpleCheckboxPreference(
     iconSpaceReservedByDefault: Boolean
 ): SimplePreference(iconSpaceReservedByDefault) {
 

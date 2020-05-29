@@ -30,6 +30,12 @@ class PreferenceSection(
         items.add(this)
     }
 
+    fun CheckboxPref(func: SimpleCheckboxPreference.() -> Unit)
+            = SimpleCheckboxPreference(iconSpaceReserved).apply {
+        this.func()
+        items.add(this)
+    }
+
     fun InputPref(func: SimpleInputPreference.() -> Unit)
             = SimpleInputPreference(iconSpaceReserved).apply {
         this.func()
