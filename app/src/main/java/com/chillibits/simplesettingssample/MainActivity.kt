@@ -14,7 +14,6 @@ import com.chillibits.simplesettings.clicklistener.PlayStoreClickListener
 import com.chillibits.simplesettings.clicklistener.WebsiteClickListener
 import com.chillibits.simplesettings.core.SimpleSettings
 import com.chillibits.simplesettings.core.SimpleSettingsConfig
-import com.chillibits.simplesettings.item.SimplePreference
 import com.chillibits.simplesettings.item.SimpleSwitchPreference
 import com.chillibits.simplesettings.tool.openGooglePlayAppSite
 import com.chillibits.simplesettings.tool.toCamelCase
@@ -75,9 +74,14 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
                 }
                 ListPref {
                     title = "ListPreference"
-                    summary = SimplePreference.SUMMARY_VALUE
+                    simpleSummaryProvider = true
                     entries = listOf("Apple", "Banana", "Avocado", "Pineapple")
                     defaultIndex = 2
+                }
+                MSListPref {
+                    title = "MSListPreference"
+                    simpleSummaryProvider = true
+                    entries = listOf("Apple", "Banana", "Avocado", "Pineapple")
                 }
                 TextPref {
                     title = "LibsClickListener"

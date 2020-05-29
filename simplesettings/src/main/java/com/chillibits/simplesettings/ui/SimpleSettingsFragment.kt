@@ -48,6 +48,7 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
                         is SimpleSwitchPreference -> genSwitchPref(item)
                         is SimpleInputPreference -> genInputPref(item)
                         is SimpleListPreference -> genListPref(item)
+                        is SimpleMSListPreference -> genMSListPref(item)
                         is SimpleLibsPreference -> genLibsPref(item)
                         else -> Preference(context)
                     }
@@ -114,6 +115,29 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
         entryValues = (sp.entries.indices).map { it.toString() }.toTypedArray()
         (sp.entries.indices).map { it.toString() }.toTypedArray().forEach { item -> println(item) }
         setDefaultValue(sp.defaultIndex.toString())
+    }
+
+    private fun genMSListPref(sp: SimpleMSListPreference) = MultiSelectListPreference(context).apply {
+        initializeGeneralAttributes(sp, this)
+        dialogTitle = if(sp.dialogTitle.isNotEmpty()) sp.dialogTitle else sp.title
+        dialogMessage = sp.dialogMessage
+        if(sp.dialogIcon != null) {
+            dialogIcon = sp.dialogIcon
+        } else if(sp.dialogIconRes != 0) {
+            setDialogIcon(sp.dialogIconRes)
+        }
+        if(sp.dialogLayoutRes != 0) dialogLayoutResource = sp.dialogLayoutRes
+        if(sp.simpleSummaryProvider) {
+            setSummaryProvider {
+                this.entries.filterIndexed { index, _ ->
+                    values.any { it == index.toString() }
+                }.joinToString(", ")
+            }
+        }
+        entries = sp.entries.toTypedArray()
+        entryValues = (sp.entries.indices).map { it.toString() }.toTypedArray()
+        (sp.entries.indices).map { it.toString() }.toTypedArray().forEach { item -> println(item) }
+        setDefaultValue(sp.defaultIndex)
     }
 
     private fun genLibsPref(sp: SimpleLibsPreference) = Preference(context).apply {
