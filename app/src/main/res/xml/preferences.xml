@@ -45,5 +45,12 @@
             app:entryValues="@array/fruits_values"
             app:defaultValue="2"
             app:useSimpleSummaryProvider="true" />
+
+        <MultiSelectListPreference
+            app:key="multiSelectListPreference"
+            app:title="Multi Select List Preference"
+            app:entries="@array/fruits"
+            app:entryValues="@array/fruits_values"
+            app:defaultValue="@array/fruits_default_values" />
     </PreferenceCategory>
 </PreferenceScreen>

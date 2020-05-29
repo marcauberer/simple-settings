@@ -8,6 +8,7 @@ import android.os.Bundle
 import androidx.core.content.res.ResourcesCompat
 import androidx.preference.*
 import com.chillibits.simplesettings.clicklistener.LibsClickListener
+import com.chillibits.simplesettings.core.SimpleMSListPreferenceSummaryProvider
 import com.chillibits.simplesettings.core.SimpleSettings
 import com.chillibits.simplesettings.item.*
 import com.chillibits.simplesettings.tool.toCamelCase
@@ -18,11 +19,29 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
     // Variables as objects
     private val preferenceRes = SimpleSettings.preferenceRes
     private val sections = SimpleSettings.sections
+    private val config = SimpleSettings.config
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         if(preferenceRes != 0) {
             // Inflate preferences from xml resource
             setPreferencesFromResource(preferenceRes, rootKey)
+
+            // Search for possible MSListPreferences and attach SimpleMSListPReferenceSummaryProvider
+            if(config.enableMSListPreferenceSummaryProvider) {
+                for(i in 0 until preferenceScreen.preferenceCount) {
+                    val pref = preferenceScreen.getPreference(i)
+                    if(pref is MultiSelectListPreference) {
+                        pref.summaryProvider = SimpleMSListPreferenceSummaryProvider()
+                    } else if(pref is PreferenceCategory) {
+                        // Preference is a Category -> search for children
+                        for(j in 0 until pref.preferenceCount) {
+                            val childPref = pref.getPreference(j)
+                            if(childPref is MultiSelectListPreference)
+                                childPref.summaryProvider = SimpleMSListPreferenceSummaryProvider()
+                        }
+                    }
+                }
+            }
 
             // Search for possible LibsPreference and attach LibsClickListener
             val libsPref = findPreference<Preference>("libs")
@@ -113,7 +132,6 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
         if(sp.simpleSummaryProvider) summary = SimplePreference.SUMMARY_VALUE
         entries = sp.entries.toTypedArray()
         entryValues = (sp.entries.indices).map { it.toString() }.toTypedArray()
-        (sp.entries.indices).map { it.toString() }.toTypedArray().forEach { item -> println(item) }
         setDefaultValue(sp.defaultIndex.toString())
     }
 
@@ -127,13 +145,7 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
             setDialogIcon(sp.dialogIconRes)
         }
         if(sp.dialogLayoutRes != 0) dialogLayoutResource = sp.dialogLayoutRes
-        if(sp.simpleSummaryProvider) {
-            setSummaryProvider {
-                this.entries.filterIndexed { index, _ ->
-                    values.any { it == index.toString() }
-                }.joinToString(", ")
-            }
-        }
+        if(sp.simpleSummaryProvider) summaryProvider = SimpleMSListPreferenceSummaryProvider()
         entries = sp.entries.toTypedArray()
         entryValues = (sp.entries.indices).map { it.toString() }.toTypedArray()
         (sp.entries.indices).map { it.toString() }.toTypedArray().forEach { item -> println(item) }

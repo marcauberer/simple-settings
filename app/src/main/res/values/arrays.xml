@@ -16,4 +16,8 @@
         <item>3</item>
         <item>4</item>
     </string-array>
+    <string-array name="fruits_default_values">
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 </resources>

@@ -20,6 +20,7 @@ class SimpleSettingsConfig {
     var displayHomeAsUpEnabled = true
     var showResetOption = false
     var iconSpaceReservedByDefault = true
+    var enableMSListPreferenceSummaryProvider = true
 
     // Interfaces
     interface OptionsItemSelectedCallback: Serializable {
@@ -59,6 +60,11 @@ class SimpleSettingsConfig {
 
         fun setIconSpaceReservedByDefault(iconSpaceReservedByDefault: Boolean): Builder {
             config.iconSpaceReservedByDefault = iconSpaceReservedByDefault
+            return this
+        }
+
+        fun disableMSListPreferenceSummaryProvider(): Builder {
+            config.enableMSListPreferenceSummaryProvider = false
             return this
         }
 
