@@ -96,6 +96,11 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
                     summaryOn = "On"
                     summaryOff = "Off"
                 }
+                DropDownPref {
+                    title = "DropDownPreference"
+                    simpleSummaryProvider = true
+                    entries = listOf("Apple", "Banana", "Avocado", "Pineapple")
+                }
             }
         }
     }

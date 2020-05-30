@@ -59,5 +59,13 @@
             android:defaultValue="true"
             android:summaryOn="On"
             android:summaryOff="Off"/>
+
+        <DropDownPreference
+            app:key="drop_down_preference"
+            app:title="DropDown Preference"
+            app:entries="@array/fruits"
+            app:entryValues="@array/fruits_values"
+            app:defaultValue="3"
+            app:useSimpleSummaryProvider="true"/>
     </PreferenceCategory>
 </PreferenceScreen>

@@ -54,6 +54,7 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
                         is SimpleInputPreference -> genInputPref(item)
                         is SimpleListPreference -> genListPref(item)
                         is SimpleMSListPreference -> genMSListPref(item)
+                        is SimpleDropDownPreference -> genDropDownPref(item)
                         is SimpleLibsPreference -> genLibsPref(item)
                         else -> Preference(context)
                     }
@@ -166,8 +167,15 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
         if(sp.simpleSummaryProvider) summaryProvider = SimpleMSListPreferenceSummaryProvider()
         entries = sp.entries.toTypedArray()
         entryValues = (sp.entries.indices).map { it.toString() }.toTypedArray()
-        (sp.entries.indices).map { it.toString() }.toTypedArray().forEach { item -> println(item) }
         setDefaultValue(sp.defaultIndex)
+    }
+
+    private fun genDropDownPref(sp: SimpleDropDownPreference) = DropDownPreference(context).apply {
+        initializeGeneralAttributes(sp, this)
+        if(sp.simpleSummaryProvider) summary = SimplePreference.SUMMARY_VALUE
+        entries = sp.entries.toTypedArray()
+        entryValues = (sp.entries.indices).map { it.toString() }.toTypedArray()
+        setDefaultValue(sp.defaultIndex.toString())
     }
 
     private fun genLibsPref(sp: SimpleLibsPreference) = Preference(context).apply {

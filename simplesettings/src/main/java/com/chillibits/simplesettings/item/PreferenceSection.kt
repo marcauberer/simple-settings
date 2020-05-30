@@ -54,6 +54,12 @@ class PreferenceSection(
         items.add(this)
     }
 
+    fun DropDownPref(func: SimpleDropDownPreference.() -> Unit)
+            = SimpleDropDownPreference(iconSpaceReserved).apply {
+        this.func()
+        items.add(this)
+    }
+
     fun LibsPref(func: SimpleLibsPreference.() -> Unit)
             = SimpleLibsPreference(context, iconSpaceReserved).apply {
         this.func()
