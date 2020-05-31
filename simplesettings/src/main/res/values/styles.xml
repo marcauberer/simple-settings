@@ -16,8 +16,4 @@
         <item name="colorOnSurface">@color/colorOnSurface</item>
         <item name="android:statusBarColor">@color/colorPrimaryDarkVariant</item>
     </style>
-
-    <style name="settingsToolbarStyle" parent="Theme.MaterialComponents">
-        <item name="popupTheme">@style/Theme.MaterialComponents.Light</item>
-    </style>
 </resources>

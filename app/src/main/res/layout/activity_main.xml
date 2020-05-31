@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            style="?attr/materialButtonOutlinedStyle"
+            style="?attr/materialButtonStyle"
             android:text="@string/open_settings_code"/>
 
         <Button
@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            style="?attr/materialButtonOutlinedStyle"
+            style="?attr/materialButtonStyle"
             android:text="@string/open_settings_xml"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

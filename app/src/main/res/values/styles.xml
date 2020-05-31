@@ -13,16 +13,10 @@
         <item name="colorOnBackground">@color/colorOnBackground</item>
         <item name="colorOnError">@color/colorOnError</item>
         <item name="colorOnSurface">@color/colorOnSurface</item>
-        <item name="materialThemeOverlay">@style/ButtonStyle</item>
         <item name="android:statusBarColor">@color/colorPrimaryDarkVariant</item>
     </style>
 
     <style name="toolbarStyle" parent="Theme.MaterialComponents">
         <item name="popupTheme">@style/Theme.MaterialComponents.Light</item>
-    </style>
-
-    <style name="ButtonStyle">
-        <item name="colorPrimary">@color/colorPrimaryVariant</item>
-        <item name="colorOnPrimary">@color/colorOnPrimary</item>
     </style>
 </resources>

@@ -8,8 +8,14 @@
     package="com.chillibits.simplesettings">
 
     <application>
+
         <activity
             android:name=".ui.SimpleSettingsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/settingsStyle"/>
+
+        <activity
+            android:name="com.mikepenz.aboutlibraries.ui.LibsActivity"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"/>
     </application>
 </manifest>

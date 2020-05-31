@@ -67,5 +67,14 @@
             app:entryValues="@array/fruits_values"
             app:defaultValue="3"
             app:useSimpleSummaryProvider="true"/>
+
+        <SeekBarPreference
+            app:key="seek_bar_preference"
+            app:title="SeekBar Preference"
+            app:summary="Summary"
+            app:min="1"
+            android:max="30"
+            app:showSeekBarValue="true"
+            app:defaultValue="22"/>
     </PreferenceCategory>
 </PreferenceScreen>
