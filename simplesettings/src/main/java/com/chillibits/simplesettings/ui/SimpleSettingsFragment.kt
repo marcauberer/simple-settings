@@ -65,6 +65,7 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
             // Post processing
             sections.forEach {
                 it.items.forEach { item ->
+                    // Setup dependencies
                     if(item.dependency.isNotBlank()) {
                         val key = if(item.key.isBlank()) item.title.toCamelCase() else item.key
                         val pref = findPreference<Preference>(key)

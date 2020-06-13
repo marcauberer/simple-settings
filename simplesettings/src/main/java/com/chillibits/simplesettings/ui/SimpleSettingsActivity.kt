@@ -14,6 +14,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.chillibits.simplesettings.R
 import com.chillibits.simplesettings.core.SimpleSettings
+import com.chillibits.simplesettings.exception.SettingsResetException
 import com.chillibits.simplesettings.tool.Constants
 import com.chillibits.simplesettings.tool.getPrefs
 import com.chillibits.simplesettings.tool.toCamelCase
@@ -104,8 +105,8 @@ class SimpleSettingsActivity : AppCompatActivity() {
                             }
                             e.remove(key)
                         }
-                    } catch (e: Exception) {
-                        e.printStackTrace()
+                    } catch (e: RuntimeException) {
+                        throw SettingsResetException()
                     }
                 }
                 eventType = xrp.next()
