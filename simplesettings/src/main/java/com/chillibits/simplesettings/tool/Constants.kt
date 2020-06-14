@@ -4,7 +4,7 @@
 
 package com.chillibits.simplesettings.tool
 
-object Constants {
+internal object Constants {
     const val MENU_ITEM_RESET = 10001
     const val SHARED_PREFS_NAME = "SharedPreferences"
 }

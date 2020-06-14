@@ -20,7 +20,11 @@ import com.chillibits.simplesettings.tool.getPrefs
 import com.chillibits.simplesettings.tool.toCamelCase
 import kotlinx.android.synthetic.main.toolbar.*
 
-class SimpleSettingsActivity : AppCompatActivity() {
+/**
+ * Main UI element of the library. This activity gets displayed when the show method of the
+ * builder was called.
+ */
+internal class SimpleSettingsActivity : AppCompatActivity() {
 
     // Variables as objects
     private val config = SimpleSettings.config

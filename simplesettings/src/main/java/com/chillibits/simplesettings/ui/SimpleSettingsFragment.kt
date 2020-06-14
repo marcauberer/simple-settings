@@ -14,7 +14,11 @@ import com.chillibits.simplesettings.item.*
 import com.chillibits.simplesettings.tool.toCamelCase
 import com.mikepenz.aboutlibraries.LibsBuilder
 
-class SimpleSettingsFragment : PreferenceFragmentCompat() {
+/**
+ * The SimpleSettingsFragment is embedded in the SimpleSettingsActivity and displays the actual
+ * preferences.
+ */
+internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
 
     // Variables as objects
     private val preferenceRes = SimpleSettings.preferenceRes
@@ -55,6 +59,7 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
                         is SimpleListPreference -> genListPref(item)
                         is SimpleMSListPreference -> genMSListPref(item)
                         is SimpleDropDownPreference -> genDropDownPref(item)
+                        is SimpleSeekBarPreference -> genSeekBarPref(item)
                         is SimpleLibsPreference -> genLibsPref(item)
                         else -> Preference(context)
                     }
@@ -177,6 +182,14 @@ class SimpleSettingsFragment : PreferenceFragmentCompat() {
         entries = sp.entries.toTypedArray()
         entryValues = (sp.entries.indices).map { it.toString() }.toTypedArray()
         setDefaultValue(sp.defaultIndex.toString())
+    }
+
+    private fun genSeekBarPref(sp: SimpleSeekBarPreference) = SeekBarPreference(context).apply {
+        initializeGeneralAttributes(sp, this)
+        min = sp.min
+        max = sp.max
+        showSeekBarValue = sp.showValue
+        setDefaultValue(sp.defaultValue)
     }
 
     private fun genLibsPref(sp: SimpleLibsPreference) = Preference(context).apply {

@@ -101,6 +101,12 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
                     simpleSummaryProvider = true
                     entries = listOf("Apple", "Banana", "Avocado", "Pineapple")
                 }
+                SeekBarPref {
+                    title = "SeekBarPreference"
+                    summary = "Summary"
+                    min = 50
+                    showValue = true
+                }
             }
         }
     }
