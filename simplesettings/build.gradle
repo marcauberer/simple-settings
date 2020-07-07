@@ -8,6 +8,8 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
 
+def libVersion = '1.0.0-alpha03'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -16,7 +18,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 81
-        versionName "1.0.0-alpha03"
+        versionName libVersion
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -58,7 +60,6 @@ dependencies {
 publish {
     def libGroupId = 'com.chillibits'
     def libArtifactId = 'simplesettings'
-    def libVersion = '1.0.0-alpha02'
     def libDesc = 'Simple to use, lightweight solution to create a settings screen without any boilerplate code.'
     def libLicenses = ['MIT']
     def libVCSUrl = 'https://github.com/marcauberer/simple-settings.git'

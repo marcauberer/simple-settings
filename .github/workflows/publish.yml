@@ -1,11 +1,10 @@
 # Workflow for Android CI release
 
-name: Deploy to Bintray
+name: Publish to Bintray
 
 on:
   release:
     types: [ published ]
-    branches: [ master, beta ]
 
 jobs:
   publish:
