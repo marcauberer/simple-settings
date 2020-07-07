@@ -86,6 +86,7 @@ publish {
         user = System.getenv("bintrayUser")
         key = System.getenv("bintrayApiKey")
         publications = ['SimpleSettings']
+        configurations = ['archives']
         pkg {
             repo = "simplesettings"
             name = "$libGroupId:$libArtifactId"
