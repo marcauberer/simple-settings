@@ -19,10 +19,8 @@ jobs:
           java-version: 1.8
       - name: Grant gradlew permission
         run: chmod +x gradlew
-      - name: Android build
-        run: ./gradlew build
       - name: Publish library
         env:
           bintrayUser: ${{ secrets.BINTRAY_USERNAME }}
           bintrayApiKey: ${{ secrets.BINTRAY_API_KEY }}
-        run: ./gradlew bintrayUpload
+        run: ./gradlew clean build bintrayUpload

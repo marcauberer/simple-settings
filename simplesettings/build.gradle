@@ -77,9 +77,9 @@ ext {
     developerEmail = 'marc.auberer@chillibits.com'
 
     // License Details
-    licenseName = 'MIT License'
-    licenseUrl = 'https://github.com/marcauberer/simple-settings/blob/master/LICENSE'
-    allLicenses = ["MIT License"]
+    licenseName = 'The MIT License'
+    licenseUrl = 'https://opensource.org/licenses/MIT'
+    allLicenses = ["MIT"]
 }
 
 group = publishedGroupId
@@ -158,6 +158,7 @@ bintray {
         vcsUrl = gitUrl
         licenses = allLicenses
         publish = true
+        publicDownloadNumbers = true
         version {
             name = libraryVersion
             desc = libraryDescription
@@ -165,5 +166,10 @@ bintray {
             vcsTag = libraryVersion
             attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
         }
+    }
+    filesSpec {
+        from 'simplesettings/build/outputs/aar/simplesettings-release.aar'
+        into '.'
+        version libraryVersion
     }
 }
