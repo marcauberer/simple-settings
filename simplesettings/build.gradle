@@ -64,7 +64,7 @@ ext {
     libraryName = 'Simple Settings'
     artifact = 'simplesettings'
     libraryDescription = 'Simple to use, lightweight solution to create a settings screen without any boilerplate code.'
-    libraryVersion = version
+    libraryVersion = '1.0.0-alpha04'
 
     // Repository Links
     siteUrl = 'https://github.com/marcauberer/simple-settings'
@@ -158,5 +158,12 @@ bintray {
         vcsUrl = gitUrl
         licenses = allLicenses
         publish = true
+        version {
+            name = libraryVersion
+            desc = libraryDescription
+            released  = new Date()
+            vcsTag = libraryVersion
+            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+        }
     }
 }
