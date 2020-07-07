@@ -17,14 +17,16 @@ jobs:
         uses: vgaidarji/android-github-actions-build@v1.0.1
         with:
           args: './gradlew build'
+      - name: Rename output file
+        run: mv ./simplesettings/build/outputs/aar/simplesettings-release.aar ./simplesettings-1.0.0-alpha03.aar
       - name: Deploy to Bintray
         uses: bpicode/github-action-upload-bintray@master
         with:
-          file: ./simplesettings/build/outputs/aar/simplesettings-release.aar
+          file: ./simplesettings-1.0.0-alpha03.aar
           api_user: ${{ secrets.BINTRAY_USERNAME }}
           api_key: ${{ secrets.BINTRAY_API_KEY }}
           repository_user: marcauberer
-          repository: simple-settings
+          repository: simplesettings
           package: com.chillibits:simplesettings
-          version: '1.0.0-alpha03'
+          version: 1.0.0-alpha03
           publish: 1
