@@ -11,39 +11,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Grant Permission to Execute
-        run: chmod +x gradlew
+      - name: Android Build
+        uses: vgaidarji/android-github-actions-build@v1.0.1
+        with:
+          args: './gradlew build'
       - name: Publish Library
         env:
           bintrayUser: ${{ secrets.BINTRAY_USERNAME }}
           bintrayApiKey: ${{ secrets.BINTRAY_API_KEY }}
         run: ./gradlew bintrayUpload
-
-#  build:
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v2
-#      - name: Android Build
-#        uses: vgaidarji/android-github-actions-build@v1.0.1
-#        with:
-#          args: './gradlew build'
-#      - name: Rename output file
-#        run: mv ./simplesettings/build/outputs/aar/simplesettings-release.aar ./simplesettings-1.0.0-alpha03.aar
-#      - name: Deploy to Bintray
-#        uses: bpicode/github-action-upload-bintray@master
-#        with:
-#          file: ./simplesettings-1.0.0-alpha03.aar
-#          api_user: ${{ secrets.BINTRAY_USERNAME }}
-#          api_key: ${{ secrets.BINTRAY_API_KEY }}
-#          repository_user: marcauberer
-#          repository: simplesettings
-#          package: com.chillibits:simplesettings
-#          version: 1.0.0-alpha03
-#          publish: 1
