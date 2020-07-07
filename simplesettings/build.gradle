@@ -7,8 +7,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
-
-def libVersion = '1.0.0-alpha03'
+apply plugin: 'android-maven'
 
 android {
     compileSdkVersion 29
@@ -18,7 +17,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 81
-        versionName libVersion
+        versionName "1.0.0-alpha03"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -30,7 +29,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
@@ -55,51 +53,110 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
 
-publish {
-    def libGroupId = 'com.chillibits'
-    def libArtifactId = 'simplesettings'
-    def libDesc = 'Simple to use, lightweight solution to create a settings screen without any boilerplate code.'
-    def libLicenses = ['MIT']
-    def libVCSUrl = 'https://github.com/marcauberer/simple-settings.git'
-    def siteUrl = 'https://github.com/marcauberer/simple-settings'
+ext {
+    bintrayRepo = 'maven'
 
-    // Generate Source Jar
-    task sourceJar(type: Jar) {
-        from android.sourceSets.main.java.srcDirs
-        classifier "sources"
-    }
+    // Name which will be visible on bintray
+    bintrayName = 'CoolLibrary'
 
-    // Create the publication with the pom configuration
-    publishing {
-        publications {
-            MyPublication(MavenPublication) {
-                groupId libGroupId
-                artifactId libArtifactId
-                version libVersion
-                artifact(sourceJar)
-                artifact("$buildDir/outputs/aar/$libArtifactId-release.aar")
+    // Library Details
+    publishedGroupId = 'com.chillibits'
+    libraryName = 'Simple Settings'
+    artifact = 'simplesettings'
+    libraryDescription = 'Simple to use, lightweight solution to create a settings screen without any boilerplate code.'
+    libraryVersion = version
+
+    // Repository Links
+    siteUrl = 'https://github.com/marcauberer/simple-settings'
+    gitUrl = 'https://github.com/marcauberer/simple-settings.git'
+    githubRepository= 'marcauberer/simple-settings'
+
+    // Developer Details
+    developerId = 'marcauberer'
+    developerName = 'Marc Auberer'
+    developerEmail = 'marc.auberer@chillibits.com'
+
+    // License Details
+    licenseName = 'MIT License'
+    licenseUrl = 'https://github.com/marcauberer/simple-settings/blob/master/LICENSE'
+    allLicenses = ["MIT License"]
+}
+
+group = publishedGroupId
+
+install {
+    repositories.mavenInstaller {
+        // Generate pom.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+
+                groupId publishedGroupId
+                artifactId = artifact
+                name libraryName
+                description = libraryDescription
+                url siteUrl
+
+                licenses {
+                    license {
+                        name licenseName
+                        url licenseUrl
+                    }
+                }
+                developers {
+                    developer {
+                        id developerId
+                        name developerName
+                        email developerEmail
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
             }
         }
     }
+}
 
-    bintray {
-        user = System.getenv("bintrayUser")
-        key = System.getenv("bintrayApiKey")
-        publications = ['SimpleSettings']
-        configurations = ['archives']
-        pkg {
-            repo = "simplesettings"
-            name = "$libGroupId:$libArtifactId"
-            desc = libDesc
-            licenses = libLicenses
-            vcsUrl = libVCSUrl
-            websiteUrl = siteUrl
-            version {
-                name = libVersion
-                vcsTag = libVersion
-                released = new Date()
-            }
-            publish = true
-        }
+// Avoid Kotlin docs error
+tasks.withType(Javadoc) {
+    enabled = false
+}
+
+// Remove javadoc related tasks
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+// https://github.com/bintray/gradle-bintray-plugin
+bintray {
+    user = System.getenv("bintrayUser")
+    key = System.getenv("bintrayApiKey")
+
+    configurations = ['archives']
+    pkg {
+        repo = bintrayRepo
+        name = bintrayName
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = allLicenses
+        publish = true
     }
 }
