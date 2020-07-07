@@ -53,8 +53,6 @@ dependencies {
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
-    // implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
 
 publish {
@@ -63,6 +61,7 @@ publish {
     def libDesc = 'Simple to use, lightweight solution to create a settings screen without any boilerplate code.'
     def libLicenses = ['MIT']
     def libVCSUrl = 'https://github.com/marcauberer/simple-settings.git'
+    def siteUrl = 'https://github.com/marcauberer/simple-settings'
 
     // Generate Source Jar
     task sourceJar(type: Jar) {
@@ -93,11 +92,13 @@ publish {
             desc = libDesc
             licenses = libLicenses
             vcsUrl = libVCSUrl
+            websiteUrl = siteUrl
             version {
                 name = libVersion
                 vcsTag = libVersion
                 released = new Date()
             }
+            publish = true
         }
     }
 }

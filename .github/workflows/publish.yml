@@ -11,15 +11,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v2
-      - name: Android Build
-        uses: vgaidarji/android-github-actions-build@v1.0.1
+      - name: Configure JDK
+        uses: actions/setup-java@v1
         with:
-          args: './gradlew build'
-      - name: Grant Permission to Execute
+          java-version: 1.8
+      - name: Grant gradlew permission
         run: chmod +x gradlew
-      - name: Publish Library
+      - name: Android build
+        run: ./gradlew build
+      - name: Publish library
         env:
           bintrayUser: ${{ secrets.BINTRAY_USERNAME }}
           bintrayApiKey: ${{ secrets.BINTRAY_API_KEY }}
