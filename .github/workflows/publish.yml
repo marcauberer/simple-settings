@@ -17,6 +17,8 @@ jobs:
         uses: vgaidarji/android-github-actions-build@v1.0.1
         with:
           args: './gradlew build'
+      - name: Grant Permission to Execute
+        run: chmod +x gradlew
       - name: Publish Library
         env:
           bintrayUser: ${{ secrets.BINTRAY_USERNAME }}
