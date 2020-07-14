@@ -17,14 +17,26 @@ class SimpleSettingsConfig {
     @MenuRes
     var optionsMenuRes: Int? = null
     var optionsMenuCallback: OptionsItemSelectedCallback? = null
+    var preferenceCallback: PreferenceCallback? = null
     var displayHomeAsUpEnabled = true
     var showResetOption = false
     var iconSpaceReservedByDefault = true
     var enableMSListPreferenceSummaryProvider = true
 
+    // Enums
+    enum class PreferenceAction {
+        CLICK
+    }
+
     // Interfaces
     interface OptionsItemSelectedCallback: Serializable {
         fun onSettingsOptionsItemSelected(@IdRes itemId: Int)
+    }
+    interface PreferenceCallback: Serializable {
+        // Callback called, if any event happens
+        fun onPreferenceAction(key: String, action: PreferenceAction) {}
+        // Callbacks for specific events
+        fun onPreferenceClick(key: String) {}
     }
 
     class Builder {
@@ -37,6 +49,11 @@ class SimpleSettingsConfig {
         fun setOptionsMenu(@MenuRes menuRes: Int, callback: OptionsItemSelectedCallback): Builder {
             config.optionsMenuRes = menuRes
             config.optionsMenuCallback = callback
+            return this
+        }
+
+        fun setPreferenceCallback(callback: PreferenceCallback): Builder {
+            config.preferenceCallback = callback
             return this
         }
 

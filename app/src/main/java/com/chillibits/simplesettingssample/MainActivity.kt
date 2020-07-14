@@ -7,6 +7,7 @@ package com.chillibits.simplesettingssample
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import com.chillibits.simplesettings.clicklistener.LibsClickListener
@@ -20,7 +21,8 @@ import com.chillibits.simplesettings.tool.toCamelCase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
-class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelectedCallback {
+class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelectedCallback,
+    SimpleSettingsConfig.PreferenceCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -115,6 +117,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         val config = SimpleSettingsConfig.Builder()
             .displayHomeAsUpEnabled(true)
             .setOptionsMenu(R.menu.menu_settings, this)
+            .setPreferenceCallback(this)
             .showResetOption(true)
             .build()
 
@@ -126,6 +129,13 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         when(itemId) {
             R.id.actionGitHub -> openGitHubPage()
             R.id.actionRate -> openGooglePlayAppSite()
+        }
+    }
+
+    override fun onPreferenceClick(key: String) {
+        Log.d("SS", key)
+        when(key) {
+            "preference" -> openGitHubPage()
         }
     }
 

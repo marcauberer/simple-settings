@@ -5,11 +5,13 @@
 package com.chillibits.simplesettings.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.core.content.res.ResourcesCompat
 import androidx.preference.*
 import com.chillibits.simplesettings.clicklistener.LibsClickListener
 import com.chillibits.simplesettings.core.SimpleMSListPreferenceSummaryProvider
 import com.chillibits.simplesettings.core.SimpleSettings
+import com.chillibits.simplesettings.core.SimpleSettingsConfig
 import com.chillibits.simplesettings.item.*
 import com.chillibits.simplesettings.tool.toCamelCase
 import com.mikepenz.aboutlibraries.LibsBuilder
@@ -24,6 +26,7 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
     private val preferenceRes = SimpleSettings.preferenceRes
     private val sections = SimpleSettings.sections
     private val config = SimpleSettings.config
+    private val preferenceCallback = SimpleSettings.config.preferenceCallback
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         if(preferenceRes != 0) {
@@ -35,6 +38,9 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
 
             // Search for possible LibsPreference and attach LibsClickListener
             configureLibsPreference()
+
+            // Connect callback methods
+            connectCallbackMethods()
         } else {
             // Build preferences from sections array
             preferenceScreen = preferenceManager.createPreferenceScreen(context)
@@ -84,6 +90,18 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
     private fun configureLibsPreference() {
         val libsPref = findPreference<Preference>("libs")
         libsPref?.onPreferenceClickListener = LibsClickListener(requireContext())
+    }
+
+    private fun connectCallbackMethods() {
+        for (i in 0 until preferenceScreen.preferenceCount) {
+            val pref = preferenceScreen.getPreference(i)
+            pref.setOnPreferenceClickListener {
+                Log.d("SS", "Test: " + pref.key)
+                preferenceCallback?.onPreferenceAction(pref.key, SimpleSettingsConfig.PreferenceAction.CLICK)
+                preferenceCallback?.onPreferenceClick(pref.key)
+                true
+            }
+        }
     }
 
     private fun configureMSListPreferences() {
