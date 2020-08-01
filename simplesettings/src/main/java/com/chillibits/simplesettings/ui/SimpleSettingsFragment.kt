@@ -102,8 +102,8 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
 
     private fun setActionListenerToPreference(pref: Preference) {
         pref.setOnPreferenceClickListener {
-            preferenceCallback?.onPreferenceAction(pref.key, SimpleSettingsConfig.PreferenceAction.CLICK)
-            preferenceCallback?.onPreferenceClick(pref.key)?.onPreferenceClick(pref)
+            preferenceCallback?.onPreferenceAction(requireContext(), pref.key, SimpleSettingsConfig.PreferenceAction.CLICK)
+            preferenceCallback?.onPreferenceClick(requireContext(), pref.key)?.onPreferenceClick(pref)
             true
         }
     }

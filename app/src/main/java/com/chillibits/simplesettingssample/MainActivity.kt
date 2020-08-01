@@ -4,10 +4,12 @@
 
 package com.chillibits.simplesettingssample
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.annotation.IdRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import com.chillibits.simplesettings.clicklistener.LibsClickListener
@@ -132,11 +134,20 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         }
     }
 
-    override fun onPreferenceClick(key: String): Preference.OnPreferenceClickListener? {
+    override fun onPreferenceClick(context: Context, key: String): Preference.OnPreferenceClickListener? {
         return when(key) {
             "preference" -> WebsiteClickListener(this, getString(R.string.github_link))
             "libs" -> LibsClickListener(this)
-            else -> super.onPreferenceClick(key)
+            "checkbox_preference" -> Preference.OnPreferenceClickListener {
+                // Use the passed context for showing dialogs
+                AlertDialog.Builder(context)
+                    .setTitle("Test dialog")
+                    .setMessage("Test dialog message")
+                    .setPositiveButton("OK", null)
+                    .show()
+                true
+            }
+            else -> super.onPreferenceClick(context, key)
         }
     }
 

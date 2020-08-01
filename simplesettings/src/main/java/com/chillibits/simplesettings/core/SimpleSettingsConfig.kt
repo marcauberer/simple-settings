@@ -35,9 +35,9 @@ class SimpleSettingsConfig {
     }
     interface PreferenceCallback: Serializable {
         // Callback called, if any event happens
-        fun onPreferenceAction(key: String, action: PreferenceAction) {}
+        fun onPreferenceAction(context: Context, key: String, action: PreferenceAction) {}
         // Callbacks for specific events
-        fun onPreferenceClick(key: String): Preference.OnPreferenceClickListener? = null
+        fun onPreferenceClick(context: Context, key: String): Preference.OnPreferenceClickListener? = null
     }
 
     class Builder {

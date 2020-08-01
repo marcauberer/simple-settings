@@ -103,14 +103,15 @@ private fun showPreferences() {
     SimpleSettings(this@MainActivity, config).show(R.xml.preferences)
 }
 
-override fun onPreferenceClick(key: String): Preference.OnPreferenceClickListener? {
+override fun onPreferenceClick(context: Context, key: String): Preference.OnPreferenceClickListener? {
     return when(key) {
-        "clearSensorData" -> Preference.OnPreferenceClickListener {
+        "preference" -> WebsiteClickListener(this@MainActivity, getString(R.string.url_github))
+        "custom-preference" -> Preference.OnPreferenceClickListener {
 
             true
         }
 
-        else -> super.onPreferenceClick(key)
+        else -> super.onPreferenceClick(context, key)
     }
 }
 ```
