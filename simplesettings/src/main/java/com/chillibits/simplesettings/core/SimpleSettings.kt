@@ -41,7 +41,7 @@ class SimpleSettings(
         @JvmStatic val DEFAULT_CONFIG = SimpleSettingsConfig.Builder().build()
         var config: SimpleSettingsConfig = DEFAULT_CONFIG
         @XmlRes
-        var preferenceRes: Int = 0
+        var preferenceRes = 0
         var sections = ArrayList<PreferenceSection>()
     }
 

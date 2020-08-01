@@ -5,7 +5,6 @@
 package com.chillibits.simplesettings.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.core.content.res.ResourcesCompat
 import androidx.preference.*
 import com.chillibits.simplesettings.clicklistener.LibsClickListener
@@ -32,9 +31,6 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
         if(preferenceRes != 0) {
             // Inflate preferences from xml resource
             setPreferencesFromResource(preferenceRes, rootKey)
-
-            // Search for possible MSListPreferences and attach SimpleMSListPReferenceSummaryProvider
-            configureMSListPreferences()
 
             // Search for possible LibsPreference and attach LibsClickListener
             configureLibsPreference()
@@ -95,30 +91,27 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
     private fun connectCallbackMethods() {
         for (i in 0 until preferenceScreen.preferenceCount) {
             val pref = preferenceScreen.getPreference(i)
-            pref.setOnPreferenceClickListener {
-                Log.d("SS", "Test: " + pref.key)
-                preferenceCallback?.onPreferenceAction(pref.key, SimpleSettingsConfig.PreferenceAction.CLICK)
-                preferenceCallback?.onPreferenceClick(pref.key)
-                true
+            if(pref is PreferenceCategory) {
+                // Preference is a Category -> search for children
+                for (j in 0 until pref.preferenceCount) {
+                    val childPref = pref.getPreference(j)
+                    setActionListenerToPreference(childPref)
+                    if (childPref is MultiSelectListPreference && config.enableMSListPreferenceSummaryProvider)
+                        childPref.summaryProvider = SimpleMSListPreferenceSummaryProvider()
+                }
+            } else {
+                setActionListenerToPreference(pref)
+                if (pref is MultiSelectListPreference && config.enableMSListPreferenceSummaryProvider)
+                    pref.summaryProvider = SimpleMSListPreferenceSummaryProvider()
             }
         }
     }
 
-    private fun configureMSListPreferences() {
-        if (config.enableMSListPreferenceSummaryProvider) {
-            for (i in 0 until preferenceScreen.preferenceCount) {
-                val pref = preferenceScreen.getPreference(i)
-                if (pref is MultiSelectListPreference) {
-                    pref.summaryProvider = SimpleMSListPreferenceSummaryProvider()
-                } else if (pref is PreferenceCategory) {
-                    // Preference is a Category -> search for children
-                    for (j in 0 until pref.preferenceCount) {
-                        val childPref = pref.getPreference(j)
-                        if (childPref is MultiSelectListPreference)
-                            childPref.summaryProvider = SimpleMSListPreferenceSummaryProvider()
-                    }
-                }
-            }
+    private fun setActionListenerToPreference(pref: Preference) {
+        pref.setOnPreferenceClickListener {
+            preferenceCallback?.onPreferenceAction(pref.key, SimpleSettingsConfig.PreferenceAction.CLICK)
+            preferenceCallback?.onPreferenceClick(pref.key)
+            true
         }
     }
 

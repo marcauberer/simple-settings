@@ -7,7 +7,6 @@ package com.chillibits.simplesettingssample
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import com.chillibits.simplesettings.clicklistener.LibsClickListener
@@ -133,7 +132,6 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
     }
 
     override fun onPreferenceClick(key: String) {
-        Log.d("SS", key)
         when(key) {
             "preference" -> openGitHubPage()
         }
