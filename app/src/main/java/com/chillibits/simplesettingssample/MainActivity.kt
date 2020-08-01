@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.Preference
 import com.chillibits.simplesettings.clicklistener.LibsClickListener
 import com.chillibits.simplesettings.clicklistener.PlayStoreClickListener
 import com.chillibits.simplesettings.clicklistener.WebsiteClickListener
@@ -131,9 +132,11 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         }
     }
 
-    override fun onPreferenceClick(key: String) {
-        when(key) {
-            "preference" -> openGitHubPage()
+    override fun onPreferenceClick(key: String): Preference.OnPreferenceClickListener? {
+        return when(key) {
+            "preference" -> WebsiteClickListener(this, getString(R.string.github_link))
+            "libs" -> LibsClickListener(this)
+            else -> super.onPreferenceClick(key)
         }
     }
 

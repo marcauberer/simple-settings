@@ -7,11 +7,10 @@ package com.chillibits.simplesettings.ui
 import android.os.Bundle
 import androidx.core.content.res.ResourcesCompat
 import androidx.preference.*
-import com.chillibits.simplesettings.clicklistener.LibsClickListener
-import com.chillibits.simplesettings.core.SimpleMSListPreferenceSummaryProvider
 import com.chillibits.simplesettings.core.SimpleSettings
 import com.chillibits.simplesettings.core.SimpleSettingsConfig
 import com.chillibits.simplesettings.item.*
+import com.chillibits.simplesettings.tool.SimpleMSListPreferenceSummaryProvider
 import com.chillibits.simplesettings.tool.toCamelCase
 import com.mikepenz.aboutlibraries.LibsBuilder
 
@@ -31,9 +30,6 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
         if(preferenceRes != 0) {
             // Inflate preferences from xml resource
             setPreferencesFromResource(preferenceRes, rootKey)
-
-            // Search for possible LibsPreference and attach LibsClickListener
-            configureLibsPreference()
 
             // Connect callback methods
             connectCallbackMethods()
@@ -83,11 +79,6 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
         }
     }
 
-    private fun configureLibsPreference() {
-        val libsPref = findPreference<Preference>("libs")
-        libsPref?.onPreferenceClickListener = LibsClickListener(requireContext())
-    }
-
     private fun connectCallbackMethods() {
         for (i in 0 until preferenceScreen.preferenceCount) {
             val pref = preferenceScreen.getPreference(i)
@@ -97,12 +88,14 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
                     val childPref = pref.getPreference(j)
                     setActionListenerToPreference(childPref)
                     if (childPref is MultiSelectListPreference && config.enableMSListPreferenceSummaryProvider)
-                        childPref.summaryProvider = SimpleMSListPreferenceSummaryProvider()
+                        childPref.summaryProvider =
+                            SimpleMSListPreferenceSummaryProvider()
                 }
             } else {
                 setActionListenerToPreference(pref)
                 if (pref is MultiSelectListPreference && config.enableMSListPreferenceSummaryProvider)
-                    pref.summaryProvider = SimpleMSListPreferenceSummaryProvider()
+                    pref.summaryProvider =
+                        SimpleMSListPreferenceSummaryProvider()
             }
         }
     }
@@ -110,7 +103,7 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
     private fun setActionListenerToPreference(pref: Preference) {
         pref.setOnPreferenceClickListener {
             preferenceCallback?.onPreferenceAction(pref.key, SimpleSettingsConfig.PreferenceAction.CLICK)
-            preferenceCallback?.onPreferenceClick(pref.key)
+            preferenceCallback?.onPreferenceClick(pref.key)?.onPreferenceClick(pref)
             true
         }
     }
@@ -181,7 +174,8 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
             setDialogIcon(sp.dialogIconRes)
         }
         if(sp.dialogLayoutRes != 0) dialogLayoutResource = sp.dialogLayoutRes
-        if(sp.simpleSummaryProvider) summaryProvider = SimpleMSListPreferenceSummaryProvider()
+        if(sp.simpleSummaryProvider) summaryProvider =
+            SimpleMSListPreferenceSummaryProvider()
         entries = sp.entries.toTypedArray()
         entryValues = (sp.entries.indices).map { it.toString() }.toTypedArray()
         setDefaultValue(sp.defaultIndex)

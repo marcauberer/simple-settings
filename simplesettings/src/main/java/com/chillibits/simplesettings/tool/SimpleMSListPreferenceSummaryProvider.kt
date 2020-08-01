@@ -2,7 +2,7 @@
  * Copyright © Marc Auberer 2020. All rights reserved
  */
 
-package com.chillibits.simplesettings.core
+package com.chillibits.simplesettings.tool
 
 import androidx.preference.MultiSelectListPreference
 import androidx.preference.Preference

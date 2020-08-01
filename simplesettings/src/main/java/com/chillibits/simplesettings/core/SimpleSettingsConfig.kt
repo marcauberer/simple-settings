@@ -8,6 +8,7 @@ import android.content.Context
 import androidx.annotation.IdRes
 import androidx.annotation.MenuRes
 import androidx.annotation.StringRes
+import androidx.preference.Preference
 import java.io.Serializable
 
 class SimpleSettingsConfig {
@@ -36,7 +37,7 @@ class SimpleSettingsConfig {
         // Callback called, if any event happens
         fun onPreferenceAction(key: String, action: PreferenceAction) {}
         // Callbacks for specific events
-        fun onPreferenceClick(key: String) {}
+        fun onPreferenceClick(key: String): Preference.OnPreferenceClickListener? = null
     }
 
     class Builder {
