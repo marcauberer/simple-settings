@@ -92,6 +92,29 @@ to build the settings screen in its default configuration, you can simply call t
 SimpleSettings(this@MainActivity).show(R.xml.preferences)
 ```
 
+or (if you need to add PreferenceClickListeners to the preference items)
+
+```kotlin
+private fun showPreferences() {
+    val config = SimpleSettingsConfig().apply {
+        showResetOption = true
+        preferenceCallback = this@MainActivity
+    }
+    SimpleSettings(this@MainActivity, config).show(R.xml.preferences)
+}
+
+override fun onPreferenceClick(key: String): Preference.OnPreferenceClickListener? {
+    return when(key) {
+        "clearSensorData" -> Preference.OnPreferenceClickListener {
+
+            true
+        }
+
+        else -> super.onPreferenceClick(key)
+    }
+}
+```
+
 ## Customization
 The library offers a few customization options. For applying those options, you have to pass an object of `SimpleSettingsConfig` to the constructor of your `SimpleSettings` instance.
 
