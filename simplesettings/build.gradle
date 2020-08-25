@@ -45,7 +45,7 @@ dependencies {
     // External dependencies
     api 'com.mikepenz:aboutlibraries-core:8.3.0'
     api 'com.mikepenz:aboutlibraries:8.3.0@aar'
-    api 'com.mikepenz:fastadapter:5.2.2'
+    api 'com.mikepenz:fastadapter:5.2.3'
 
     // Test dependencies
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
