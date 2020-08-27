@@ -7,7 +7,7 @@
 Simple Settings is a library, which provides a simple to use, lightweight solution to create a settings screen without any boilerplate code. This behaviour saves cost, time and effort.
 
 ## Screenshots (Android 10)
-<img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot1.png" width="256" title="Screenshot 1"><img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot2.png" width="256" title="Screenshot 2"><img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot3.png" width="256" title="Screenshot 3">
+<img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot1.png" width="280" title="Screenshot 1"><img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot2.png" width="280" title="Screenshot 2"><img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot3.png" width="280" title="Screenshot 3">
 
 ## Try it
 If you want to test the library, please visit the sample app on [Google Play](https://play.google.com/store/apps/details?id=com.chillibits.simplesettingssample)!
@@ -130,7 +130,7 @@ The library offers a few customization options. For applying those options, you 
 If you miss a customization option, please let us know, by opening an issue.
 
 ## Dive in deeper into the project
-Please visit the wiki, if you want to understand the perks of this library or if you want to learn more about certain preference types.
+Please visit [the wiki](https://github.com/marcauberer/simple-settings/wiki), if you want to understand the perks of this library or if you want to learn more about certain preference types.
 
 ## Supported languages
 Here are the currently supported languages for this library.
