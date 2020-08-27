@@ -7,7 +7,7 @@
 Simple Settings is a library, which provides a simple to use, lightweight solution to create a settings screen without any boilerplate code. This behaviour saves cost, time and effort.
 
 ## Screenshots (Android 10)
-<img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot1.png" width="280" title="Screenshot 1"><img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot2.png" width="280" title="Screenshot 2"><img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot3.png" width="280" title="Screenshot 3">
+<img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot1.png" width="275" title="Screenshot 1"><img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot2.png" width="275" title="Screenshot 2"><img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot3.png" width="275" title="Screenshot 3">
 
 ## Try it
 If you want to test the library, please visit the sample app on [Google Play](https://play.google.com/store/apps/details?id=com.chillibits.simplesettingssample)!
@@ -15,7 +15,7 @@ If you want to test the library, please visit the sample app on [Google Play](ht
 ## Usage
 The first step for using this library is, to add it to the dependency section in your project:
 ```gradle
-implementation 'com.chillibits:simplesettings:1.0.0-alpha07'
+implementation 'com.chillibits:simplesettings:1.0.0-alpha08'
 
 // Required dependencies
 implementation 'com.google.android.material:material:<latest-version>'
