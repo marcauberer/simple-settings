@@ -6,7 +6,10 @@
 
 Simple Settings is a library, which provides a simple to use, lightweight solution to create a settings screen without any boilerplate code. This behaviour saves cost, time and effort.
 
-## Screenshots
+## Screenshots (Android 10)
+<img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot1.png" width="256" title="Screenshot 1">
+<img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot2.png" width="256" title="Screenshot 2">
+<img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot3.png" width="256" title="Screenshot 3">
 
 ## Try it
 If you want to test the library, please visit the sample app on [Google Play](https://play.google.com/store/apps/details?id=com.chillibits.simplesettingssample)!
