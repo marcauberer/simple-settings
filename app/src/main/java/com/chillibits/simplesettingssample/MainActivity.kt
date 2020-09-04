@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -33,12 +34,18 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         // Initialize toolbar
         setSupportActionBar(toolbar)
 
-        // Setup layout components
-        openSettings1.setOnClickListener { openSettingsCodeConfig() }
-        openSettings2.setOnClickListener { openSettingsXmlConfig() }
+        // Initialize number picker
+        numberPicker.apply {
+            minValue = 1
+            maxValue = 10
+            value = 3
+        }
     }
 
-    private fun openSettingsCodeConfig() {
+    fun openSettingsCodeConfig(view: View) {
+        // Get number from number picker
+        val numberOfSwitchPreferences = numberPicker.value
+
         val config = SimpleSettingsConfig.Builder()
             .displayHomeAsUpEnabled(true)
             .setOptionsMenu(R.menu.menu_settings, this)
@@ -50,7 +57,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         SimpleSettings(this, config).show {
             Section {
                 title = "Section"
-                for (i in 0..3) {
+                for (i in 1..numberOfSwitchPreferences) {
                     SwitchPref {
                         title = "SwitchPreference $i"
                         summaryOn = "Click to switch - On"
@@ -62,7 +69,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
                     title = "TextPreference"
                     summary = "Click to open GH page"
                     onClick = WebsiteClickListener(this@MainActivity, getString(R.string.github_link))
-                    dependency = "SwitchPreference 3".toCamelCase()
+                    dependency = "SwitchPreference 1".toCamelCase()
                 }
             }
             Section {
@@ -115,7 +122,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         }
     }
 
-    private fun openSettingsXmlConfig() {
+    fun openSettingsXmlConfig(view: View) {
         val config = SimpleSettingsConfig.Builder()
             .displayHomeAsUpEnabled(true)
             .setOptionsMenu(R.menu.menu_settings, this)

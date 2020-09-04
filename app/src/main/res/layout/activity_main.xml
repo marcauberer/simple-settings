@@ -22,20 +22,45 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/openSettings1"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            style="?attr/materialButtonStyle"
-            android:text="@string/open_settings_code"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/number_of_switch_preferences"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:layout_marginEnd="20dp"/>
+
+            <NumberPicker
+                android:id="@+id/numberPicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
         <Button
-            android:id="@+id/openSettings2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             style="?attr/materialButtonStyle"
+            android:onClick="openSettingsCodeConfig"
+            android:text="@string/open_settings_code"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorOnSurface"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            style="?attr/materialButtonStyle"
+            android:onClick="openSettingsXmlConfig"
             android:text="@string/open_settings_xml"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

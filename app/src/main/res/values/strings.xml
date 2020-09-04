@@ -8,4 +8,5 @@
     <string name="open_settings_xml">Open Settings with xml config</string>
     <string name="app_on_github">App on GitHub</string>
     <string name="rate_app">Rate App</string>
+    <string name="number_of_switch_preferences">Number of SwitchPreferences</string>
 </resources>

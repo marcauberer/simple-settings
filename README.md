@@ -37,7 +37,7 @@ You can create the settings items, by using the `show()` method with the callbac
 SimpleSettings(this).show {
     Section {
         title = "Test section"
-        for (i in 0..4) {
+        for (i in 1..4) {
             SwitchPref {
                 title = "Test 1.$i"
                 summary = "This is a Test 1.$i"
