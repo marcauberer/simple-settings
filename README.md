@@ -2,12 +2,13 @@
 [![Download](https://api.bintray.com/packages/marcauberer/simplesettings/com.chillibits%3Asimplesettings/images/download.svg)](https://bintray.com/marcauberer/simplesettings/com.chillibits%3Asimplesettings/_latestVersion)
 ![Android CI](https://github.com/marcauberer/simple-settings/workflows/Android%20CI/badge.svg)
 [![API](https://img.shields.io/badge/API-21%2B-red.svg?style=flat)](https://android-arsenal.com/api?level=21)
+[![Article on Medium](https://aleen42.github.io/badges/src/medium.svg)](https://medium.com/swlh/simple-settings-library-build-a-settings-screen-in-seconds-5b6394fbd2fc)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 Simple Settings is a library, which provides a simple to use, lightweight solution to create a settings screen without any boilerplate code. This behaviour saves cost, time and effort.
 
 ## Screenshots (Android 10)
-<img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot1.png" width="275" title="Screenshot 1"><img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot2.png" width="275" title="Screenshot 2"><img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot3.png" width="275" title="Screenshot 3">
+<img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot1.png" width="275" title="Screenshot 1"> <img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot2.png" width="275" title="Screenshot 2"> <img src="https://github.com/marcauberer/simple-settings/raw/master/media/screenshot3.png" width="275" title="Screenshot 3">
 
 ## Try it
 If you want to test the library, please visit the sample app on [Google Play](https://play.google.com/store/apps/details?id=com.chillibits.simplesettingssample)!
