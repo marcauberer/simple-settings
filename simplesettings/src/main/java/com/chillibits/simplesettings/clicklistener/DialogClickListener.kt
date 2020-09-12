@@ -32,15 +32,13 @@ class DialogClickListener(
         fun onDialogButtonClicked(button: Button)
     }
 
-    constructor(callback: DialogResultCallback?, title: String, message: String, type: Type) : this(callback) {
+    constructor(title: String, message: String, type: Type, callback: DialogResultCallback? = null) : this(callback) {
         this.title = title
         this.message = message
         this.type = type
     }
 
-    constructor(title: String, message: String, type: Type) : this(null, title, message, type)
-    constructor(callback: DialogResultCallback?, func: DialogClickListener.() -> Unit) : this(callback) { func() }
-    constructor(func: DialogClickListener.() -> Unit): this(null, func)
+    constructor(callback: DialogResultCallback? = null, func: DialogClickListener.() -> Unit) : this(callback) { func() }
 
     override fun onPreferenceClick(preference: Preference?): Boolean {
         val context = preference!!.context
