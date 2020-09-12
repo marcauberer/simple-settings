@@ -76,5 +76,10 @@
             android:max="30"
             app:showSeekBarValue="true"
             app:defaultValue="22"/>
+
+        <Preference
+            app:key="dialog_preference"
+            android:title="Dialog"
+            app:summary="Tap to show dialog" />
     </PreferenceCategory>
 </PreferenceScreen>

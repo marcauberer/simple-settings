@@ -169,6 +169,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
                     .show()
                 true
             }
+            "dialog_preference" -> DialogClickListener("Test", "This is a test", DialogClickListener.Type.OK)
             else -> super.onPreferenceClick(context, key)
         }
     }
