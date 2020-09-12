@@ -127,8 +127,18 @@ The library offers a few customization options. For applying those options, you 
 | `setActivityTitle(Context, Int)`  | Sets the toolbar title for the SettingsActivity with a string resource. The default value is 'Settings', translated to all supported languages |
 | `displayHomeAsUpEnabled(Boolean)` | Enables or disables the arrow icon in the top left corner of the activity to return to the calling activity. Default is `true`                 |
 | `showResetOption(Boolean)`        | Enables or disables an options menu item for resetting all preferences to the default values. Default is `false`                               |
+| `setPreferenceCallback(Context)`  | Sets a callback for subscribing to click events of preference items                                                                            |
 
 If you miss a customization option, please let us know, by opening an issue.
+
+## Predefined click listeners
+The library offers a few predefined click listeners to save you lots of boilerplate code. These click listeners are available:
+
+-   DialogClickListener ([more information](https://github.com/marcauberer/simple-settings/wiki/DialogClickListener))
+-   LibsClickListener ([more information](https://github.com/marcauberer/simple-settings/wiki/LibsClickListener))
+-   PlayStoreClickListener ([more information](https://github.com/marcauberer/simple-settings/wiki/PlayStoreClickListener))
+-   ToastClickListener ([more information](https://github.com/marcauberer/simple-settings/wiki/ToastClickListener))
+-   WebsiteClickListener ([more information](https://github.com/marcauberer/simple-settings/wiki/WebsiteClickListener))
 
 ## Dive in deeper into the project
 Please visit [the wiki](https://github.com/marcauberer/simple-settings/wiki), if you want to understand the perks of this library or if you want to learn more about certain preference types.
