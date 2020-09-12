@@ -7,4 +7,8 @@
     <string name="libsPreferenceTitle">Used Libs</string>
     <string name="libsPreferenceSummary">Tap to see view all libraries in use</string>
     <string name="resetSettings">Reset preferences</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

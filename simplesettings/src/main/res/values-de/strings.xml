@@ -8,4 +8,8 @@
     <string name="libsPreferenceTitle">Genutzte Bibliotheken</string>
     <string name="libsPreferenceSummary">Tippe hier, um alle genutzten Bibliotheken einzusehen</string>
     <string name="resetSettings">Einstellungen zurücksetzen</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
 </resources>

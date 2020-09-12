@@ -25,9 +25,7 @@ class SimpleSettingsConfig {
     var enableMSListPreferenceSummaryProvider = true
 
     // Enums
-    enum class PreferenceAction {
-        CLICK
-    }
+    enum class PreferenceAction { CLICK }
 
     // Interfaces
     interface OptionsItemSelectedCallback: Serializable {

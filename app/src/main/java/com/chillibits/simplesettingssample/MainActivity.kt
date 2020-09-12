@@ -9,10 +9,12 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
+import com.chillibits.simplesettings.clicklistener.DialogClickListener
 import com.chillibits.simplesettings.clicklistener.LibsClickListener
 import com.chillibits.simplesettings.clicklistener.PlayStoreClickListener
 import com.chillibits.simplesettings.clicklistener.WebsiteClickListener
@@ -25,7 +27,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelectedCallback,
-    SimpleSettingsConfig.PreferenceCallback {
+    SimpleSettingsConfig.PreferenceCallback, DialogClickListener.DialogResultCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -115,8 +117,21 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
                 SeekBarPref {
                     title = "SeekBarPreference"
                     summary = "Summary"
-                    min = 50
+                    min = 1
+                    max = 30
+                    defaultValue = 22
                     showValue = true
+                }
+                TextPref {
+                    title = "Dialog"
+                    summary = "Tap to show dialog"
+                    onClick = DialogClickListener(this@MainActivity) {
+                        title = "Test"
+                        message = "This is a test"
+                        icon = R.drawable.settings
+                        cancelable = false
+                        type = DialogClickListener.Type.YES_NO
+                    }
                 }
             }
         }
@@ -155,6 +170,20 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
                 true
             }
             else -> super.onPreferenceClick(context, key)
+        }
+    }
+
+    override fun onDialogButtonClicked(button: DialogClickListener.Button) {
+        when(button) {
+            DialogClickListener.Button.POSITIVE -> {
+                Toast.makeText(this, R.string.yes, Toast.LENGTH_SHORT).show()
+            }
+            DialogClickListener.Button.NEGATIVE -> {
+                Toast.makeText(this, R.string.no, Toast.LENGTH_SHORT).show()
+            }
+            DialogClickListener.Button.NEUTRAL -> {
+                Toast.makeText(this, R.string.cancel, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
