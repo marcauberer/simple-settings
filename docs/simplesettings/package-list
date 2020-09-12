@@ -1,0 +1,9 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+com.chillibits.simplesettings.clicklistener
+com.chillibits.simplesettings.core
+com.chillibits.simplesettings.exception
+com.chillibits.simplesettings.item
+com.chillibits.simplesettings.tool
+
