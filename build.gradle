@@ -3,8 +3,8 @@
  */
 
 buildscript {
-    ext.library_version = '1.0.0-alpha08'
-    ext.kotlin_version = '1.4.0'
+    ext.library_version = '1.0.0-alpha09'
+    ext.kotlin_version = '1.4.10'
     repositories {
         google()
         jcenter()
