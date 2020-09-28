@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © Marc Auberer 2020. All rights reserved
+  -->
+
+<resources>
+    <string name="app_name">Simple Settings Sample</string>
+    <string name="open_settings_code">Réglages avec configuration de code</string>
+    <string name="open_settings_xml">Réglages avec fichier-XML</string>
+    <string name="app_on_github">Application sur GitHub</string>
+    <string name="rate_app">évaluer l\'application</string>
+    <string name="number_of_switch_preferences">Nombre de SwitchPreferences</string>
+</resources>
