@@ -148,6 +148,7 @@ Here are the currently supported languages for this library.
 
 -   English
 -   German
+-   French
 
 New translations are highly appreciated. If you want to translate the lib, please open a pr.
 
