@@ -43,7 +43,7 @@ dependencies {
 
     // External dependencies
     api 'com.mikepenz:aboutlibraries-core:8.5.0'
-    api 'com.mikepenz:aboutlibraries:8.4.5@aar'
+    api 'com.mikepenz:aboutlibraries:8.5.0@aar'
     api 'com.mikepenz:fastadapter:5.2.4'
 
     // Test dependencies
