@@ -17,7 +17,7 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 81
+        versionCode 82
         versionName library_version
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -61,7 +61,7 @@ ext {
     bintrayRepo = 'simplesettings'
 
     // Name which will be visible on bintray
-    bintrayName = 'CoolLibrary'
+    bintrayName = 'SimpleSettingsLibrary'
 
     // Library Details
     publishedGroupId = 'com.chillibits'
