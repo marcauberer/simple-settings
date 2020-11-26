@@ -144,12 +144,11 @@ As you can see, this works for the types `String`, `Int`, `Boolean`, `Float`, `L
 ### Retrieval as LiveData
 Furthermore, the library offers the possibility to observe preference values as LiveData as follows:
 ```kotlin
-getPrefObserver( "listpreference", Observer<String> {
-    val value = it
+getPrefObserver( "listpreference", Observer<String> { value ->
     textField.text = value
 })
 ```
-Like above, this works for the types `String`, `Int`, `Boolean`, `Float`, `Long`, `StringSet`.
+Like above, this works for the types `String`, `Int`, `Boolean`, `Float`, `Long`, `StringSet`.<br>
 *Note: This extension functions are only available for the AppCompatActivity class, because there is a LifecycleOwner required to create Observables.*
 
 ## Customization

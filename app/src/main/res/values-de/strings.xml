@@ -10,4 +10,5 @@
     <string name="app_on_github">App auf GitHub</string>
     <string name="rate_app">App bewerten</string>
     <string name="number_of_switch_preferences">Anzahl an SwitchPreferences</string>
+    <string name="value_input_preference_">Wert der \"InputPreference\" mit Live-Update:\n%s</string>
 </resources>

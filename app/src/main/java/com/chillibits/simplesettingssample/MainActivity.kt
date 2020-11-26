@@ -8,7 +8,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.IdRes
@@ -160,7 +159,9 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
     }
 
     private fun subscribeToPreferenceValues() {
-        getPrefObserver( "listpreference", Observer<String> { listPreferenceValue.text = it })
+        getPrefObserver( "inputpreference", Observer<String> {
+            inputPreferenceValue.text = getString(R.string.value_input_preference_, it)
+        })
     }
 
     override fun onPreferenceClick(context: Context, key: String): Preference.OnPreferenceClickListener? {
