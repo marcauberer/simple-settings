@@ -62,5 +62,11 @@
             style="?attr/materialButtonStyle"
             android:onClick="openSettingsXmlConfig"
             android:text="@string/open_settings_xml"/>
+
+        <TextView
+            android:id="@+id/listPreferenceValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

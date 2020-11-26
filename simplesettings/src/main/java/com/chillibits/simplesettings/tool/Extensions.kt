@@ -12,7 +12,7 @@ import android.net.Uri
 import androidx.preference.PreferenceManager
 import java.util.*
 
-fun String.toCamelCase(): String = split(" ")
+fun String.toCamelCase() = split(" ")
     .joinToString("") {
         it.toLowerCase(Locale.getDefault()).capitalize()
     }.decapitalize()
