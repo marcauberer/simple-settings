@@ -16,7 +16,7 @@ If you want to test the library, please visit the sample app on [Google Play](ht
 ## Usage
 The first step for using this library is, to add it to the dependency section in your project:
 ```gradle
-implementation 'com.chillibits:simplesettings:1.0.0-alpha10'
+implementation 'com.chillibits:simplesettings:1.0.0-alpha11'
 
 // Required dependencies
 implementation 'com.google.android.material:material:<latest-version>'
@@ -129,8 +129,8 @@ override fun onPreferenceClick(context: Context, key: String): Preference.OnPref
 
 ## Retrieve preference values
 ### Normal retrieval
-You can either retrieve the values of the preferences as usual via the SharedPreferences or you can use the shortcuts built-in into the library.
-It provides extension functions for the Context class to easily access the preference values:
+You can either retrieve the values of the preferences as usual via the SharedPreferences or you can use the built-in shortcuts of the library.
+The library provides extension functions for the `Context` class to easily access the preference values:
 ```kotlin
 val value1 = getPrefStringValue("stringPreference", "default value")
 val value2 = getPrefIntValue("intPreference", 99)
@@ -149,7 +149,7 @@ getPrefObserver( "listpreference", Observer<String> { value ->
 })
 ```
 Like above, this works for the types `String`, `Int`, `Boolean`, `Float`, `Long`, `StringSet`.<br>
-*Note: This extension functions are only available for the AppCompatActivity class, because there is a LifecycleOwner required to create Observables.*
+*Note: This extension functions are only available for the `AppCompatActivity` class, because there is a LifecycleOwner required to create Observables.*
 
 ## Customization
 The library offers a few customization options. For applying those options, you have to pass an object of `SimpleSettingsConfig` to the constructor of your `SimpleSettings` instance.

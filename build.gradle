@@ -3,7 +3,7 @@
  */
 
 buildscript {
-    ext.library_version = '1.0.0-alpha10'
+    ext.library_version = '1.0.0-alpha11'
     ext.kotlin_version = '1.4.20'
     repositories {
         google()
