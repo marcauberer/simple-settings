@@ -62,6 +62,15 @@ SimpleSettings(this).show {
 ```
 This is especially useful, when you need to generate your preferences at runtime. You can use loops and conditions as you can see above.
 
+*Note: It is not mandatory to pass keys to each preference. In this cases, the library does auto-generate a key by converting the title of each preference to CamelCase.*<br>
+**Examples**:
+```
+List Preference --> listPreference
+ListPreference --> listpreference
+This is a custom preference --> thisIsACustomPreference
+custom --> custom
+```
+
 You can optionally pass an object of `SimpleSettingsConfig` to the constructor of your `SimpleSettings` instance, to customize the appearance of the settings activity. The different customization options are listed [below](#customization).
 
 ### Provide items with xml file
@@ -117,6 +126,30 @@ override fun onPreferenceClick(context: Context, key: String): Preference.OnPref
     }
 }
 ```
+
+## Retrieve preference values
+### Normal retrieval
+You can either retrieve the values of the preferences as usual via the SharedPreferences or you can use the shortcuts built-in into the library.
+It provides extension functions for the Context class to easily access the preference values:
+```kotlin
+val value1 = getPrefStringValue("stringPreference", "default value")
+val value2 = getPrefIntValue("intPreference", 99)
+val value3 = getPrefBooleanValue("booleanPreference", true)
+val value4 = getPrefFloatValue("floatPreference", 101.6f)
+val value5 = getPrefLongValue("longPreference", 4834597833234)
+val value6 = getPrefStringSetValue("stringSetPreference", setOf("Default 1", "Default 2"))
+```
+As you can see, this works for the types `String`, `Int`, `Boolean`, `Float`, `Long`, `StringSet`.
+
+### Retrieval as LiveData
+Furthermore, the library offers the possibility to observe preference values as LiveData as follows:
+```kotlin
+getPrefObserver( "listpreference", Observer<String> { value ->
+    textField.text = value
+})
+```
+Like above, this works for the types `String`, `Int`, `Boolean`, `Float`, `Long`, `StringSet`.<br>
+*Note: This extension functions are only available for the AppCompatActivity class, because there is a LifecycleOwner required to create Observables.*
 
 ## Customization
 The library offers a few customization options. For applying those options, you have to pass an object of `SimpleSettingsConfig` to the constructor of your `SimpleSettings` instance.

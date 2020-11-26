@@ -45,6 +45,7 @@ dependencies {
     api 'com.mikepenz:aboutlibraries-core:8.6.2'
     api 'com.mikepenz:aboutlibraries:8.6.2@aar'
     api 'com.mikepenz:fastadapter:5.3.1'
+    api 'com.github.ibrahimsn98:live-preferences:1.9'
 
     // Test dependencies
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'

@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.preference.Preference
 import com.chillibits.simplesettings.clicklistener.DialogClickListener
 import com.chillibits.simplesettings.clicklistener.LibsClickListener
@@ -21,8 +22,7 @@ import com.chillibits.simplesettings.clicklistener.WebsiteClickListener
 import com.chillibits.simplesettings.core.SimpleSettings
 import com.chillibits.simplesettings.core.SimpleSettingsConfig
 import com.chillibits.simplesettings.item.SimpleSwitchPreference
-import com.chillibits.simplesettings.tool.openGooglePlayAppSite
-import com.chillibits.simplesettings.tool.toCamelCase
+import com.chillibits.simplesettings.tool.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -42,6 +42,8 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
             maxValue = 10
             value = 3
         }
+
+        subscribeToPreferenceValues()
     }
 
     fun openSettingsCodeConfig(view: View) {
@@ -154,6 +156,12 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
             R.id.actionGitHub -> openGitHubPage()
             R.id.actionRate -> openGooglePlayAppSite()
         }
+    }
+
+    private fun subscribeToPreferenceValues() {
+        getPrefObserver( "inputpreference", Observer<String> {
+            inputPreferenceValue.text = getString(R.string.value_input_preference_, it)
+        })
     }
 
     override fun onPreferenceClick(context: Context, key: String): Preference.OnPreferenceClickListener? {
