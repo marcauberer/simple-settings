@@ -71,7 +71,7 @@ This is a custom preference --> thisIsACustomPreference
 custom --> custom
 ```
 
-You can optionally pass an object of `SimpleSettingsConfig` to the constructor of your `SimpleSettings` instance, to customize the appearance of the settings activity. The different customization options are listed [below](#customization).
+You can optionally pass an object of `SimpleSettingsConfig` to the constructor of your `SimpleSettings` instance, to customize the appearance of the settings activity. The different customization options are listed [below](#library-customization).
 
 ### Provide items with xml file
 You also can specify your preference screen [as an usual xml file](https://developer.android.com/guide/topics/ui/settings#create_a_hierarchy):
@@ -154,13 +154,14 @@ Like above, this works for the types `String`, `Int`, `Boolean`, `Float`, `Long`
 ## Library customization
 The library offers a few customization options. For applying those options, you have to pass an object of `SimpleSettingsConfig` to the constructor of your `SimpleSettings` instance.
 
-| Method                            | Description                                                                                                                                    |
-|-----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| `setActivityTitle(String)`        | Sets the toolbar title for the SettingsActivity. The default value is 'Settings', translated to all supported languages                        |
-| `setActivityTitle(Context, Int)`  | Sets the toolbar title for the SettingsActivity with a string resource. The default value is 'Settings', translated to all supported languages |
-| `displayHomeAsUpEnabled(Boolean)` | Enables or disables the arrow icon in the top left corner of the activity to return to the calling activity. Default is `true`                 |
-| `showResetOption(Boolean)`        | Enables or disables an options menu item for resetting all preferences to the default values. Default is `false`                               |
-| `setPreferenceCallback(Context)`  | Sets a callback for subscribing to click events of preference items                                                                            |
+| Method                            | Description                                                                                                                                                                                            |
+|-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `setActivityTitle(String)`        | Sets the toolbar title for the SettingsActivity. The default value is 'Settings', translated to all supported languages                                                                                |
+| `setActivityTitle(Context, Int)`  | Sets the toolbar title for the SettingsActivity with a string resource. The default value is 'Settings', translated to all supported languages                                                         |
+| `displayHomeAsUpEnabled(Boolean)` | Enables or disables the arrow icon in the top left corner of the activity to return to the calling activity. Default is `true`                                                                         |
+| `showResetOption(Boolean)`        | Enables or disables an options menu item for resetting all preferences to the default values. Default is `false`                                                                                       |
+| `setPreferenceCallback(Context)`  | Sets a callback for subscribing to click events of preference items                                                                                                                                    |
+| `setPendingTransition(Int, Int)`  | Specifies custom activity transition animations for closing the activity. More details [here](https://github.com/marcauberer/simple-settings/wiki/activity-configuration#custom-activity-transitions). |
 
 If you miss a customization option, please let us know, by opening an issue.
 
