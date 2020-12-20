@@ -64,11 +64,17 @@ internal class SimpleSettingsActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(val id = item.itemId) {
-            android.R.id.home -> finish()
+            android.R.id.home -> onBackPressed()
             Constants.MENU_ITEM_RESET -> resetSettings()
             else -> config.optionsMenuCallback?.onSettingsOptionsItemSelected(id)
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (config.pendingTransitionEnterAnim !== null && config.pendingTransitionExitAnim !== null)
+            overridePendingTransition(config.pendingTransitionEnterAnim!!, config.pendingTransitionExitAnim!!)
     }
 
     private fun initSettingsFragment() {

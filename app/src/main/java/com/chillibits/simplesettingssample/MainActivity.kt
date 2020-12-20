@@ -55,6 +55,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
             .setOptionsMenu(R.menu.menu_settings, this)
             .showResetOption(true)
             .setIconSpaceReservedByDefault(false)
+            .setPendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
             .build()
 
         // Programmatic settings data (especially useful for generating settings options at runtime)
@@ -137,6 +138,11 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
                 }
             }
         }
+        /*
+        Apply custom activity transitions while opening. Custom activity transitions while closing
+        can be specified by using the setPendingTransition() method on the config object
+        */
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
     }
 
     fun openSettingsXmlConfig(view: View) {
@@ -145,10 +151,16 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
             .setOptionsMenu(R.menu.menu_settings, this)
             .setPreferenceCallback(this)
             .showResetOption(true)
+            .setPendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
             .build()
 
         // Settings data from xml resource to keep a better overview
         SimpleSettings(this, config).show(R.xml.preferences)
+        /*
+        Apply custom activity transitions while opening. Custom activity transitions while closing
+        can be specified by using the setPendingTransition() method on the config object
+        */
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
     }
 
     override fun onSettingsOptionsItemSelected(@IdRes itemId: Int) {

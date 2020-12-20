@@ -5,6 +5,7 @@
 package com.chillibits.simplesettings.core
 
 import android.content.Context
+import androidx.annotation.AnimRes
 import androidx.annotation.IdRes
 import androidx.annotation.MenuRes
 import androidx.annotation.StringRes
@@ -23,6 +24,8 @@ class SimpleSettingsConfig {
     var showResetOption = false
     var iconSpaceReservedByDefault = true
     var enableMSListPreferenceSummaryProvider = true
+    @AnimRes var pendingTransitionEnterAnim: Int? = null
+    @AnimRes var pendingTransitionExitAnim: Int? = null
 
     // Enums
     enum class PreferenceAction { CLICK }
@@ -76,6 +79,12 @@ class SimpleSettingsConfig {
 
         fun setIconSpaceReservedByDefault(iconSpaceReservedByDefault: Boolean): Builder {
             config.iconSpaceReservedByDefault = iconSpaceReservedByDefault
+            return this
+        }
+
+        fun setPendingTransition(@AnimRes enterAnim: Int, @AnimRes exitAnim: Int): Builder {
+            config.pendingTransitionEnterAnim = enterAnim
+            config.pendingTransitionExitAnim = exitAnim
             return this
         }
 
