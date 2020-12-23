@@ -7,6 +7,10 @@ package com.chillibits.simplesettings.core
 import android.content.Context
 import com.chillibits.simplesettings.item.SimplePreference
 
+/**
+ * Page element for nested settings screens.
+ * More information: https://github.com/marcauberer/simple-settings/wiki/PreferencePage
+ */
 class PreferencePage(
     private val context: Context,
     iconSpaceReservedByDefault: Boolean
@@ -19,6 +23,10 @@ class PreferencePage(
 
     // ----------------------------------- Preference section --------------------------------------
 
+    /**
+     * Preference Section. Represents a group of preference items.
+     * More information: https://github.com/marcauberer/simple-settings/wiki/PreferenceSection
+     */
     fun Section(func: PreferenceSection.() -> Unit)
             = PreferenceSection(context, SimpleSettings.config.iconSpaceReservedByDefault).apply {
         this.func()
