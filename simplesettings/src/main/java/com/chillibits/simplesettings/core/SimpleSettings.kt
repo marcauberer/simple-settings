@@ -7,7 +7,7 @@ package com.chillibits.simplesettings.core
 import android.content.Context
 import android.content.Intent
 import androidx.annotation.XmlRes
-import com.chillibits.simplesettings.item.PreferenceSection
+import androidx.preference.Preference
 import com.chillibits.simplesettings.ui.SimpleSettingsActivity
 
 class SimpleSettings(
@@ -47,7 +47,8 @@ class SimpleSettings(
 
     // ----------------------------------- Preference section --------------------------------------
 
-    fun Section(func: PreferenceSection.() -> Unit) = PreferenceSection(context, config.iconSpaceReservedByDefault).apply {
+    fun Section(func: PreferenceSection.() -> Unit)
+            = PreferenceSection(context, config.iconSpaceReservedByDefault).apply {
         this.func()
         sections.add(this)
     }
