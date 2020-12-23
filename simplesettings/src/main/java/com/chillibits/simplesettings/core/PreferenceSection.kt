@@ -2,9 +2,10 @@
  * Copyright © Marc Auberer 2020. All rights reserved
  */
 
-package com.chillibits.simplesettings.item
+package com.chillibits.simplesettings.core
 
 import android.content.Context
+import com.chillibits.simplesettings.item.*
 
 class PreferenceSection(
     private val context: Context,

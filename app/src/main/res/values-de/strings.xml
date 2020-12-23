@@ -7,6 +7,7 @@
     <string name="app_name">Simple Settings Sample</string>
     <string name="open_settings_code">Eintellungen mit Code-Konfiguration</string>
     <string name="open_settings_xml">Einstellungen mit XML-Datei</string>
+    <string name="open_settings_paged">Paginierte Einstellungen</string>
     <string name="app_on_github">App auf GitHub</string>
     <string name="rate_app">App bewerten</string>
     <string name="number_of_switch_preferences">Anzahl an SwitchPreferences</string>

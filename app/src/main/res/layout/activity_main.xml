@@ -42,6 +42,8 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
+        <!-- Normal setup -->
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,6 +59,18 @@
             style="?attr/materialButtonStyle"
             android:onClick="openSettingsXmlConfig"
             android:text="@string/open_settings_xml"/>
+
+        <!-- Pages setup -->
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            style="?attr/materialButtonStyle"
+            android:onClick="openSettingsPaged"
+            android:text="@string/open_settings_paged"/>
+
+        <!-- LivePreference monitoring -->
 
         <TextView
             android:id="@+id/inputPreferenceValue"

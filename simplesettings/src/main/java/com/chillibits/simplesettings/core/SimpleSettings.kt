@@ -7,7 +7,7 @@ package com.chillibits.simplesettings.core
 import android.content.Context
 import android.content.Intent
 import androidx.annotation.XmlRes
-import com.chillibits.simplesettings.item.PreferenceSection
+import androidx.preference.Preference
 import com.chillibits.simplesettings.ui.SimpleSettingsActivity
 
 class SimpleSettings(
@@ -20,7 +20,8 @@ class SimpleSettings(
         config = configuration
         // Reset static attributes
         preferenceRes = 0
-        sections.clear()
+        mainSections.clear()
+        pages.clear()
     }
 
     private fun show() {
@@ -42,13 +43,19 @@ class SimpleSettings(
         var config: SimpleSettingsConfig = DEFAULT_CONFIG
         @XmlRes
         var preferenceRes = 0
-        var sections = ArrayList<PreferenceSection>()
+        var mainSections = ArrayList<PreferenceSection>()
+        var pages = ArrayList<PreferencePage>()
     }
 
     // ----------------------------------- Preference section --------------------------------------
 
     fun Section(func: PreferenceSection.() -> Unit) = PreferenceSection(context, config.iconSpaceReservedByDefault).apply {
         this.func()
-        sections.add(this)
+        mainSections.add(this)
+    }
+
+    fun Page(func: PreferencePage.() -> Unit) = PreferencePage(context).apply {
+        this.func()
+        pages.add(this)
     }
 }

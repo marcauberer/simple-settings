@@ -163,6 +163,10 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
     }
 
+    fun openSettingsPaged(view: View) {
+        // TODO: Implement demo implementation
+    }
+
     override fun onSettingsOptionsItemSelected(@IdRes itemId: Int) {
         when(itemId) {
             R.id.actionGitHub -> openGitHubPage()
