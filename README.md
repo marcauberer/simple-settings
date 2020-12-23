@@ -33,6 +33,8 @@ You also have to register the activity in your manifest:
 The library accepts two different ways, for providing the settings screen information.
 
 ### Provide items programmatically
+Depending on the complexity of your app, you can stick with a single-paged settings screen or you might choose a paged settings screen for more complex configurations.
+#### Single-Paged configuration
 You can create the settings items, by using the `show()` method with the callback like this:
 ```kotlin
 SimpleSettings(this).show {
@@ -51,13 +53,16 @@ SimpleSettings(this).show {
                 summary = "This is a Test 2"
             }
         }
+        /*...*/
     }
     Section {
         InputPref {
             title = "Test 3"
             summary = "This is a Test 3"
         }
+        /*...*/
     }
+    /*...*/
 }
 ```
 This is especially useful, when you need to generate your preferences at runtime. You can use loops and conditions as you can see above.
@@ -73,7 +78,54 @@ custom --> custom
 
 You can optionally pass an object of `SimpleSettingsConfig` to the constructor of your `SimpleSettings` instance, to customize the appearance of the settings activity. The different customization options are listed [below](#library-customization).
 
-### Provide items with xml file
+#### Paged Settings Screens
+The library offers a solution for overloaded single-paged settings screens by supporting paged settings configurations.
+```kotlin
+SimpleSettings(this).show {
+    Section {
+        title = "Section"
+        Page {
+            title = "Page 1"
+            summary = "Demo summary 1"
+            displayHomeAsUpEnabled = false
+            Section {
+                title = "Demo subsection"
+                TextPref {
+                    title = "LibsClickListener"
+                    onClick = LibsClickListener(this@MainActivity)
+                }
+                /*...*/
+            }
+        }
+        Page {
+            title = "Page 2"
+            summary = "Demo summary 2"
+            activityTitle = "Page 2.2"
+            Section {
+                DropDownPref {
+                    title = "DropDownPreference"
+                    simpleSummaryProvider = true
+                    entries = listOf("Apple", "Banana", "Avocado", "Pineapple")
+                }
+                /*...*/
+            }
+        }
+        /*...*/
+    }
+    Section {
+        InputPref {
+            title = "InputPreference"
+            summary = "Click to set text"
+            defaultValue = "Default text"
+        }
+        /*...*/
+    }
+    /*...*/ 
+}
+```
+To learn more about the Page component, please visit its [wiki entry](https://github.com/marcauberer/simple-settings/wiki/PreferencePage).
+
+### Provide items with xml file (only for single-paged configuration)
 You also can specify your preference screen [as an usual xml file](https://developer.android.com/guide/topics/ui/settings#create_a_hierarchy):
 ```xml
 <PreferenceScreen
@@ -93,7 +145,10 @@ You also can specify your preference screen [as an usual xml file](https://devel
             app:defaultValue="true"
             app:title="Test"
             app:summary="This is a test"/>
+            
+        <!-- ... -->
     </PreferenceCategory>
+    <!-- ... -->
 </PreferenceScreen>
 ```
 
