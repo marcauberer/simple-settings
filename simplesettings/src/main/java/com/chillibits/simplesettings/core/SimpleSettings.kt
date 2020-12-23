@@ -20,8 +20,7 @@ class SimpleSettings(
         config = configuration
         // Reset static attributes
         preferenceRes = 0
-        mainSections.clear()
-        pages.clear()
+        sections.clear()
     }
 
     private fun show() {
@@ -43,19 +42,14 @@ class SimpleSettings(
         var config: SimpleSettingsConfig = DEFAULT_CONFIG
         @XmlRes
         var preferenceRes = 0
-        var mainSections = ArrayList<PreferenceSection>()
-        var pages = ArrayList<PreferencePage>()
+        var sections = ArrayList<PreferenceSection>()
     }
 
     // ----------------------------------- Preference section --------------------------------------
 
-    fun Section(func: PreferenceSection.() -> Unit) = PreferenceSection(context, config.iconSpaceReservedByDefault).apply {
+    fun Section(func: PreferenceSection.() -> Unit)
+            = PreferenceSection(context, config.iconSpaceReservedByDefault).apply {
         this.func()
-        mainSections.add(this)
-    }
-
-    fun Page(func: PreferencePage.() -> Unit) = PreferencePage(context).apply {
-        this.func()
-        pages.add(this)
+        sections.add(this)
     }
 }

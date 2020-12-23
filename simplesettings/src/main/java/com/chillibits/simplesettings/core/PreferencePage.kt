@@ -5,15 +5,23 @@
 package com.chillibits.simplesettings.core
 
 import android.content.Context
+import com.chillibits.simplesettings.item.SimplePreference
 
 class PreferencePage(
-    private val context: Context
-) {
+    private val context: Context,
+    iconSpaceReservedByDefault: Boolean
+): SimplePreference(iconSpaceReservedByDefault) {
 
     // Attributes
-    var title = ""
-    var enabled = true
-    var items = ArrayList<PreferenceSection>()
+    var subSections = ArrayList<PreferenceSection>()
+    var activityTitle = ""
+    var displayHomeAsUpEnabled = true
 
+    // ----------------------------------- Preference section --------------------------------------
 
+    fun Section(func: PreferenceSection.() -> Unit)
+            = PreferenceSection(context, SimpleSettings.config.iconSpaceReservedByDefault).apply {
+        this.func()
+        subSections.add(this)
+    }
 }

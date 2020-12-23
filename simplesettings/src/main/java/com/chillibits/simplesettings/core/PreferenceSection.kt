@@ -19,6 +19,12 @@ class PreferenceSection(
 
     // ----------------------------------------- Item types ----------------------------------------
 
+    fun Page(func: PreferencePage.() -> Unit)
+            = PreferencePage(context, iconSpaceReserved).apply {
+        this.func()
+        items.add(this)
+    }
+
     fun TextPref(func: SimpleTextPreference.() -> Unit)
             = SimpleTextPreference(iconSpaceReserved).apply {
         func()

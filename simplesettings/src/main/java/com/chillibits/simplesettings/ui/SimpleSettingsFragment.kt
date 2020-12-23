@@ -7,6 +7,7 @@ package com.chillibits.simplesettings.ui
 import android.os.Bundle
 import androidx.core.content.res.ResourcesCompat
 import androidx.preference.*
+import com.chillibits.simplesettings.core.PreferencePage
 import com.chillibits.simplesettings.core.SimpleSettings
 import com.chillibits.simplesettings.core.SimpleSettingsConfig
 import com.chillibits.simplesettings.item.*
@@ -50,6 +51,7 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
                 // Add items to category
                 section.items.forEach { item ->
                     val preferenceItem = when(item) {
+                        is PreferencePage -> genPagePref(item)
                         is SimpleTextPreference -> genTextPref(item)
                         is SimpleSwitchPreference -> genSwitchPref(item)
                         is SimpleCheckboxPreference -> genCheckboxPref(item)
@@ -109,6 +111,31 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
     }
 
     // -------------------------------- Preference creator methods ---------------------------------
+
+    private fun genPagePref(sp: PreferencePage) = Preference(context).apply {
+        initializeGeneralAttributes(sp, this)
+        // Override click listener to open cascading activity
+        sp.onClick = Preference.OnPreferenceClickListener {
+            // Initialize new instance of library with the regarding subset of sections
+            val subConfig = SimpleSettingsConfig.Builder()
+                .setActivityTitle(sp.activityTitle.ifBlank { sp.title })
+                .setIconSpaceReservedByDefault(isIconSpaceReserved)
+                .displayHomeAsUpEnabled(sp.displayHomeAsUpEnabled)
+                .build()
+
+            // Launch nested settings screen
+            SimpleSettings(context, subConfig).show {
+                sp.subSections.forEach {
+                    Section {
+                        title = it.title
+                        enabled = it.enabled
+                        items.addAll(it.items)
+                    }
+                }
+            }
+            true
+        }
+    }
 
     private fun genTextPref(sp: SimpleTextPreference) = Preference(context).apply {
         initializeGeneralAttributes(sp, this)

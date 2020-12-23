@@ -164,7 +164,68 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
     }
 
     fun openSettingsPaged(view: View) {
-        // TODO: Implement demo implementation
+        val config = SimpleSettingsConfig.Builder()
+            .displayHomeAsUpEnabled(true)
+            .setOptionsMenu(R.menu.menu_settings, this)
+            .showResetOption(true)
+            .setIconSpaceReservedByDefault(false)
+            .build()
+
+        // Programmatic settings data (especially useful for generating settings options at runtime)
+        SimpleSettings(this, config).show {
+            Section {
+                title = "Section"
+                Page {
+                    title = "Page 1"
+                    summary = "Demo summary 1"
+                    displayHomeAsUpEnabled = false
+                    Section {
+                        title = "Demo subsection"
+                        MSListPref {
+                            title = "MSListPreference"
+                            simpleSummaryProvider = true
+                            entries = listOf("Apple", "Banana", "Avocado", "Pineapple")
+                        }
+                        TextPref {
+                            title = "LibsClickListener"
+                            onClick = LibsClickListener(this@MainActivity)
+                        }
+                    }
+                }
+                Page {
+                    title = "Page 2"
+                    summary = "Demo summary 2"
+                    activityTitle = "Page 2.2"
+                    Section {
+                        DropDownPref {
+                            title = "DropDownPreference"
+                            simpleSummaryProvider = true
+                            entries = listOf("Apple", "Banana", "Avocado", "Pineapple")
+                        }
+                        SeekBarPref {
+                            title = "SeekBarPreference"
+                            summary = "Summary"
+                            min = 1
+                            max = 30
+                            defaultValue = 22
+                            showValue = true
+                        }
+                    }
+                }
+            }
+            Section {
+                InputPref {
+                    title = "InputPreference"
+                    summary = "Click to set text"
+                    defaultValue = "Default text"
+                }
+                TextPref {
+                    title = "PlayStoreClickListener"
+                    summary = "Click here to open PlayStore site of this app"
+                    onClick = PlayStoreClickListener(this@MainActivity)
+                }
+            }
+        }
     }
 
     override fun onSettingsOptionsItemSelected(@IdRes itemId: Int) {
