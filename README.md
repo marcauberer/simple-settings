@@ -182,6 +182,18 @@ override fun onPreferenceClick(context: Context, key: String): Preference.OnPref
 }
 ```
 
+## Preference Types
+-   SimpleTextPreference ([more information](https://github.com/marcauberer/simple-settings/wiki/SimpleTextPreference))
+-   SimpleSwitchPreference ([more information](https://github.com/marcauberer/simple-settings/wiki/SimpleSwitchPreference))
+-   SimpleInputPreference ([more information](https://github.com/marcauberer/simple-settings/wiki/SimpleInputPreference))
+-   SimpleListPreference ([more information](https://github.com/marcauberer/simple-settings/wiki/SimpleListPreference))
+-   SimpleMultiSelectListPreference ([more information](https://github.com/marcauberer/simple-settings/wiki/SimpleMSListPreference))
+-   SimpleCheckboxPreference ([more information](https://github.com/marcauberer/simple-settings/wiki/SimpleCheckboxPreference))
+-   SimpleDropDownPreference ([more information](https://github.com/marcauberer/simple-settings/wiki/SimpleDropDownPreference))
+-   SimpleSeekbarPreference ([more information](https://github.com/marcauberer/simple-settings/wiki/SimpleSeekbarPreference))
+-   SimpleLibsPreference ([more information](https://github.com/marcauberer/simple-settings/wiki/SimpleLibsPreference))
+-   SimpleColorPreference ([more information](https://github.com/marcauberer/simple-settings/wiki/SimpleColorPreference))
+
 ## Retrieve preference values
 ### One-Time-Retrieval
 You can either retrieve the values of the preferences as usual via the SharedPreferences or you can use the built-in shortcuts, coming with the library.
