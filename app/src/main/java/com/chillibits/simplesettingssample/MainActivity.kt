@@ -139,11 +139,6 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
                     defaultValue = 22
                     showValue = true
                 }
-                /*ColorPref {
-                    title = "ColorPreference"
-                    summary = "Color Summary"
-                    attachAlphaSlideBar = true
-                } */
                 TextPref {
                     title = "Dialog"
                     summary = "Tap to show dialog"

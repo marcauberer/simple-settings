@@ -5,7 +5,6 @@
 package com.chillibits.simplesettings.ui
 
 import android.os.Bundle
-import android.util.AttributeSet
 import androidx.core.content.res.ResourcesCompat
 import androidx.preference.*
 import com.chillibits.simplesettings.core.PreferencePage
@@ -106,12 +105,12 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
     private fun setActionListenerToPreference(pref: Preference) {
         pref.setOnPreferenceClickListener {
             preferenceCallback?.onPreferenceAction(
-                requireContext(),
-                pref.key,
-                SimpleSettingsConfig.PreferenceAction.CLICK
+                    requireContext(),
+                    pref.key,
+                    SimpleSettingsConfig.PreferenceAction.CLICK
             )
             preferenceCallback?.onPreferenceClick(requireContext(), pref.key)?.onPreferenceClick(
-                pref
+                    pref
             )
             true
         }
@@ -269,7 +268,7 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
     }
 
     private fun genColorPref(sp: SimpleColorPreference): ColorPickerPreference {
-        val attrs: AttributeSet = object : AttributeSet {
+        /*val attrs: AttributeSet = object : AttributeSet {
             override fun getAttributeCount() = 0
             override fun getAttributeName(index: Int) = null
             override fun getAttributeValue(index: Int) = null
@@ -292,9 +291,9 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
             override fun getClassAttribute() = null
             override fun getIdAttributeResourceValue(defaultValue: Int) = 0
             override fun getStyleAttribute() = 0
-        }
+        }*/
 
-        return ColorPickerPreference(requireContext(), attrs).apply {
+        return ColorPickerPreference(requireContext()).apply {
             initializeGeneralAttributes(sp, this)
         }
     }
