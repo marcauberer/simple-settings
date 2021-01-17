@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LibsPreference">
+        <attr name="activity_title" format="string" />
+        <attr name="edge_to_edge" format="boolean" />
+        <attr name="about_app_name" format="string" />
+        <attr name="about_app_special1" format="string" />
+        <attr name="about_app_special1_description" format="string" />
+        <attr name="about_app_special2" format="string" />
+        <attr name="about_app_special2_description" format="string" />
+        <attr name="about_app_special3" format="string" />
+        <attr name="about_app_special3_description" format="string" />
+        <attr name="about_description" format="string" />
+        <attr name="about_minimal_design" format="boolean" />
+        <attr name="about_show_icon" format="boolean" />
+        <attr name="about_show_version" format="boolean" />
+        <attr name="about_show_version_code" format="boolean" />
+        <attr name="about_show_version_name" format="boolean" />
+        <attr name="about_version_string" format="string" />
+        <attr name="auto_detect" format="boolean" />
+        <attr name="check_cached_detection" format="boolean" />
+        <attr name="show_license" format="boolean" />
+        <attr name="show_license_dialog" format="boolean" />
+        <attr name="show_loading_progress" format="boolean" />
+        <attr name="show_version" format="boolean" />
+        <attr name="sort" format="boolean" />
+    </declare-styleable>
+</resources>

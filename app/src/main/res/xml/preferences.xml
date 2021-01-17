@@ -33,10 +33,12 @@
             app:title="EditTextPreference"
             app:useSimpleSummaryProvider="true"/>
 
-        <Preference
-            app:key="libs"
+        <com.chillibits.simplesettings.preference.LibsPreference
+            app:key="libs_preference"
             app:title="@string/libsPreferenceTitle"
-            app:summary="@string/libsPreferenceSummary"/>
+            app:summary="@string/libsPreferenceSummary"
+            app:sort="true"
+            app:activity_title="@string/app_name"/>
 
         <ListPreference
             app:key="list_preference"
