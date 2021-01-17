@@ -5,6 +5,7 @@
 package com.chillibits.simplesettings.ui
 
 import android.os.Bundle
+import android.util.AttributeSet
 import androidx.core.content.res.ResourcesCompat
 import androidx.preference.*
 import com.chillibits.simplesettings.core.PreferencePage
@@ -14,6 +15,7 @@ import com.chillibits.simplesettings.item.*
 import com.chillibits.simplesettings.tool.SimpleMSListPreferenceSummaryProvider
 import com.chillibits.simplesettings.tool.toCamelCase
 import com.mikepenz.aboutlibraries.LibsBuilder
+import com.skydoves.colorpickerpreference.ColorPickerPreference
 
 /**
  * The SimpleSettingsFragment is embedded in the SimpleSettingsActivity and displays the actual
@@ -61,6 +63,7 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
                         is SimpleDropDownPreference -> genDropDownPref(item)
                         is SimpleSeekBarPreference -> genSeekBarPref(item)
                         is SimpleLibsPreference -> genLibsPref(item)
+                        is SimpleColorPreference -> genColorPref(item)
                         else -> Preference(context)
                     }
                     category.addPreference(preferenceItem)
@@ -90,22 +93,26 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
                     val childPref = pref.getPreference(j)
                     setActionListenerToPreference(childPref)
                     if (childPref is MultiSelectListPreference && config.enableMSListPreferenceSummaryProvider)
-                        childPref.summaryProvider =
-                            SimpleMSListPreferenceSummaryProvider()
+                        childPref.summaryProvider = SimpleMSListPreferenceSummaryProvider()
                 }
             } else {
                 setActionListenerToPreference(pref)
                 if (pref is MultiSelectListPreference && config.enableMSListPreferenceSummaryProvider)
-                    pref.summaryProvider =
-                        SimpleMSListPreferenceSummaryProvider()
+                    pref.summaryProvider = SimpleMSListPreferenceSummaryProvider()
             }
         }
     }
 
     private fun setActionListenerToPreference(pref: Preference) {
         pref.setOnPreferenceClickListener {
-            preferenceCallback?.onPreferenceAction(requireContext(), pref.key, SimpleSettingsConfig.PreferenceAction.CLICK)
-            preferenceCallback?.onPreferenceClick(requireContext(), pref.key)?.onPreferenceClick(pref)
+            preferenceCallback?.onPreferenceAction(
+                requireContext(),
+                pref.key,
+                SimpleSettingsConfig.PreferenceAction.CLICK
+            )
+            preferenceCallback?.onPreferenceClick(requireContext(), pref.key)?.onPreferenceClick(
+                pref
+            )
             true
         }
     }
@@ -258,6 +265,37 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
                 sort = sp.sort
             }.start(context)
             true
+        }
+    }
+
+    private fun genColorPref(sp: SimpleColorPreference): ColorPickerPreference {
+        val attrs: AttributeSet = object : AttributeSet {
+            override fun getAttributeCount() = 0
+            override fun getAttributeName(index: Int) = null
+            override fun getAttributeValue(index: Int) = null
+            override fun getAttributeValue(namespace: String, name: String) = null
+            override fun getPositionDescription() = null
+            override fun getAttributeNameResource(index: Int) = 0
+            override fun getAttributeListValue(namespace: String, attribute: String, options: Array<String>, defaultValue: Int) = 0
+            override fun getAttributeBooleanValue(namespace: String, attribute: String, defaultValue: Boolean) = false
+            override fun getAttributeResourceValue(namespace: String, attribute: String, defaultValue: Int) = 0
+            override fun getAttributeIntValue(namespace: String, attribute: String, defaultValue: Int) = 0
+            override fun getAttributeUnsignedIntValue(namespace: String, attribute: String, defaultValue: Int) = 0
+            override fun getAttributeFloatValue(namespace: String, attribute: String, defaultValue: Float) = 0f
+            override fun getAttributeListValue(index: Int, options: Array<String>, defaultValue: Int) = 0
+            override fun getAttributeBooleanValue(index: Int, defaultValue: Boolean) = false
+            override fun getAttributeResourceValue(index: Int, defaultValue: Int) = 0
+            override fun getAttributeIntValue(index: Int, defaultValue: Int) = 0
+            override fun getAttributeUnsignedIntValue(index: Int, defaultValue: Int) = 0
+            override fun getAttributeFloatValue(index: Int, defaultValue: Float) = 0f
+            override fun getIdAttribute() = null
+            override fun getClassAttribute() = null
+            override fun getIdAttributeResourceValue(defaultValue: Int) = 0
+            override fun getStyleAttribute() = 0
+        }
+
+        return ColorPickerPreference(requireContext(), attrs).apply {
+            initializeGeneralAttributes(sp, this)
         }
     }
 

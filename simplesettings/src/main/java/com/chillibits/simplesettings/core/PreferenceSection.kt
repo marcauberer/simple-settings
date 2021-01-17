@@ -121,4 +121,14 @@ class PreferenceSection(
         func()
         items.add(this)
     }
+
+    /**
+     * Color Preference, for picking a color via a color picker dialog.
+     * More information: https://github.com/marcauberer/simple-settings/wiki/SimpleColorPreference
+     */
+    fun ColorPref(func: SimpleColorPreference.() -> Unit)
+            = SimpleColorPreference(context, iconSpaceReserved).apply {
+        func()
+        items.add(this)
+    }
 }

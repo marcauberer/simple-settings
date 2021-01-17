@@ -244,6 +244,13 @@ New translations are highly appreciated. If you want to translate the lib, pleas
 ## Contribute to the project
 If you want to contribute to this project, please feel free to send us a pull request.
 
+## Used third party libraries
+
+- [AboutLibraries by Mike Penz](https://github.com/mikepenz/AboutLibraries)
+- [FastAdapter by Mike Penz](https://github.com/mikepenz/FastAdapter)
+- [LivePreferences by İbrahim Süren](https://github.com/ibrahimsn98/live-preferences)
+- [ColorPickerPreference by Jaewoong Eum](https://github.com/skydoves/ColorPickerPreference)
+
 ## Credits
 Thanks to all contributors and translators!
 

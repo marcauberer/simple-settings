@@ -77,6 +77,17 @@
             app:showSeekBarValue="true"
             app:defaultValue="22"/>
 
+        <com.skydoves.colorpickerpreference.ColorPickerPreference
+            android:key="color_preference"
+            android:title="Color Preference"
+            android:summary="Simple Color Preference"
+            app:preference_attachAlphaSlideBar="false"
+            app:preference_attachBrightnessSlideBar="true"
+            app:preference_colorBox_radius="26dp"
+            app:preference_dialog_negative="@string/cancel"
+            app:preference_dialog_positive="@string/ok"
+            app:preference_dialog_title="Toolbar Color"/>
+
         <Preference
             app:key="dialog_preference"
             android:title="Dialog"
