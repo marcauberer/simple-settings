@@ -183,16 +183,16 @@ override fun onPreferenceClick(context: Context, key: String): Preference.OnPref
 ```
 
 ## Preference Types
--   SimpleTextPreference ([more information](https://github.com/marcauberer/simple-settings/wiki/SimpleTextPreference))
--   SimpleSwitchPreference ([more information](https://github.com/marcauberer/simple-settings/wiki/SimpleSwitchPreference))
--   SimpleInputPreference ([more information](https://github.com/marcauberer/simple-settings/wiki/SimpleInputPreference))
--   SimpleListPreference ([more information](https://github.com/marcauberer/simple-settings/wiki/SimpleListPreference))
--   SimpleMultiSelectListPreference ([more information](https://github.com/marcauberer/simple-settings/wiki/SimpleMSListPreference))
--   SimpleCheckboxPreference ([more information](https://github.com/marcauberer/simple-settings/wiki/SimpleCheckboxPreference))
--   SimpleDropDownPreference ([more information](https://github.com/marcauberer/simple-settings/wiki/SimpleDropDownPreference))
--   SimpleSeekbarPreference ([more information](https://github.com/marcauberer/simple-settings/wiki/SimpleSeekbarPreference))
--   SimpleLibsPreference ([more information](https://github.com/marcauberer/simple-settings/wiki/SimpleLibsPreference))
--   SimpleColorPreference ([more information](https://github.com/marcauberer/simple-settings/wiki/SimpleColorPreference))
+-   SimpleTextPreference ([usage information](https://github.com/marcauberer/simple-settings/wiki/SimpleTextPreference))
+-   SimpleSwitchPreference ([usage information](https://github.com/marcauberer/simple-settings/wiki/SimpleSwitchPreference))
+-   SimpleInputPreference ([usage information](https://github.com/marcauberer/simple-settings/wiki/SimpleInputPreference))
+-   SimpleListPreference ([usage information](https://github.com/marcauberer/simple-settings/wiki/SimpleListPreference))
+-   SimpleMultiSelectListPreference ([usage information](https://github.com/marcauberer/simple-settings/wiki/SimpleMSListPreference))
+-   SimpleCheckboxPreference ([usage information](https://github.com/marcauberer/simple-settings/wiki/SimpleCheckboxPreference))
+-   SimpleDropDownPreference ([usage information](https://github.com/marcauberer/simple-settings/wiki/SimpleDropDownPreference))
+-   SimpleSeekbarPreference ([usage information](https://github.com/marcauberer/simple-settings/wiki/SimpleSeekbarPreference))
+-   SimpleLibsPreference ([usage information](https://github.com/marcauberer/simple-settings/wiki/SimpleLibsPreference))
+-   SimpleColorPreference ([usage information](https://github.com/marcauberer/simple-settings/wiki/SimpleColorPreference))
 
 ## Retrieve preference values
 ### One-Time-Retrieval
