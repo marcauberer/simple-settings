@@ -182,6 +182,18 @@ override fun onPreferenceClick(context: Context, key: String): Preference.OnPref
 }
 ```
 
+## Preference Types
+-   SimpleTextPreference ([usage information](https://github.com/marcauberer/simple-settings/wiki/SimpleTextPreference))
+-   SimpleSwitchPreference ([usage information](https://github.com/marcauberer/simple-settings/wiki/SimpleSwitchPreference))
+-   SimpleInputPreference ([usage information](https://github.com/marcauberer/simple-settings/wiki/SimpleInputPreference))
+-   SimpleListPreference ([usage information](https://github.com/marcauberer/simple-settings/wiki/SimpleListPreference))
+-   SimpleMultiSelectListPreference ([usage information](https://github.com/marcauberer/simple-settings/wiki/SimpleMSListPreference))
+-   SimpleCheckboxPreference ([usage information](https://github.com/marcauberer/simple-settings/wiki/SimpleCheckboxPreference))
+-   SimpleDropDownPreference ([usage information](https://github.com/marcauberer/simple-settings/wiki/SimpleDropDownPreference))
+-   SimpleSeekbarPreference ([usage information](https://github.com/marcauberer/simple-settings/wiki/SimpleSeekbarPreference))
+-   SimpleLibsPreference ([usage information](https://github.com/marcauberer/simple-settings/wiki/SimpleLibsPreference))
+-   SimpleColorPreference ([usage information](https://github.com/marcauberer/simple-settings/wiki/SimpleColorPreference))
+
 ## Retrieve preference values
 ### One-Time-Retrieval
 You can either retrieve the values of the preferences as usual via the SharedPreferences or you can use the built-in shortcuts, coming with the library.
@@ -243,6 +255,13 @@ New translations are highly appreciated. If you want to translate the lib, pleas
 
 ## Contribute to the project
 If you want to contribute to this project, please feel free to send us a pull request.
+
+## Used third party libraries
+
+- [AboutLibraries by Mike Penz](https://github.com/mikepenz/AboutLibraries)
+- [FastAdapter by Mike Penz](https://github.com/mikepenz/FastAdapter)
+- [LivePreferences by İbrahim Süren](https://github.com/ibrahimsn98/live-preferences)
+- [ColorPickerPreference by Jaewoong Eum](https://github.com/skydoves/ColorPickerPreference)
 
 ## Credits
 Thanks to all contributors and translators!
