@@ -8,6 +8,7 @@ import android.os.Bundle
 import androidx.core.content.res.ResourcesCompat
 import androidx.preference.*
 import com.chillibits.simplesettings.core.PreferencePage
+import com.chillibits.simplesettings.core.PreferenceSection
 import com.chillibits.simplesettings.core.SimpleSettings
 import com.chillibits.simplesettings.core.SimpleSettingsConfig
 import com.chillibits.simplesettings.item.*
@@ -40,7 +41,7 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
             preferenceScreen = preferenceManager.createPreferenceScreen(context)
 
             // Add sections
-            sections.forEach { section ->
+            sections.filterIsInstance(PreferenceSection::class.java).forEach { section ->
                 // Add category itself
                 val category = PreferenceCategory(context).apply {
                     title = section.title
@@ -70,7 +71,7 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
             }
 
             // Post processing
-            sections.forEach {
+            sections.filterIsInstance(PreferenceSection::class.java).forEach {
                 it.items.forEach { item ->
                     // Setup dependencies
                     if(item.dependency.isNotBlank()) {
@@ -131,7 +132,7 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
 
             // Launch nested settings screen
             SimpleSettings(context, subConfig).show {
-                sp.subSections.forEach {
+                sp.subSections.filterIsInstance(PreferenceSection::class.java).forEach {
                     Section {
                         title = it.title
                         enabled = it.enabled

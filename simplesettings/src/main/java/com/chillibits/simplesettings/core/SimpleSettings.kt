@@ -7,7 +7,6 @@ package com.chillibits.simplesettings.core
 import android.content.Context
 import android.content.Intent
 import androidx.annotation.XmlRes
-import androidx.preference.Preference
 import com.chillibits.simplesettings.ui.SimpleSettingsActivity
 
 class SimpleSettings(
@@ -23,15 +22,24 @@ class SimpleSettings(
         sections.clear()
     }
 
+    /**
+     * Build and show the preference screen
+     */
     private fun show() {
         context.startActivity(Intent(context, SimpleSettingsActivity::class.java))
     }
 
+    /**
+     * Build and show the preference screen
+     */
     fun show(func: SimpleSettings.() -> Unit): SimpleSettings = apply {
         this.func()
         this.show()
     }
 
+    /**
+     * Build and show the preference screen
+     */
     fun show(@XmlRes preferenceResource: Int) {
         preferenceRes = preferenceResource
         context.startActivity(Intent(context, SimpleSettingsActivity::class.java))
@@ -42,13 +50,26 @@ class SimpleSettings(
         var config: SimpleSettingsConfig = DEFAULT_CONFIG
         @XmlRes
         var preferenceRes = 0
-        var sections = ArrayList<PreferenceSection>()
+        var sections = ArrayList<PreferenceElement>()
     }
 
     // ----------------------------------- Preference section --------------------------------------
 
+    /**
+     * Preference Section. Represents a group of preference items.
+     * More information: https://github.com/marcauberer/simple-settings/wiki/PreferenceSection
+     */
     fun Section(func: PreferenceSection.() -> Unit)
             = PreferenceSection(context, config.iconSpaceReservedByDefault).apply {
+        this.func()
+        sections.add(this)
+    }
+
+    /**
+     * Preference Header. Represents the header of the main settings screen.
+     * More information: https://github.com/marcauberer/simple-settings/wiki/PreferenceHeader
+     */
+    fun Header(func: PreferenceHeader.() -> Unit) = PreferenceHeader(context, config.iconSpaceReservedByDefault).apply {
         this.func()
         sections.add(this)
     }

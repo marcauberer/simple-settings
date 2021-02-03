@@ -198,12 +198,18 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
 
         // Programmatic settings data (especially useful for generating settings options at runtime)
         SimpleSettings(this, config).show {
+            Header {
+                layoutResource = R.layout.header
+            }
             Section {
                 title = "Section"
                 Page {
                     title = "Page 1"
                     summary = "Demo summary 1"
                     displayHomeAsUpEnabled = false
+                    Header {
+                        layoutResource = R.layout.header
+                    }
                     Section {
                         title = "Demo subsection"
                         MSListPref {

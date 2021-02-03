@@ -13,6 +13,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.chillibits.simplesettings.R
+import com.chillibits.simplesettings.core.PreferenceSection
 import com.chillibits.simplesettings.core.SimpleSettings
 import com.chillibits.simplesettings.exception.SettingsResetException
 import com.chillibits.simplesettings.tool.Constants
@@ -125,7 +126,7 @@ internal class SimpleSettingsActivity : AppCompatActivity() {
     }
 
     private fun resetSettingsCodeConfig(e: SharedPreferences.Editor) {
-        SimpleSettings.sections.forEach {
+        SimpleSettings.sections.filterIsInstance(PreferenceSection::class.java).forEach {
             it.items.forEach { item ->
                 val key = if (item.key.isBlank()) item.title.toCamelCase() else item.key
                 e.remove(key)

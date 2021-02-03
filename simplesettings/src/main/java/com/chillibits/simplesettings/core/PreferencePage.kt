@@ -17,7 +17,7 @@ class PreferencePage(
 ): SimplePreference(iconSpaceReservedByDefault) {
 
     // Attributes
-    var subSections = ArrayList<PreferenceSection>()
+    var subSections = ArrayList<PreferenceElement>()
     var activityTitle = ""
     var displayHomeAsUpEnabled = true
 
@@ -29,6 +29,16 @@ class PreferencePage(
      */
     fun Section(func: PreferenceSection.() -> Unit)
             = PreferenceSection(context, SimpleSettings.config.iconSpaceReservedByDefault).apply {
+        this.func()
+        subSections.add(this)
+    }
+
+    /**
+     * Preference Header. Represents the header of the whole settings page.
+     * More information: https://github.com/marcauberer/simple-settings/wiki/PreferenceHeader
+     */
+    fun Header(func: PreferenceHeader.() -> Unit)
+            = PreferenceHeader(context, SimpleSettings.config.iconSpaceReservedByDefault).apply {
         this.func()
         subSections.add(this)
     }
