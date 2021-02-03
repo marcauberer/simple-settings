@@ -13,12 +13,14 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.chillibits.simplesettings.R
+import com.chillibits.simplesettings.core.PreferenceHeader
 import com.chillibits.simplesettings.core.PreferenceSection
 import com.chillibits.simplesettings.core.SimpleSettings
 import com.chillibits.simplesettings.exception.SettingsResetException
 import com.chillibits.simplesettings.tool.Constants
 import com.chillibits.simplesettings.tool.getPrefs
 import com.chillibits.simplesettings.tool.toCamelCase
+import kotlinx.android.synthetic.main.activity_simple_settings.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 /**
@@ -50,6 +52,15 @@ internal class SimpleSettingsActivity : AppCompatActivity() {
 
         // DisplayHomeAsUpEnabled
         if(config.displayHomeAsUpEnabled) supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        // Initialize header
+        val headers = SimpleSettings.sections.filterIsInstance(PreferenceHeader::class.java)
+        if (headers.isNotEmpty()) {
+            val selectedHeader = headers.first()
+            selectedHeader.layoutResource?.let {
+                layoutInflater.inflate(it, header)
+            }
+        }
 
         // Initialize SettingsFragment
         initSettingsFragment()
@@ -99,6 +110,15 @@ internal class SimpleSettingsActivity : AppCompatActivity() {
         initSettingsFragment()
     }
 
+    private fun resetSettingsCodeConfig(e: SharedPreferences.Editor) {
+        SimpleSettings.sections.filterIsInstance(PreferenceSection::class.java).forEach {
+            it.items.forEach { item ->
+                val key = if (item.key.isBlank()) item.title.toCamelCase() else item.key
+                e.remove(key)
+            }
+        }
+    }
+
     private fun resetSettingsXmlConfig(e: SharedPreferences.Editor) {
         if (SimpleSettings.preferenceRes != 0) {
             val xrp = resources.getXml(SimpleSettings.preferenceRes)
@@ -121,15 +141,6 @@ internal class SimpleSettingsActivity : AppCompatActivity() {
                     }
                 }
                 eventType = xrp.next()
-            }
-        }
-    }
-
-    private fun resetSettingsCodeConfig(e: SharedPreferences.Editor) {
-        SimpleSettings.sections.filterIsInstance(PreferenceSection::class.java).forEach {
-            it.items.forEach { item ->
-                val key = if (item.key.isBlank()) item.title.toCamelCase() else item.key
-                e.remove(key)
             }
         }
     }

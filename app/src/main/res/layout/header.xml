@@ -5,37 +5,40 @@
     android:background="@drawable/header_gradient"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/header_image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:srcCompat="@drawable/ic_launcher_foreground"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/header_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <TextView
-        android:id="@+id/header_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header_image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@android:color/white"
-        android:text="@string/app_name"
-        android:textStyle="bold"
-        android:textSize="19sp"/>
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/header_text_small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/header_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@android:color/white"
-        android:text="@string/demo_header"
-        android:textSize="12sp"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/header_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@mipmap/ic_launcher"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:text="@string/app_name"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:textStyle="bold"
+            android:textSize="19sp"/>
+
+        <TextView
+            android:id="@+id/header_text_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/demo_header"
+            android:textSize="13sp"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
