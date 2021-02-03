@@ -7,10 +7,7 @@ package com.chillibits.simplesettings.ui
 import android.os.Bundle
 import androidx.core.content.res.ResourcesCompat
 import androidx.preference.*
-import com.chillibits.simplesettings.core.PreferencePage
-import com.chillibits.simplesettings.core.PreferenceSection
-import com.chillibits.simplesettings.core.SimpleSettings
-import com.chillibits.simplesettings.core.SimpleSettingsConfig
+import com.chillibits.simplesettings.core.*
 import com.chillibits.simplesettings.item.*
 import com.chillibits.simplesettings.tool.SimpleMSListPreferenceSummaryProvider
 import com.chillibits.simplesettings.tool.toCamelCase
@@ -126,12 +123,18 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
             // Initialize new instance of library with the regarding subset of sections
             val subConfig = SimpleSettingsConfig.Builder()
                 .setActivityTitle(sp.activityTitle.ifBlank { sp.title })
+                .showResetOption(config.showResetOption)
                 .setIconSpaceReservedByDefault(isIconSpaceReserved)
                 .displayHomeAsUpEnabled(sp.displayHomeAsUpEnabled)
                 .build()
 
             // Launch nested settings screen
             SimpleSettings(context, subConfig).show {
+                sp.subSections.filterIsInstance(PreferenceHeader::class.java).forEach {
+                    Header {
+                        layoutResource = it.layoutResource
+                    }
+                }
                 sp.subSections.filterIsInstance(PreferenceSection::class.java).forEach {
                     Section {
                         title = it.title

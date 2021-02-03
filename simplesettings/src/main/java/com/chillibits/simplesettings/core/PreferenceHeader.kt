@@ -11,5 +11,4 @@ class PreferenceHeader(
     // Attributes
     @LayoutRes
     var layoutResource: Int? = null
-    var height: Int = 240
 }
