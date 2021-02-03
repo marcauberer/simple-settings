@@ -12,4 +12,5 @@
     <string name="number_of_switch_preferences">Number of SwitchPreferences</string>
     <string name="value_input_preference_">Value of \"InputPreference\" with live update:\n%s</string>
     <string name="view_on_github">View on GitHub</string>
+    <string name="demo_header">Demo Header</string>
 </resources>

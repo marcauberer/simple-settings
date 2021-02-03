@@ -12,9 +12,9 @@ import com.chillibits.simplesettings.item.*
  * More information: https://github.com/marcauberer/simple-settings/wiki/PreferenceSection
  */
 class PreferenceSection(
-    private val context: Context,
-    val iconSpaceReserved: Boolean
-) {
+    context: Context,
+    iconSpaceReserved: Boolean
+): PreferenceElement(context, iconSpaceReserved) {
 
     // Attributes
     var title = ""
