@@ -125,6 +125,10 @@ SimpleSettings(this).show {
 ```
 To learn more about the Page component, please visit its [wiki entry](https://github.com/marcauberer/simple-settings/wiki/PreferencePage).
 
+#### Page Headers
+The library supports page headers and allows you to pass layout resources to every page of your settings screen.
+For more information and code samples, please visit the [corresponding wiki entry](https://github.com/marcauberer/simple-settings/wiki/PreferenceHeader).
+
 ### Provide items with xml file (only for single-paged configuration)
 You also can specify your preference screen [as an usual xml file](https://developer.android.com/guide/topics/ui/settings#create_a_hierarchy):
 ```xml
