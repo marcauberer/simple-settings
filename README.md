@@ -20,7 +20,7 @@ implementation 'com.chillibits:simplesettings:1.1.0'
 
 // Required dependencies
 implementation 'com.google.android.material:material:<latest-version>'
-implementation 'androidx.preference:preference:<latest-version>'
+implementation 'androidx.preference:preference-ktx:<latest-version>'
 ```
 
 You also have to register the activity in your manifest:
