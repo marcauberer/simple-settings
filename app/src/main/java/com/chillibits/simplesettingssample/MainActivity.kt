@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         // Programmatic settings data (especially useful for generating settings options at runtime)
         SimpleSettings(this, config).show {
             Section {
-                title = "Section"
+                titleRes = R.string.app_name
                 for (i in 1..numberOfSwitchPreferences) {
                     SwitchPref {
                         title = "SwitchPreference $i"
