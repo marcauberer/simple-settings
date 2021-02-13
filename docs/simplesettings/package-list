@@ -3,6 +3,7 @@ $dokka.linkExtension:html
 
 com.chillibits.simplesettings.clicklistener
 com.chillibits.simplesettings.core
+com.chillibits.simplesettings.core.elements
 com.chillibits.simplesettings.exception
 com.chillibits.simplesettings.item
 com.chillibits.simplesettings.preference
