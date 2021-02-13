@@ -4,14 +4,19 @@
 
 package com.chillibits.simplesettings.item
 
+import android.content.Context
+
 class SimpleSeekBarPreference(
+    context: Context,
     iconSpaceReservedByDefault: Boolean
-): SimplePreference(iconSpaceReservedByDefault) {
+): SimplePreference(context, iconSpaceReservedByDefault) {
 
     // Attributes
     var min = 0
-    var max = 100
-    var defaultValue = 0
-    var showValue = false
 
+    var max = 100
+
+    var defaultValue = 0
+
+    var showValue = false
 }

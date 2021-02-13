@@ -2,9 +2,10 @@
  * Copyright © Marc Auberer 2020-2021. All rights reserved
  */
 
-package com.chillibits.simplesettings.core
+package com.chillibits.simplesettings.core.elements
 
 import android.content.Context
+import androidx.annotation.StringRes
 import com.chillibits.simplesettings.item.*
 
 /**
@@ -18,7 +19,11 @@ class PreferenceSection(
 
     // Attributes
     var title = ""
+    @StringRes var titleRes = 0
+        set(value) {  title = context.getString(value) }
+
     var enabled = true
+
     val items = ArrayList<SimplePreference>()
 
     // ----------------------------------------- Item types ----------------------------------------
@@ -38,7 +43,7 @@ class PreferenceSection(
      * More information: https://github.com/marcauberer/simple-settings/wiki/SimpleTextPreference
      */
     fun TextPref(func: SimpleTextPreference.() -> Unit)
-            = SimpleTextPreference(iconSpaceReserved).apply {
+            = SimpleTextPreference(context, iconSpaceReserved).apply {
         func()
         items.add(this)
     }
@@ -48,7 +53,7 @@ class PreferenceSection(
      * More information: https://github.com/marcauberer/simple-settings/wiki/SimpleSwitchPreference
      */
     fun SwitchPref(func: SimpleSwitchPreference.() -> Unit)
-            = SimpleSwitchPreference(iconSpaceReserved).apply {
+            = SimpleSwitchPreference(context, iconSpaceReserved).apply {
         func()
         items.add(this)
     }
@@ -58,7 +63,7 @@ class PreferenceSection(
      * More information: https://github.com/marcauberer/simple-settings/wiki/SimpleCheckboxPreference
      */
     fun CheckboxPref(func: SimpleCheckboxPreference.() -> Unit)
-            = SimpleCheckboxPreference(iconSpaceReserved).apply {
+            = SimpleCheckboxPreference(context, iconSpaceReserved).apply {
         func()
         items.add(this)
     }
@@ -68,7 +73,7 @@ class PreferenceSection(
      * More information: https://github.com/marcauberer/simple-settings/wiki/SimpleInputPreference
      */
     fun InputPref(func: SimpleInputPreference.() -> Unit)
-            = SimpleInputPreference(iconSpaceReserved).apply {
+            = SimpleInputPreference(context, iconSpaceReserved).apply {
         func()
         items.add(this)
     }
@@ -78,7 +83,7 @@ class PreferenceSection(
      * More information: https://github.com/marcauberer/simple-settings/wiki/SimpleListPreference
      */
     fun ListPref(func: SimpleListPreference.() -> Unit)
-            = SimpleListPreference(iconSpaceReserved).apply {
+            = SimpleListPreference(context, iconSpaceReserved).apply {
         func()
         items.add(this)
     }
@@ -88,7 +93,7 @@ class PreferenceSection(
      * More information: https://github.com/marcauberer/simple-settings/wiki/SimpleMSListPreference
      */
     fun MSListPref(func: SimpleMSListPreference.() -> Unit)
-            = SimpleMSListPreference(iconSpaceReserved).apply {
+            = SimpleMSListPreference(context, iconSpaceReserved).apply {
         func()
         items.add(this)
     }
@@ -98,7 +103,7 @@ class PreferenceSection(
      * More information: https://github.com/marcauberer/simple-settings/wiki/SimpleDropDownPreference
      */
     fun DropDownPref(func: SimpleDropDownPreference.() -> Unit)
-            = SimpleDropDownPreference(iconSpaceReserved).apply {
+            = SimpleDropDownPreference(context, iconSpaceReserved).apply {
         func()
         items.add(this)
     }
@@ -107,7 +112,7 @@ class PreferenceSection(
      * Seek Bar Preference. For selecting a number between two customizable bounds.
      * More information: https://github.com/marcauberer/simple-settings/wiki/SimpleSeekbarPreference
      */
-    fun SeekBarPref(func: SimpleSeekBarPreference.() -> Unit) = SimpleSeekBarPreference(iconSpaceReserved).apply {
+    fun SeekBarPref(func: SimpleSeekBarPreference.() -> Unit) = SimpleSeekBarPreference(context, iconSpaceReserved).apply {
         func()
         items.add(this)
     }

@@ -4,6 +4,9 @@
 
 package com.chillibits.simplesettings.item
 
+import android.content.Context
+
 class SimpleTextPreference(
+    context: Context,
     iconSpaceReservedByDefault: Boolean
-): SimplePreference(iconSpaceReservedByDefault)
+): SimplePreference(context, iconSpaceReservedByDefault)

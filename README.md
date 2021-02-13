@@ -16,11 +16,11 @@ If you want to test the library, please visit the sample app on [Google Play](ht
 ## Usage
 The first step for using this library is, to add it to the dependency section in your project:
 ```gradle
-implementation 'com.chillibits:simplesettings:1.1.0'
+implementation 'com.chillibits:simplesettings:1.1.1'
 
 // Required dependencies
 implementation 'com.google.android.material:material:<latest-version>'
-implementation 'androidx.preference:preference:<latest-version>'
+implementation 'androidx.preference:preference-ktx:<latest-version>'
 ```
 
 You also have to register the activity in your manifest:
@@ -66,6 +66,8 @@ SimpleSettings(this).show {
 }
 ```
 This is especially useful, when you need to generate your preferences at runtime. You can use loops and conditions as you can see above.
+
+*Note: If you want to pass a string / drawable / layout with its resource id, please use the properties with the `Res` suffix. For example:  `titleRes = R.string.app_name`.*
 
 *Note: It is not mandatory to pass keys to each preference. In this cases, the library does auto-generate a key by converting the title of each preference to CamelCase.*<br>
 **Examples**:

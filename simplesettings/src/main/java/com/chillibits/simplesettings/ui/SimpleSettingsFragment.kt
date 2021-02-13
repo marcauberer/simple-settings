@@ -7,7 +7,11 @@ package com.chillibits.simplesettings.ui
 import android.os.Bundle
 import androidx.core.content.res.ResourcesCompat
 import androidx.preference.*
-import com.chillibits.simplesettings.core.*
+import com.chillibits.simplesettings.core.SimpleSettings
+import com.chillibits.simplesettings.core.SimpleSettingsConfig
+import com.chillibits.simplesettings.core.elements.PreferenceHeader
+import com.chillibits.simplesettings.core.elements.PreferencePage
+import com.chillibits.simplesettings.core.elements.PreferenceSection
 import com.chillibits.simplesettings.item.*
 import com.chillibits.simplesettings.tool.SimpleMSListPreferenceSummaryProvider
 import com.chillibits.simplesettings.tool.toCamelCase

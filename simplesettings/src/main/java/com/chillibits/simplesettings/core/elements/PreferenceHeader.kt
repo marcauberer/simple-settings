@@ -1,4 +1,4 @@
-package com.chillibits.simplesettings.core
+package com.chillibits.simplesettings.core.elements
 
 import android.content.Context
 import androidx.annotation.LayoutRes
