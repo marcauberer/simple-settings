@@ -7,6 +7,9 @@ package com.chillibits.simplesettings.core
 import android.content.Context
 import android.content.Intent
 import androidx.annotation.XmlRes
+import com.chillibits.simplesettings.core.elements.PreferenceElement
+import com.chillibits.simplesettings.core.elements.PreferenceHeader
+import com.chillibits.simplesettings.core.elements.PreferenceSection
 import com.chillibits.simplesettings.ui.SimpleSettingsActivity
 
 class SimpleSettings(
