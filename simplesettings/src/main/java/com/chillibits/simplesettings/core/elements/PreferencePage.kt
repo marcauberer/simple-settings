@@ -35,7 +35,7 @@ class PreferencePage(
      */
     fun Section(func: PreferenceSection.() -> Unit)
             = PreferenceSection(context, SimpleSettings.config.iconSpaceReservedByDefault).apply {
-        this.func()
+        func()
         subSections.add(this)
     }
 
@@ -45,7 +45,7 @@ class PreferencePage(
      */
     fun Header(func: PreferenceHeader.() -> Unit)
             = PreferenceHeader(context, SimpleSettings.config.iconSpaceReservedByDefault).apply {
-        this.func()
+        func()
         subSections.add(this)
     }
 }
