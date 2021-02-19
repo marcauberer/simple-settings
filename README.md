@@ -15,8 +15,19 @@ If you want to test the library, please visit the sample app on [Google Play](ht
 
 ## Usage
 The first step for using this library is, to add it to the dependency section in your project:
+
+Add repository to build.gradle on project level:
 ```gradle
-implementation 'com.chillibits:simplesettings:1.1.1'
+allprojects {
+    repositories {
+        ...
+        maven { url "https://repo.chillibits.com/artifactory/android" }
+    }
+}
+```
+
+```gradle
+implementation 'com.chillibits:simplesettings:<latest-version-look-above>'
 
 // Required dependencies
 implementation 'com.google.android.material:material:<latest-version>'
