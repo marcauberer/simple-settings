@@ -1,5 +1,5 @@
 # Simple Settings Library for Android
-[![Download](https://api.bintray.com/packages/marcauberer/simplesettings/com.chillibits%3Asimplesettings/images/download.svg)](https://bintray.com/marcauberer/simplesettings/com.chillibits%3Asimplesettings/_latestVersion)
+![GitHub release](https://img.shields.io/github/v/release/marcauberer/simple-settings?include_prereleases)
 ![Android CI](https://github.com/marcauberer/simple-settings/workflows/Android%20CI/badge.svg)
 [![API](https://img.shields.io/badge/API-21%2B-red.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![Article on Medium](https://aleen42.github.io/badges/src/medium.svg)](https://medium.com/swlh/simple-settings-library-build-a-settings-screen-in-seconds-5b6394fbd2fc)
@@ -16,7 +16,7 @@ If you want to test the library, please visit the sample app on [Google Play](ht
 ## Usage
 The first step for using this library is, to add it to the dependency section in your project:
 
-Add repository to build.gradle on project level:
+Add repository to build.gradle file on project level:
 ```gradle
 allprojects {
     repositories {
@@ -26,6 +26,7 @@ allprojects {
 }
 ```
 
+Add dependencies to build.gradle file on module level (e.g. app/build.gradle):
 ```gradle
 implementation 'com.chillibits:simplesettings:<latest-version-look-above>'
 
