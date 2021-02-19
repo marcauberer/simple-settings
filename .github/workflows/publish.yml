@@ -1,6 +1,6 @@
 # Workflow for Android CI release
 
-name: Publish to Bintray
+name: Publish to Artifactory
 
 on:
   release:
@@ -25,14 +25,14 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x gradlew
       - name: Prepare publishing environment
-        run: mkdir ~/.gradle && echo "$ARTIFACTORY_CREDENTIALS" >> ~/simplesettings/gradle.properties
+        run: mkdir ~/.gradle && echo "$ARTIFACTORY_CREDENTIALS" > ./simplesettings/gradle.properties
         env:
           ARTIFACTORY_CREDENTIALS: ${{ secrets.ARTIFACTORY_CREDENTIALS }}
       - name: Publish Dev
-        if: contains(${{ steps.get_version.outputs.version }}, 'alpha')
+        if: ${{ contains(steps.get_version.outputs.version, 'alpha') }}
         run: ./gradlew simplesettings:assemble
       - name: Publish
-        if: !contains(${{ steps.get_version.outputs.version }}, 'alpha')
+        if: ${{ !contains(steps.get_version.outputs.version, 'alpha') }}
         run: ./gradlew simplesettings:assemble -PparamEnv=RELEASE
       - name: Deploy Documentation
         uses: JamesIves/github-pages-deploy-action@3.6.2
