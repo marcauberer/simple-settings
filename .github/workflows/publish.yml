@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Get version name
+        id: get_version
+        uses: battila7/get-version-action@v2
       - name: Checkout code
         uses: actions/checkout@v2
         with:
@@ -21,11 +24,16 @@ jobs:
           java-version: 1.8
       - name: Make gradlew executable
         run: chmod +x gradlew
-      - name: Publish library
+      - name: Prepare publishing environment
+        run: mkdir ~/.gradle && echo "$ARTIFACTORY_CREDENTIALS" >> ~/simplesettings/gradle.properties
         env:
-          bintrayUser: ${{ secrets.BINTRAY_USERNAME }}
-          bintrayApiKey: ${{ secrets.BINTRAY_API_KEY }}
-        run: ./gradlew clean build bintrayUpload dokkaHtml
+          ARTIFACTORY_CREDENTIALS: ${{ secrets.ARTIFACTORY_CREDENTIALS }}
+      - name: Publish Dev
+        if: contains(${{ steps.get_version.outputs.version }}, 'alpha')
+        run: ./gradlew simplesettings:assemble
+      - name: Publish
+        if: !contains(${{ steps.get_version.outputs.version }}, 'alpha')
+        run: ./gradlew simplesettings:assemble -PparamEnv=RELEASE
       - name: Deploy Documentation
         uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
