@@ -267,7 +267,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
     }
 
     private fun subscribeToPreferenceValues() {
-        getPrefObserver( "inputpreference", Observer<String> {
+        getPrefObserver( this, "inputpreference", Observer<String> {
             inputPreferenceValue.text = getString(R.string.value_input_preference_, it)
         })
     }

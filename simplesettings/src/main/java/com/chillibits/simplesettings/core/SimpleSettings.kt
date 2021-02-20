@@ -36,8 +36,8 @@ class SimpleSettings(
      * Build and show the preference screen
      */
     fun show(func: SimpleSettings.() -> Unit): SimpleSettings = apply {
-        this.func()
-        this.show()
+        func()
+        show()
     }
 
     /**
@@ -45,7 +45,7 @@ class SimpleSettings(
      */
     fun show(@XmlRes preferenceResource: Int) {
         preferenceRes = preferenceResource
-        context.startActivity(Intent(context, SimpleSettingsActivity::class.java))
+        show()
     }
 
     companion object {
@@ -64,7 +64,7 @@ class SimpleSettings(
      */
     fun Section(func: PreferenceSection.() -> Unit)
             = PreferenceSection(context, config.iconSpaceReservedByDefault).apply {
-        this.func()
+        func()
         sections.add(this)
     }
 
@@ -73,7 +73,7 @@ class SimpleSettings(
      * More information: https://github.com/marcauberer/simple-settings/wiki/PreferenceHeader
      */
     fun Header(func: PreferenceHeader.() -> Unit) = PreferenceHeader(context, config.iconSpaceReservedByDefault).apply {
-        this.func()
+        func()
         sections.add(this)
     }
 }

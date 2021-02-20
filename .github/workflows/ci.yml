@@ -16,7 +16,9 @@ jobs:
       uses: actions/checkout@v2
     - name: Make gradlew executable
       run: chmod +x ./gradlew
+    - name: Prepare publishing environment
+      run: mkdir ~/.gradle && echo "$ARTIFACTORY_CREDENTIALS" > ./simplesettings/gradle.properties
+      env:
+        ARTIFACTORY_CREDENTIALS: ${{ secrets.ARTIFACTORY_CREDENTIALS }}
     - name: Android Build
-      uses: vgaidarji/android-github-actions-build@v1.0.1
-      with:
-        args: './gradlew assembleDebug'
+      run: ./gradlew assembleDebug

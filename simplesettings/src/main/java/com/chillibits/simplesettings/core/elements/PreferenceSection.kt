@@ -20,7 +20,7 @@ class PreferenceSection(
     // Attributes
     var title = ""
     @StringRes var titleRes = 0
-        set(value) {  title = context.getString(value) }
+        set(value) { title = context.getString(value) }
 
     var enabled = true
 
@@ -34,7 +34,7 @@ class PreferenceSection(
      */
     fun Page(func: PreferencePage.() -> Unit)
             = PreferencePage(context, iconSpaceReserved).apply {
-        this.func()
+        func()
         items.add(this)
     }
 

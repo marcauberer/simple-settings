@@ -1,5 +1,5 @@
 # Simple Settings Library for Android
-[![Download](https://api.bintray.com/packages/marcauberer/simplesettings/com.chillibits%3Asimplesettings/images/download.svg)](https://bintray.com/marcauberer/simplesettings/com.chillibits%3Asimplesettings/_latestVersion)
+![GitHub release](https://img.shields.io/github/v/release/marcauberer/simple-settings?include_prereleases)
 ![Android CI](https://github.com/marcauberer/simple-settings/workflows/Android%20CI/badge.svg)
 [![API](https://img.shields.io/badge/API-21%2B-red.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![Article on Medium](https://aleen42.github.io/badges/src/medium.svg)](https://medium.com/swlh/simple-settings-library-build-a-settings-screen-in-seconds-5b6394fbd2fc)
@@ -15,8 +15,20 @@ If you want to test the library, please visit the sample app on [Google Play](ht
 
 ## Usage
 The first step for using this library is, to add it to the dependency section in your project:
+
+Add repository to build.gradle file on project level:
 ```gradle
-implementation 'com.chillibits:simplesettings:1.1.1'
+allprojects {
+    repositories {
+        ...
+        maven { url "https://repo.chillibits.com/artifactory/android" }
+    }
+}
+```
+
+Add dependencies to build.gradle file on module level (e.g. app/build.gradle):
+```gradle
+implementation 'com.chillibits:simplesettings:1.2.0'
 
 // Required dependencies
 implementation 'com.google.android.material:material:<latest-version>'
@@ -217,12 +229,12 @@ As you can see, this works for the types `String`, `Int`, `Boolean`, `Float`, `L
 ### Retrieval as LiveData
 Furthermore, the library offers a feature to observe preference values as LiveData as follows:
 ```kotlin
-getPrefObserver( "listpreference", Observer<String> { value ->
+getPrefObserver(this@MainActivity, "listpreference", Observer<String> { value ->
     textField.text = value
 })
 ```
 Like above, this works for the types `String`, `Int`, `Boolean`, `Float`, `Long`, `StringSet`.<br>
-*Note: This extension functions are only available for the `AppCompatActivity` class, because there is a LifecycleOwner required to create Observables.*
+*Note: This extension functions are only available for the classes, which implement `LifecycleOwner`.*
 
 ## Library customization
 The library offers a few customization options. For applying those options, you have to pass an object of `SimpleSettingsConfig` to the constructor of your `SimpleSettings` instance.
