@@ -28,7 +28,7 @@ allprojects {
 
 Add dependencies to build.gradle file on module level (e.g. app/build.gradle):
 ```gradle
-implementation 'com.chillibits:simplesettings:<latest-version-look-above>'
+implementation 'com.chillibits:simplesettings:1.2.0'
 
 // Required dependencies
 implementation 'com.google.android.material:material:<latest-version>'
