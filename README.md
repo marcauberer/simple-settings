@@ -35,13 +35,6 @@ implementation 'com.google.android.material:material:<latest-version>'
 implementation 'androidx.preference:preference-ktx:<latest-version>'
 ```
 
-You also have to register the activity in your manifest:
-```xml
-<activity
-    android:name="com.chillibits.simplesettings.ui.SimpleSettingsActivity"
-    android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
-```
-
 The library accepts two different ways, for providing the settings screen information.
 
 ### Provide items programmatically
