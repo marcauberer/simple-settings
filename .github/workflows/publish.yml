@@ -30,10 +30,10 @@ jobs:
           ARTIFACTORY_CREDENTIALS: ${{ secrets.ARTIFACTORY_CREDENTIALS }}
       - name: Publish Dev
         if: ${{ contains(steps.get_version.outputs.version, 'alpha') }}
-        run: ./gradlew simplesettings:assemble
+        run: ./gradlew simplesettings:assemble dokkaHtml
       - name: Publish
         if: ${{ !contains(steps.get_version.outputs.version, 'alpha') }}
-        run: ./gradlew simplesettings:assemble -PparamEnv=RELEASE
+        run: ./gradlew simplesettings:assemble -PparamEnv=RELEASE dokkaHtml
       - name: Deploy Documentation
         uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
