@@ -22,6 +22,7 @@ allprojects {
     repositories {
         ...
         maven { url "https://repo.chillibits.com/artifactory/android" }
+        maven { url "https://jitpack.io" }
     }
 }
 ```
