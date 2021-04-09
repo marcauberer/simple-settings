@@ -264,6 +264,14 @@ fun Context.getPrefObserverForViewModel(
     observeForever(observer)
 }
 
+// ------------------------------ Live preferences as LiveData ------------------------------
+
+fun getPreferenceLiveData(
+        context: Context,
+        name: String,
+        default: String = ""
+) = LiveSharedPreferences(context.getPrefs()).getString(name, default)
+
 // -------------------------------- Multiple live preferences -------------------------------
 
 /**
@@ -297,3 +305,5 @@ fun <T> Context.getMultiplePrefObserver(
 ) = LiveSharedPreferences(getPrefs()).listenMultiple(names, default).apply {
     observeForever(observer)
 }
+
+// L

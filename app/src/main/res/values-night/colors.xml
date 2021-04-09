@@ -4,6 +4,6 @@
   -->
 
 <resources>
-    <color name="colorPrimaryVariant">#3DDC84</color>
-    <color name="colorPrimaryDarkVariant">#32B56C</color>
+    <color name="colorPrimaryVariant">#313131</color>
+    <color name="colorPrimaryDarkVariant">#202020</color>
 </resources>
