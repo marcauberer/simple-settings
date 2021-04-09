@@ -43,7 +43,6 @@ import com.chillibits.simplesettings.core.SimpleSettings
 import com.chillibits.simplesettings.core.SimpleSettingsConfig
 import com.chillibits.simplesettings.item.SimpleSwitchPreference
 import com.chillibits.simplesettings.tool.*
-import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
 
 class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelectedCallback,
     SimpleSettingsConfig.PreferenceCallback, DialogClickListener.DialogResultCallback {
@@ -56,12 +55,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
 
         setContent {
             AppTheme {
-                ProvideWindowInsets {
-                    MainView(
-                        modifier = Modifier.fillMaxSize(),
-                        inputPref = inputPref
-                    )
-                }
+                MainView(inputPref = inputPref)
             }
         }
     }
@@ -78,9 +72,9 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         return super.onOptionsItemSelected(item)
     }
 
-    @Preview
+    @Preview(name = "MainView", showSystemUi = true)
     @Composable
-    private fun MainView(modifier: Modifier = Modifier, inputPref: LiveData<String> = MutableLiveData()) {
+    private fun MainView(inputPref: LiveData<String> = MutableLiveData()) {
         val context = LocalContext.current
         val inputPrefState by inputPref.observeAsState()
 
