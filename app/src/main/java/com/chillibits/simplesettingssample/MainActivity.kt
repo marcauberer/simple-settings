@@ -12,10 +12,27 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.NumberPicker
 import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.material.Button
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.layoutId
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.ConstraintSet
 import androidx.lifecycle.Observer
 import androidx.preference.Preference
 import com.chillibits.simplesettings.clicklistener.DialogClickListener
@@ -71,7 +88,45 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         return super.onOptionsItemSelected(item)
     }
 
-    fun openSettingsCodeConfig(view: View) {
+    @Preview
+    @Composable
+    private fun MainView() {
+        val context = LocalContext.current
+        ConstraintLayout(
+            constraintSet = ConstraintSet {
+                val layout = createRefFor("layout")
+                constrain(layout) {
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                }
+            }
+        ) {
+            Column(
+                modifier = Modifier.layoutId("layout")
+            ) {
+                Row(modifier = Modifier.align(CenterHorizontally)) {
+                    Text(stringResource(R.string.number_of_switch_preferences))
+                    NumberPicker(context)
+                }
+                Button(onClick = {openSettingsCodeConfig() }, modifier = Modifier.align(CenterHorizontally)) {
+                    Text(stringResource(R.string.open_settings_code))
+                }
+                Button(onClick = {openSettingsXmlConfig() }, modifier = Modifier.align(CenterHorizontally)) {
+                    Text(stringResource(R.string.open_settings_xml))
+                }
+                Button(onClick = {openSettingsPaged() }, modifier = Modifier.align(CenterHorizontally)) {
+                    Text(stringResource(R.string.open_settings_paged))
+                }
+                Spacer(Modifier.height(50.dp))
+                Text(stringResource(R.string.value_input_preference_), modifier = Modifier.align(CenterHorizontally))
+                Text("test", modifier = Modifier.align(CenterHorizontally))
+            }
+        }
+    }
+
+    fun openSettingsCodeConfig() {
         // Get number from number picker
         val numberOfSwitchPreferences = numberPicker.value
 
@@ -170,7 +225,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
     }
 
-    fun openSettingsXmlConfig(view: View) {
+    fun openSettingsXmlConfig() {
         val config = SimpleSettingsConfig.Builder()
             .displayHomeAsUpEnabled(true)
             .setOptionsMenu(R.menu.menu_settings, this)
@@ -188,7 +243,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
     }
 
-    fun openSettingsPaged(view: View) {
+    fun openSettingsPaged() {
         val config = SimpleSettingsConfig.Builder()
             .displayHomeAsUpEnabled(true)
             .setOptionsMenu(R.menu.menu_settings, this)
