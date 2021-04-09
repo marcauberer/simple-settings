@@ -89,7 +89,7 @@ fun LifecycleOwner.getPrefObserver(
  * @param observer Observer, which fires the value on every update
  * @param default Default value, if the pref does not exist yet
  *
- * @return LiveData instance
+ * @return LiveData Observer instance
  */
 fun Context.getPrefObserverForViewModel(
         name: String,
@@ -98,6 +98,22 @@ fun Context.getPrefObserverForViewModel(
 ) = LiveSharedPreferences(getPrefs()).getString(name, default).apply {
     observeForever(observer)
 }
+
+/**
+ * Returns a LiveData object for a preference value
+ *
+ * @param context Context for creating instance of SharedPreferences
+ * @param name Name of the observed preference
+ * @param default Default value, if the pref does not exist yet
+ *
+ * @return LiveData instance
+ */
+fun getPreferenceLiveData(
+        context: Context,
+        name: String,
+        default: String = ""
+) = LiveSharedPreferences(context.getPrefs()).getString(name, default)
+
 
 
 /**
@@ -122,7 +138,7 @@ fun LifecycleOwner.getPrefObserver(
  * @param observer Observer, which fires the value on every update
  * @param default Default value, if the pref does not exist yet
  *
- * @return LiveData instance
+ * @return LiveData Observer instance
  */
 fun Context.getPrefObserverForViewModel(
         name: String,
@@ -131,6 +147,22 @@ fun Context.getPrefObserverForViewModel(
 ) = LiveSharedPreferences(getPrefs()).getInt(name, default).apply {
     observeForever(observer)
 }
+
+/**
+ * Returns a LiveData object for a preference value
+ *
+ * @param context Context for creating instance of SharedPreferences
+ * @param name Name of the observed preference
+ * @param default Default value, if the pref does not exist yet
+ *
+ * @return LiveData instance
+ */
+fun getPreferenceLiveData(
+        context: Context,
+        name: String,
+        default: Int = 0
+) = LiveSharedPreferences(context.getPrefs()).getInt(name, default)
+
 
 
 /**
@@ -155,7 +187,7 @@ fun LifecycleOwner.getPrefObserver(
  * @param observer Observer, which fires the value on every update
  * @param default Default value, if the pref does not exist yet
  *
- * @return LiveData instance
+ * @return LiveData Observer instance
  */
 fun Context.getPrefObserverForViewModel(
         name: String,
@@ -164,6 +196,22 @@ fun Context.getPrefObserverForViewModel(
 ) = LiveSharedPreferences(getPrefs()).getBoolean(name, default).apply {
     observeForever(observer)
 }
+
+/**
+ * Returns a LiveData object for a preference value
+ *
+ * @param context Context for creating instance of SharedPreferences
+ * @param name Name of the observed preference
+ * @param default Default value, if the pref does not exist yet
+ *
+ * @return LiveData instance
+ */
+fun getPreferenceLiveData(
+        context: Context,
+        name: String,
+        default: Boolean = false
+) = LiveSharedPreferences(context.getPrefs()).getBoolean(name, default)
+
 
 
 /**
@@ -188,7 +236,7 @@ fun LifecycleOwner.getPrefObserver(
  * @param observer Observer, which fires the value on every update
  * @param default Default value, if the pref does not exist yet
  *
- * @return LiveData instance
+ * @return LiveData Observer instance
  */
 fun Context.getPrefObserverForViewModel(
         name: String,
@@ -197,6 +245,22 @@ fun Context.getPrefObserverForViewModel(
 ) = LiveSharedPreferences(getPrefs()).getFloat(name, default).apply {
     observeForever(observer)
 }
+
+/**
+ * Returns a LiveData object for a preference value
+ *
+ * @param context Context for creating instance of SharedPreferences
+ * @param name Name of the observed preference
+ * @param default Default value, if the pref does not exist yet
+ *
+ * @return LiveData instance
+ */
+fun getPreferenceLiveData(
+        context: Context,
+        name: String,
+        default: Float = 0f
+) = LiveSharedPreferences(context.getPrefs()).getFloat(name, default)
+
 
 
 /**
@@ -231,6 +295,22 @@ fun Context.getPrefObserver(
     observeForever(observer)
 }
 
+/**
+ * Returns a LiveData object for a preference value
+ *
+ * @param context Context for creating instance of SharedPreferences
+ * @param name Name of the observed preference
+ * @param default Default value, if the pref does not exist yet
+ *
+ * @return LiveData instance
+ */
+fun getPreferenceLiveData(
+        context: Context,
+        name: String,
+        default: Long = 0
+) = LiveSharedPreferences(context.getPrefs()).getLong(name, default)
+
+
 
 /**
  * Returns an observer for a preference value
@@ -254,7 +334,7 @@ fun LifecycleOwner.getPrefObserver(
  * @param observer Observer, which fires the value on every update
  * @param default Default value, if the pref does not exist yet
  *
- * @return LiveData instance
+ * @return LiveData Observer instance
  */
 fun Context.getPrefObserverForViewModel(
         name: String,
@@ -263,6 +343,21 @@ fun Context.getPrefObserverForViewModel(
 ) = LiveSharedPreferences(getPrefs()).getStringSet(name, default).apply {
     observeForever(observer)
 }
+
+/**
+ * Returns a LiveData object for a preference value
+ *
+ * @param context Context for creating instance of SharedPreferences
+ * @param name Name of the observed preference
+ * @param default Default value, if the pref does not exist yet
+ *
+ * @return LiveData instance
+ */
+fun getPreferenceLiveData(
+        context: Context,
+        name: String,
+        default: Set<String> = emptySet()
+) = LiveSharedPreferences(context.getPrefs()).getStringSet(name, default)
 
 // -------------------------------- Multiple live preferences -------------------------------
 
@@ -288,7 +383,7 @@ fun <T> LifecycleOwner.getMultiplePrefObserver(
  * @param observer Observer, which fires the value on every update
  * @param default Default value, if the pref does not exist yet
  *
- * @return LiveData instance
+ * @return LiveData Observer instance
  */
 fun <T> Context.getMultiplePrefObserver(
         names: List<String>,
@@ -297,3 +392,5 @@ fun <T> Context.getMultiplePrefObserver(
 ) = LiveSharedPreferences(getPrefs()).listenMultiple(names, default).apply {
     observeForever(observer)
 }
+
+// L

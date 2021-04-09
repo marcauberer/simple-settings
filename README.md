@@ -223,10 +223,16 @@ As you can see, this works for the types `String`, `Int`, `Boolean`, `Float`, `L
 ### Retrieval as LiveData
 Furthermore, the library offers a feature to observe preference values as LiveData as follows:
 ```kotlin
+val inputPref = getPreferenceLiveData(this@MainActivity, "listpreference")
+```
+
+or you can retrieve it directly as an LiveData Observer:
+```kotlin
 getPrefObserver(this@MainActivity, "listpreference", Observer<String> { value ->
     textField.text = value
 })
 ```
+
 Like above, this works for the types `String`, `Int`, `Boolean`, `Float`, `Long`, `StringSet`.<br>
 *Note: This extension functions are only available for the classes, which implement `LifecycleOwner`.*
 

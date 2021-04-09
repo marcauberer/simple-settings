@@ -7,16 +7,33 @@ package com.chillibits.simplesettingssample
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
+import android.widget.NumberPicker
 import android.widget.Toast
+import androidx.activity.compose.setContent
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.layoutId
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.ConstraintSet
+import androidx.core.view.WindowCompat
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.preference.Preference
 import com.chillibits.simplesettings.clicklistener.DialogClickListener
 import com.chillibits.simplesettings.clicklistener.LibsClickListener
@@ -26,37 +43,21 @@ import com.chillibits.simplesettings.core.SimpleSettings
 import com.chillibits.simplesettings.core.SimpleSettingsConfig
 import com.chillibits.simplesettings.item.SimpleSwitchPreference
 import com.chillibits.simplesettings.tool.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.toolbar.*
 
 class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelectedCallback,
     SimpleSettingsConfig.PreferenceCallback, DialogClickListener.DialogResultCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        WindowCompat.setDecorFitsSystemWindows(window, true)
 
-        // Initialize toolbar
-        setSupportActionBar(toolbar)
+        val inputPref = getPreferenceLiveData(this, "inputpreference", "Default")
 
-        // Set window insets
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-            window.decorView.setOnApplyWindowInsetsListener { v, insets ->
-                v.setPadding(0, 0, insets.systemWindowInsetRight, insets.systemWindowInsetBottom)
-                toolbar.setPadding(0, insets.systemWindowInsetTop, 0, 0)
-                insets.consumeSystemWindowInsets()
+        setContent {
+            AppTheme {
+                MainView(inputPref = inputPref)
             }
         }
-
-        // Initialize number picker
-        numberPicker.apply {
-            minValue = 1
-            maxValue = 10
-            value = 3
-        }
-
-        subscribeToPreferenceValues()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -71,10 +72,78 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         return super.onOptionsItemSelected(item)
     }
 
-    fun openSettingsCodeConfig(view: View) {
-        // Get number from number picker
-        val numberOfSwitchPreferences = numberPicker.value
+    @Preview(name = "MainView", showSystemUi = true)
+    @Composable
+    private fun MainView(inputPref: LiveData<String> = MutableLiveData()) {
+        val context = LocalContext.current
+        val inputPrefState by inputPref.observeAsState()
 
+        ConstraintLayout(
+            constraintSet = ConstraintSet {
+                val layout = createRefFor("layout")
+                constrain(layout) {
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                }
+            },
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            Column(modifier = Modifier.layoutId("layout")) {
+                val componentModifiers = Modifier
+                    .align(CenterHorizontally)
+                    .padding(6.dp)
+                lateinit var picker: NumberPicker
+
+                Row(modifier = componentModifiers) {
+                    Text(stringResource(R.string.number_of_switch_preferences))
+                    picker = NumberPicker(context).apply {
+                        minValue = 1
+                        maxValue = 10
+                        value = 3
+                    }
+                }
+                Button(
+                    onClick = { openSettingsCodeConfig(picker.value) },
+                    modifier = componentModifiers,
+                ) {
+                    Text(
+                        text = stringResource(R.string.open_settings_code),
+                        color = MaterialTheme.colors.onPrimary
+                    )
+                }
+                Button(
+                    onClick = { openSettingsXmlConfig() },
+                    modifier = componentModifiers
+                ) {
+                    Text(
+                        text = stringResource(R.string.open_settings_xml),
+                        color = MaterialTheme.colors.onPrimary
+                    )
+                }
+                Button(
+                    onClick = { openSettingsPaged() },
+                    modifier = componentModifiers
+                ) {
+                    Text(
+                        text = stringResource(R.string.open_settings_paged),
+                        color = MaterialTheme.colors.onPrimary
+                    )
+                }
+                Spacer(Modifier.height(50.dp))
+                Text(
+                    text = stringResource(R.string.value_input_preference_, inputPrefState.orEmpty()),
+                    modifier = componentModifiers,
+                    textAlign = TextAlign.Center,
+                    color = MaterialTheme.colors.onBackground
+                )
+            }
+        }
+    }
+
+    private fun openSettingsCodeConfig(numberOfSwitchPreferences: Int) {
         val config = SimpleSettingsConfig.Builder()
             .displayHomeAsUpEnabled(true)
             .setOptionsMenu(R.menu.menu_settings, this)
@@ -170,7 +239,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
     }
 
-    fun openSettingsXmlConfig(view: View) {
+    private fun openSettingsXmlConfig() {
         val config = SimpleSettingsConfig.Builder()
             .displayHomeAsUpEnabled(true)
             .setOptionsMenu(R.menu.menu_settings, this)
@@ -188,7 +257,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
     }
 
-    fun openSettingsPaged(view: View) {
+    private fun openSettingsPaged() {
         val config = SimpleSettingsConfig.Builder()
             .displayHomeAsUpEnabled(true)
             .setOptionsMenu(R.menu.menu_settings, this)
@@ -264,12 +333,6 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
             R.id.actionGitHub -> openGitHubPage()
             R.id.actionRate -> openGooglePlayAppSite()
         }
-    }
-
-    private fun subscribeToPreferenceValues() {
-        getPrefObserver( this, "inputpreference", Observer<String> {
-            inputPreferenceValue.text = getString(R.string.value_input_preference_, it)
-        })
     }
 
     override fun onPreferenceClick(context: Context, key: String): Preference.OnPreferenceClickListener? {
