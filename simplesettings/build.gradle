@@ -49,7 +49,7 @@ dependencies {
     // External dependencies
     api 'com.mikepenz:aboutlibraries-core:8.8.5'
     api 'com.mikepenz:aboutlibraries:8.8.5@aar'
-    api 'com.mikepenz:fastadapter:5.4.0'
+    api 'com.mikepenz:fastadapter:5.4.1'
     api 'com.github.ibrahimsn98:live-preferences:1.9'
     api 'com.github.skydoves:colorpickerpreference:2.0.5'
 
