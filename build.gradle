@@ -6,7 +6,7 @@ buildscript {
     ext.library_version = '1.2.0'
     ext.library_version_code = 1200
     ext.kotlin_version = '1.4.32'
-    ext.compose_version = '1.0.0-beta04'
+    ext.compose_version = '1.0.0-beta05'
     repositories {
         google()
         jcenter()
