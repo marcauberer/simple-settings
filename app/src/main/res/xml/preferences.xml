@@ -38,7 +38,8 @@
             app:title="@string/libsPreferenceTitle"
             app:summary="@string/libsPreferenceSummary"
             app:sort="true"
-            app:activity_title="@string/app_name"/>
+            app:activity_title="@string/app_name"
+            app:about_show_version="false"/>
 
         <ListPreference
             app:key="list_preference"

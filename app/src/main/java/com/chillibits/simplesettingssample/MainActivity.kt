@@ -10,7 +10,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.NumberPicker
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.annotation.IdRes
@@ -18,13 +17,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.layoutId
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,6 +32,7 @@ import androidx.core.view.WindowCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.preference.Preference
+import com.chillibits.composenumberpicker.HorizontalNumberPicker
 import com.chillibits.simplesettings.clicklistener.DialogClickListener
 import com.chillibits.simplesettings.clicklistener.LibsClickListener
 import com.chillibits.simplesettings.clicklistener.PlayStoreClickListener
@@ -75,8 +73,8 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
     @Preview(name = "MainView", showSystemUi = true)
     @Composable
     private fun MainView(inputPref: LiveData<String> = MutableLiveData()) {
-        val context = LocalContext.current
         val inputPrefState by inputPref.observeAsState()
+        val numberSwitchPreferences = remember { mutableStateOf(3) }
 
         ConstraintLayout(
             constraintSet = ConstraintSet {
@@ -95,18 +93,21 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
                 val componentModifiers = Modifier
                     .align(CenterHorizontally)
                     .padding(6.dp)
-                lateinit var picker: NumberPicker
 
                 Row(modifier = componentModifiers) {
                     Text(stringResource(R.string.number_of_switch_preferences))
-                    picker = NumberPicker(context).apply {
-                        minValue = 1
-                        maxValue = 10
-                        value = 3
-                    }
+                }
+                Row(modifier = componentModifiers) {
+                    HorizontalNumberPicker(
+                        min = 1,
+                        max = 10,
+                        default = 3,
+                        modifier = Modifier.padding(10.dp),
+                        onValueChange = { numberSwitchPreferences.value = it }
+                    )
                 }
                 Button(
-                    onClick = { openSettingsCodeConfig(picker.value) },
+                    onClick = { openSettingsCodeConfig(numberSwitchPreferences.value) },
                     modifier = componentModifiers,
                 ) {
                     Text(
