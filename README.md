@@ -1,4 +1,5 @@
 # Simple Settings Library for Android
+[![Maven Central](https://img.shields.io/maven-central/v/com.chillibits/simplesettings.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.chillibits%22%20AND%20a:%22simplesettings%22)
 ![GitHub release](https://img.shields.io/github/v/release/marcauberer/simple-settings?include_prereleases)
 ![Android CI](https://github.com/marcauberer/simple-settings/workflows/Android%20CI/badge.svg)
 [![API](https://img.shields.io/badge/API-21%2B-red.svg?style=flat)](https://android-arsenal.com/api?level=21)
@@ -21,14 +22,14 @@ Add repository to build.gradle file on project level:
 allprojects {
     repositories {
         ...
-        maven { url "https://repo.chillibits.com/artifactory/android" }
+        maven { url "https://jitpack.io" }
     }
 }
 ```
 
 Add dependencies to build.gradle file on module level (e.g. app/build.gradle):
 ```gradle
-implementation 'com.chillibits:simplesettings:1.2.0'
+implementation 'com.chillibits:simplesettings:1.3.0'
 
 // Required dependencies
 implementation 'com.google.android.material:material:<latest-version>'
@@ -222,10 +223,16 @@ As you can see, this works for the types `String`, `Int`, `Boolean`, `Float`, `L
 ### Retrieval as LiveData
 Furthermore, the library offers a feature to observe preference values as LiveData as follows:
 ```kotlin
+val inputPref = getPreferenceLiveData(this@MainActivity, "listpreference")
+```
+
+or you can retrieve it directly as an LiveData Observer:
+```kotlin
 getPrefObserver(this@MainActivity, "listpreference", Observer<String> { value ->
     textField.text = value
 })
 ```
+
 Like above, this works for the types `String`, `Int`, `Boolean`, `Float`, `Long`, `StringSet`.<br>
 *Note: This extension functions are only available for the classes, which implement `LifecycleOwner`.*
 
