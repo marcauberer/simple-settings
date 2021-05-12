@@ -6,9 +6,6 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
-    id 'com.jfrog.artifactory'
-    id 'maven-publish'
-    //id 'android-maven'
     id 'org.jetbrains.dokka'
 }
 
@@ -19,18 +16,24 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode library_version_code
-        versionName library_version
+        versionCode libraryVersionCode
+        versionName libraryVersion
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // specify the artifactId as module-name for kotlin
+    kotlinOptions.freeCompilerArgs += ["-module-name", POM_ARTIFACT_ID]
 }
 
 dependencies {
@@ -63,80 +66,6 @@ dokkaHtml.configure {
     dokkaSourceSets {}
 }
 
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    archiveClassifier = "sources"
-}
-
-publishing {
-    publications {
-        android.libraryVariants.all { variant ->
-            def filename = "${archivesBaseName}-${variant.baseName}"
-            "${variant.name}"(MavenPublication) {
-                groupId 'com.chillibits'
-                artifactId = "simplesettings"
-                if (project.hasProperty('paramEnv') && project.property('paramEnv') != 'RELEASE' || variant.name != "release") {
-                    groupId "com.chillibits.${variant.name}"
-                }
-                version = "${android.defaultConfig.versionName}"
-                if (variant.buildType.name == "debug") {
-                    artifact(sourcesJar)
-                }
-                artifact file("$buildDir/outputs/aar/${filename}.aar")
-                pom.withXml {
-                    // for dependencies and exclusions
-                    def dependenciesNode = asNode().appendNode('dependencies')
-                    def configurationNames = ["implementation", "api", "runtimeOnly"]
-                    configurationNames.each { confName ->
-                        configurations[confName].allDependencies.each {
-                            def dependencyNode = dependenciesNode.appendNode('dependency')
-                            dependencyNode.appendNode('groupId', it.group)
-                            dependencyNode.appendNode('artifactId', it.name)
-                            dependencyNode.appendNode('version', it.version)
-                            if (it.excludeRules.size() > 0) {
-                                def exclusionsNode = dependencyNode.appendNode('exclusions')
-                                it.excludeRules.each { rule ->
-                                    def exclusionNode = exclusionsNode.appendNode('exclusion')
-                                    exclusionNode.appendNode('groupId', rule.group)
-                                    exclusionNode.appendNode('artifactId', rule.module)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-assemble.finalizedBy(artifactoryPublish)
-artifactory {
-    contextUrl = "${artifactory_context_url}"
-    publish {
-        repository {
-            repoKey = "${artifactory_dev_repo_key}"
-            if (project.hasProperty('paramEnv') && project.property('paramEnv') == 'RELEASE') {
-                repoKey = "${artifactory_rel_repo_key}"
-            }
-            username = "${artifactory_user}"
-            password = "${artifactory_password}"
-            maven = true
-        }
-        defaults {
-            if (project.hasProperty('paramEnv') && project.property('paramEnv') == 'RELEASE') {
-                publications('release')
-            } else {
-                publications('debug', 'release')
-            }
-            publishArtifacts = true
-            publishPom = true
-        }
-    }
-    resolve {
-        repository {
-            repoKey = "${artifactory_rel_repo_key}"
-            username = "${artifactory_user}"
-            password = "${artifactory_password}"
-            maven = true
-        }
-    }
+if (project.hasProperty('pushall') || project.hasProperty('library_only')) {
+    apply from: '../gradle-release.gradle'
 }
