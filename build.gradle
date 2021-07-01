@@ -6,19 +6,17 @@ buildscript {
     ext {
         libraryVersion = "$VERSION"
         libraryVersionCode = Integer.parseInt(rootProject.properties["VERSION_CODE"])
-        kotlinVersion = '1.4.32'
-        composeVersion = '1.0.0-beta06'
+        kotlinVersion = '1.5.10'
+        composeVersion = '1.0.0-beta09'
     }
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.0-alpha15'
-        classpath 'com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:8.3.0'
+        classpath 'com.android.tools.build:gradle:7.1.0-alpha02'
+        classpath 'com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:8.3.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-        classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.23.4'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath 'org.jetbrains.dokka:dokka-gradle-plugin:1.4.32'
     }
 }
