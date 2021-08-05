@@ -6,8 +6,8 @@ buildscript {
     ext {
         libraryVersion = "$VERSION"
         libraryVersionCode = Integer.parseInt(rootProject.properties["VERSION_CODE"])
-        kotlinVersion = '1.5.10'
-        composeVersion = '1.0.0'
+        kotlinVersion = '1.5.21'
+        composeVersion = '1.0.1'
     }
     repositories {
         google()
