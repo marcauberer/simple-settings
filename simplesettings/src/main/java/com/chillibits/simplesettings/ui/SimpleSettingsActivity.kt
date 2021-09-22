@@ -16,12 +16,11 @@ import com.chillibits.simplesettings.R
 import com.chillibits.simplesettings.core.SimpleSettings
 import com.chillibits.simplesettings.core.elements.PreferenceHeader
 import com.chillibits.simplesettings.core.elements.PreferenceSection
+import com.chillibits.simplesettings.databinding.ActivitySimpleSettingsBinding
 import com.chillibits.simplesettings.exception.SettingsResetException
 import com.chillibits.simplesettings.tool.Constants
 import com.chillibits.simplesettings.tool.getPrefs
 import com.chillibits.simplesettings.tool.toCamelCase
-import kotlinx.android.synthetic.main.activity_simple_settings.*
-import kotlinx.android.synthetic.main.toolbar.*
 
 /**
  * Main UI element of the library. This activity gets displayed when the show method of the
@@ -31,13 +30,15 @@ internal class SimpleSettingsActivity : AppCompatActivity() {
 
     // Variables as objects
     private val config = SimpleSettings.config
+    private lateinit var binding: ActivitySimpleSettingsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_simple_settings)
+        binding = ActivitySimpleSettingsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Initialize toolbar
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar.toolbar)
         supportActionBar?.title = config.activityTitle ?: getString(R.string.settings)
 
         // Set window insets
@@ -45,7 +46,7 @@ internal class SimpleSettingsActivity : AppCompatActivity() {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
             window.decorView.setOnApplyWindowInsetsListener { v, insets ->
                 v.setPadding(0, 0, insets.systemWindowInsetRight, insets.systemWindowInsetBottom)
-                toolbar.setPadding(0, insets.systemWindowInsetTop, 0, 0)
+                binding.toolbar.toolbar.setPadding(0, insets.systemWindowInsetTop, 0, 0)
                 insets.consumeSystemWindowInsets()
             }
         }
@@ -58,7 +59,7 @@ internal class SimpleSettingsActivity : AppCompatActivity() {
         if (headers.isNotEmpty()) {
             val selectedHeader = headers.first()
             selectedHeader.layoutResource?.let {
-                layoutInflater.inflate(it, header)
+                layoutInflater.inflate(it, binding.header)
             }
         }
 
