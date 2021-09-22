@@ -11,7 +11,9 @@
     android:layout_height="match_parent"
     tools:context=".ui.SimpleSettingsActivity">
 
-    <include layout="@layout/toolbar" />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
     <FrameLayout
         android:id="@+id/header"
