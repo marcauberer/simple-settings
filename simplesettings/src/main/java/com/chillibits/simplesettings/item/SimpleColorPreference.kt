@@ -1,3 +1,7 @@
+/*
+ * Copyright © Marc Auberer 2020-2021. All rights reserved
+ */
+
 package com.chillibits.simplesettings.item
 
 import android.content.Context
