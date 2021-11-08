@@ -54,7 +54,7 @@ dependencies {
     api 'com.mikepenz:aboutlibraries:8.9.4@aar'
     api 'com.mikepenz:fastadapter:5.5.1'
     api 'com.github.ibrahimsn98:live-preferences:1.9'
-    api 'com.github.skydoves:colorpickerpreference:2.0.5'
+    api 'com.github.skydoves:colorpickerpreference:2.0.6'
 
     // Test dependencies
     testImplementation 'junit:junit:4.13.2'
