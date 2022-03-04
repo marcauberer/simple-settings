@@ -356,15 +356,12 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
 
     override fun onDialogButtonClicked(button: DialogClickListener.Button) {
         when(button) {
-            DialogClickListener.Button.POSITIVE -> {
+            DialogClickListener.Button.POSITIVE ->
                 Toast.makeText(this, R.string.yes, Toast.LENGTH_SHORT).show()
-            }
-            DialogClickListener.Button.NEGATIVE -> {
+            DialogClickListener.Button.NEGATIVE ->
                 Toast.makeText(this, R.string.no, Toast.LENGTH_SHORT).show()
-            }
-            DialogClickListener.Button.NEUTRAL -> {
+            DialogClickListener.Button.NEUTRAL ->
                 Toast.makeText(this, R.string.cancel, Toast.LENGTH_SHORT).show()
-            }
         }
     }
 
