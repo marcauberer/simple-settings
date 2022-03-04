@@ -1,5 +1,5 @@
 /*
- * Copyright © Marc Auberer 2020-2021. All rights reserved
+ * Copyright © Marc Auberer 2020-2022. All rights reserved
  */
 
 package com.chillibits.simplesettings.clicklistener
