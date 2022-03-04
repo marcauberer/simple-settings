@@ -284,4 +284,4 @@ If you want to contribute to this project, please feel free to send us a pull re
 ## Credits
 Thanks to all contributors and translators!
 
-© Marc Auberer 2020-2021
+© Marc Auberer 2020-2022

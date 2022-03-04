@@ -13,7 +13,7 @@ class WebsiteClickListener(
     private val context: Context,
     private val url: String
 ): Preference.OnPreferenceClickListener {
-    override fun onPreferenceClick(preference: Preference?): Boolean {
+    override fun onPreferenceClick(preference: Preference): Boolean {
         context.startActivity(Intent(Intent.ACTION_VIEW).apply {
             data = Uri.parse(url)
         })

@@ -13,7 +13,7 @@ class ToastClickListener(
     private val message: String,
     private val duration: Int = Toast.LENGTH_SHORT
 ): Preference.OnPreferenceClickListener {
-    override fun onPreferenceClick(preference: Preference?): Boolean {
+    override fun onPreferenceClick(preference: Preference): Boolean {
         Toast.makeText(context, message, duration).show()
         return true
     }

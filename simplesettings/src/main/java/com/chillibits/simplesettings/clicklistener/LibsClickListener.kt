@@ -11,7 +11,7 @@ import com.mikepenz.aboutlibraries.LibsBuilder
 class LibsClickListener(
     private val context: Context
 ): Preference.OnPreferenceClickListener {
-    override fun onPreferenceClick(preference: Preference?): Boolean {
+    override fun onPreferenceClick(preference: Preference): Boolean {
         LibsBuilder().start(context)
         return true
     }

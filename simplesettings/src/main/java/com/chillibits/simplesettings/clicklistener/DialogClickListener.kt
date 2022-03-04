@@ -40,30 +40,26 @@ class DialogClickListener(
 
     constructor(callback: DialogResultCallback? = null, func: DialogClickListener.() -> Unit) : this(callback) { func() }
 
-    override fun onPreferenceClick(preference: Preference?): Boolean {
-        val context = preference!!.context
-
+    override fun onPreferenceClick(preference: Preference): Boolean {
         // Apply type presets
         when(type) {
             Type.YES_NO -> {
-                positiveButtonText = context.getString(R.string.yes)
-                negativeButtonText = context.getString(R.string.no)
+                positiveButtonText = preference.context.getString(R.string.yes)
+                negativeButtonText = preference.context.getString(R.string.no)
             }
             Type.YES_CANCEL -> {
-                positiveButtonText = context.getString(R.string.yes)
-                negativeButtonText = context.getString(R.string.cancel)
+                positiveButtonText = preference.context.getString(R.string.yes)
+                negativeButtonText = preference.context.getString(R.string.cancel)
             }
             Type.YES_NO_CANCEL -> {
-                positiveButtonText = context.getString(R.string.yes)
-                negativeButtonText = context.getString(R.string.no)
-                neutralButtonText = context.getString(R.string.cancel)
+                positiveButtonText = preference.context.getString(R.string.yes)
+                negativeButtonText = preference.context.getString(R.string.no)
+                neutralButtonText = preference.context.getString(R.string.cancel)
             }
-            else -> {
-                context.getString(R.string.ok)
-            }
+            else -> preference.context.getString(R.string.ok)
         }
 
-        dialog = AlertDialog.Builder(context)
+        dialog = AlertDialog.Builder(preference.context)
             .setTitle(title)
             .setMessage(message)
             .setCancelable(cancelable)

@@ -11,7 +11,7 @@ import com.chillibits.simplesettings.tool.openGooglePlayAppSite
 class PlayStoreClickListener(
     private val context: Context
 ): Preference.OnPreferenceClickListener {
-    override fun onPreferenceClick(preference: Preference?): Boolean {
+    override fun onPreferenceClick(preference: Preference): Boolean {
         context.openGooglePlayAppSite()
         return true
     }
