@@ -43,8 +43,7 @@ internal class SimpleSettingsActivity : AppCompatActivity() {
 
         // Set window insets
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
             window.decorView.setOnApplyWindowInsetsListener { v, insets ->
                 v.setPadding(0, 0, insets.systemWindowInsetRight, insets.systemWindowInsetBottom)
                 binding.toolbar.setPadding(0, insets.systemWindowInsetTop, 0, 0)
