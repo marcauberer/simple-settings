@@ -45,7 +45,6 @@ class DialogClickListener(
 
         // Apply type presets
         when(type) {
-            Type.OK -> positiveButtonText = context.getString(R.string.ok)
             Type.YES_NO -> {
                 positiveButtonText = context.getString(R.string.yes)
                 negativeButtonText = context.getString(R.string.no)
@@ -58,6 +57,9 @@ class DialogClickListener(
                 positiveButtonText = context.getString(R.string.yes)
                 negativeButtonText = context.getString(R.string.no)
                 neutralButtonText = context.getString(R.string.cancel)
+            }
+            else -> {
+                context.getString(R.string.ok)
             }
         }
 
