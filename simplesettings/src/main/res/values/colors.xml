@@ -4,12 +4,12 @@
   -->
 
 <resources>
-    <color name="colorPrimaryVariant">#FFFFFF</color>
-    <color name="colorPrimaryDarkVariant">#FFFFFF</color>
-    <color name="colorSecondaryVariant">#03DAC5</color>
+    <color name="colorPrimaryVariant">#03DAC5</color>
+    <color name="colorPrimaryDarkVariant">#3E3E3E</color>
+    <color name="colorSecondaryVariant">#028175</color>
     <color name="colorSurface">#FAFAFA</color>
-    <color name="colorOnPrimary">#03DAC5</color>
-    <color name="colorOnSecondary">#03DAC5</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
     <color name="colorOnBackground">#FAFAFA</color>
     <color name="colorOnError">#810000</color>
     <color name="colorOnSurface">#03DAC5</color>

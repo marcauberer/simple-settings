@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
             Column(modifier = Modifier.layoutId("layout")) {
                 val componentModifiers = Modifier
                     .align(CenterHorizontally)
-                    .padding(6.dp)
+                    .padding(4.dp)
 
                 Row(modifier = componentModifiers) {
                     Text(stringResource(R.string.number_of_switch_preferences))

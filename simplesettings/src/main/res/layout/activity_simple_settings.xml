@@ -16,6 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryVariant"
+        app:titleTextColor="@color/colorOnPrimary"
+        app:subtitleTextColor="@color/colorOnPrimary"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <FrameLayout
