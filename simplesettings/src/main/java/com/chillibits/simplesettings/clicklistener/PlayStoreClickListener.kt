@@ -1,5 +1,5 @@
 /*
- * Copyright © Marc Auberer 2020-2021. All rights reserved
+ * Copyright © Marc Auberer 2020-2022. All rights reserved
  */
 
 package com.chillibits.simplesettings.clicklistener
@@ -11,7 +11,7 @@ import com.chillibits.simplesettings.tool.openGooglePlayAppSite
 class PlayStoreClickListener(
     private val context: Context
 ): Preference.OnPreferenceClickListener {
-    override fun onPreferenceClick(preference: Preference?): Boolean {
+    override fun onPreferenceClick(preference: Preference): Boolean {
         context.openGooglePlayAppSite()
         return true
     }

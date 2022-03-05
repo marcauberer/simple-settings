@@ -1,3 +1,7 @@
+/*
+ * Copyright © Marc Auberer 2020-2022. All rights reserved
+ */
+
 package com.chillibits.simplesettings.preference
 
 import android.content.Context
@@ -8,7 +12,6 @@ import com.chillibits.simplesettings.R
 import com.mikepenz.aboutlibraries.LibsBuilder
 import com.mikepenz.aboutlibraries.entity.Library
 import com.mikepenz.aboutlibraries.ui.LibsActivity
-import java.util.*
 
 class LibsPreference: Preference {
 

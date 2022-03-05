@@ -1,11 +1,13 @@
 # Workflow for Android CI debug build
-
 name: Android CI
 
 on:
   push:
   pull_request:
-    branches: [ main, beta, dev ]
+    branches:
+      - main
+      - beta
+      - dev
 
 jobs:
   build:
@@ -13,8 +15,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
       - name: Make gradlew executable
-        run: chmod +x ./gradlew
+        run: chmod +x gradlew
+
       - name: Android Build
-        run: ./gradlew assembleDebug
+        run: ./gradlew build

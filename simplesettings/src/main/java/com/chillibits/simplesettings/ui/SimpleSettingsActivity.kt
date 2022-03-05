@@ -1,5 +1,5 @@
 /*
- * Copyright © Marc Auberer 2020-2021. All rights reserved
+ * Copyright © Marc Auberer 2020-2022. All rights reserved
  */
 
 package com.chillibits.simplesettings.ui
@@ -38,7 +38,7 @@ internal class SimpleSettingsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Initialize toolbar
-        setSupportActionBar(binding.toolbar.toolbar)
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.title = config.activityTitle ?: getString(R.string.settings)
 
         // Set window insets
@@ -46,7 +46,7 @@ internal class SimpleSettingsActivity : AppCompatActivity() {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
             window.decorView.setOnApplyWindowInsetsListener { v, insets ->
                 v.setPadding(0, 0, insets.systemWindowInsetRight, insets.systemWindowInsetBottom)
-                binding.toolbar.toolbar.setPadding(0, insets.systemWindowInsetTop, 0, 0)
+                binding.toolbar.setPadding(0, insets.systemWindowInsetTop, 0, 0)
                 insets.consumeSystemWindowInsets()
             }
         }
@@ -67,10 +67,10 @@ internal class SimpleSettingsActivity : AppCompatActivity() {
         initSettingsFragment()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         config.optionsMenuRes?.let { menuInflater.inflate(it, menu) }
         if(config.showResetOption)
-            menu?.add(Menu.NONE, Constants.MENU_ITEM_RESET, 100, getString(R.string.resetSettings))
+            menu.add(Menu.NONE, Constants.MENU_ITEM_RESET, 100, getString(R.string.resetSettings))
         return super.onCreateOptionsMenu(menu)
     }
 

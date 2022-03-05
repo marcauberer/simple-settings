@@ -1,23 +1,26 @@
 /*
- * Copyright © Marc Auberer 2020-2021. All rights reserved
+ * Copyright © Marc Auberer 2020-2022. All rights reserved
  */
 
 buildscript {
     ext {
         libraryVersion = "$VERSION"
         libraryVersionCode = Integer.parseInt(rootProject.properties["VERSION_CODE"])
-        kotlinVersion = '1.5.21'
-        composeVersion = '1.0.2'
+        kotlinVersion = '1.6.10'
+        composeVersion = '1.1.1'
     }
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.0-alpha12'
-        classpath 'com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:8.3.1'
+        classpath 'com.android.tools.build:gradle:7.1.2'
+        classpath 'com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:8.9.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-        classpath 'org.jetbrains.dokka:dokka-gradle-plugin:1.5.30'
+        classpath 'org.jetbrains.dokka:dokka-gradle-plugin:1.6.10'
     }
 }
 

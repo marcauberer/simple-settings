@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright © Marc Auberer 2020-2021. All rights reserved
+  ~ Copyright © Marc Auberer 2020-2022. All rights reserved
   -->
 
 <resources>
@@ -15,5 +15,6 @@
         <item name="colorOnError">@color/colorOnError</item>
         <item name="colorOnSurface">@color/colorOnSurface</item>
         <item name="android:statusBarColor">@color/colorPrimaryDarkVariant</item>
+        <item name="colorControlNormal">@color/colorOnPrimary</item>
     </style>
 </resources>

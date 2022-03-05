@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright © Marc Auberer 2020-2021. All rights reserved
+  ~ Copyright © Marc Auberer 2020-2022. All rights reserved
   -->
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -11,9 +11,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.SimpleSettingsActivity">
 
-    <include
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryVariant"
+        app:titleTextColor="@color/colorOnPrimary"
+        app:subtitleTextColor="@color/colorOnPrimary"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <FrameLayout
         android:id="@+id/header"

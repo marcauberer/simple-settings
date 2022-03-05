@@ -1,5 +1,5 @@
 /*
- * Copyright © Marc Auberer 2020-2021. All rights reserved
+ * Copyright © Marc Auberer 2020-2022. All rights reserved
  */
 
 package com.chillibits.simplesettings.ui
@@ -39,12 +39,12 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
             connectCallbackMethods()
         } else {
             // Build preferences from sections array
-            preferenceScreen = preferenceManager.createPreferenceScreen(context)
+            preferenceScreen = preferenceManager.createPreferenceScreen(requireContext())
 
             // Add sections
             sections.filterIsInstance(PreferenceSection::class.java).forEach { section ->
                 // Add category itself
-                val category = PreferenceCategory(context).apply {
+                val category = PreferenceCategory(requireContext()).apply {
                     title = section.title
                     isEnabled = section.enabled
                     isIconSpaceReserved = section.iconSpaceReserved
@@ -65,7 +65,7 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
                         is SimpleSeekBarPreference -> genSeekBarPref(item)
                         is SimpleLibsPreference -> genLibsPref(item)
                         is SimpleColorPreference -> genColorPref(item)
-                        else -> Preference(context)
+                        else -> Preference(requireContext())
                     }
                     category.addPreference(preferenceItem)
                 }
@@ -120,7 +120,7 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
 
     // -------------------------------- Preference creator methods ---------------------------------
 
-    private fun genPagePref(sp: PreferencePage) = Preference(context).apply {
+    private fun genPagePref(sp: PreferencePage) = Preference(requireContext()).apply {
         initializeGeneralAttributes(sp, this)
         // Override click listener to open cascading activity
         sp.onClick = Preference.OnPreferenceClickListener {
@@ -151,20 +151,11 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
         }
     }
 
-    private fun genTextPref(sp: SimpleTextPreference) = Preference(context).apply {
+    private fun genTextPref(sp: SimpleTextPreference) = Preference(requireContext()).apply {
         initializeGeneralAttributes(sp, this)
     }
 
-    private fun genSwitchPref(sp: SimpleSwitchPreference) = SwitchPreferenceCompat(context).apply {
-        initializeGeneralAttributes(sp, this)
-        if(sp.summaryOff.isNotEmpty() && sp.summaryOn.isNotEmpty()) {
-            summaryOff = sp.summaryOff
-            summaryOn = sp.summaryOn
-        }
-        setDefaultValue(sp.defaultValue)
-    }
-
-    private fun genCheckboxPref(sp: SimpleCheckboxPreference) = CheckBoxPreference(context).apply {
+    private fun genSwitchPref(sp: SimpleSwitchPreference) = SwitchPreferenceCompat(requireContext()).apply {
         initializeGeneralAttributes(sp, this)
         if(sp.summaryOff.isNotEmpty() && sp.summaryOn.isNotEmpty()) {
             summaryOff = sp.summaryOff
@@ -173,7 +164,16 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
         setDefaultValue(sp.defaultValue)
     }
 
-    private fun genInputPref(sp: SimpleInputPreference) = EditTextPreference(context).apply {
+    private fun genCheckboxPref(sp: SimpleCheckboxPreference) = CheckBoxPreference(requireContext()).apply {
+        initializeGeneralAttributes(sp, this)
+        if(sp.summaryOff.isNotEmpty() && sp.summaryOn.isNotEmpty()) {
+            summaryOff = sp.summaryOff
+            summaryOn = sp.summaryOn
+        }
+        setDefaultValue(sp.defaultValue)
+    }
+
+    private fun genInputPref(sp: SimpleInputPreference) = EditTextPreference(requireContext()).apply {
         // Initialize attributes
         if(sp.dialogTitle.isBlank()) sp.dialogTitle = sp.title
         if(sp.dialogIcon == null && sp.dialogIconRes != 0)
@@ -189,7 +189,7 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
         setDefaultValue(sp.defaultValue)
     }
 
-    private fun genListPref(sp: SimpleListPreference) = ListPreference(context).apply {
+    private fun genListPref(sp: SimpleListPreference) = ListPreference(requireContext()).apply {
         initializeGeneralAttributes(sp, this)
         dialogTitle = if(sp.dialogTitle.isNotEmpty()) sp.dialogTitle else sp.title
         dialogMessage = sp.dialogMessage
@@ -205,7 +205,7 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
         setDefaultValue(sp.defaultIndex.toString())
     }
 
-    private fun genMSListPref(sp: SimpleMSListPreference) = MultiSelectListPreference(context).apply {
+    private fun genMSListPref(sp: SimpleMSListPreference) = MultiSelectListPreference(requireContext()).apply {
         initializeGeneralAttributes(sp, this)
         dialogTitle = if(sp.dialogTitle.isNotEmpty()) sp.dialogTitle else sp.title
         dialogMessage = sp.dialogMessage
@@ -222,7 +222,7 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
         setDefaultValue(sp.defaultIndex)
     }
 
-    private fun genDropDownPref(sp: SimpleDropDownPreference) = DropDownPreference(context).apply {
+    private fun genDropDownPref(sp: SimpleDropDownPreference) = DropDownPreference(requireContext()).apply {
         initializeGeneralAttributes(sp, this)
         if(sp.simpleSummaryProvider) summary = SimplePreference.SUMMARY_VALUE
         entries = sp.entries.toTypedArray()
@@ -230,7 +230,7 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
         setDefaultValue(sp.defaultIndex.toString())
     }
 
-    private fun genSeekBarPref(sp: SimpleSeekBarPreference) = SeekBarPreference(context).apply {
+    private fun genSeekBarPref(sp: SimpleSeekBarPreference) = SeekBarPreference(requireContext()).apply {
         initializeGeneralAttributes(sp, this)
         min = sp.min
         max = sp.max
@@ -238,7 +238,7 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
         setDefaultValue(sp.defaultValue)
     }
 
-    private fun genLibsPref(sp: SimpleLibsPreference) = Preference(context).apply {
+    private fun genLibsPref(sp: SimpleLibsPreference) = Preference(requireContext()).apply {
         initializeGeneralAttributes(sp, this)
         setOnPreferenceClickListener {
             LibsBuilder().apply {

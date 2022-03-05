@@ -1,5 +1,5 @@
 /*
- * Copyright © Marc Auberer 2020-2021. All rights reserved
+ * Copyright © Marc Auberer 2020-2022. All rights reserved
  */
 
 package com.chillibits.simplesettingssample
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_activity_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
             Column(modifier = Modifier.layoutId("layout")) {
                 val componentModifiers = Modifier
                     .align(CenterHorizontally)
-                    .padding(6.dp)
+                    .padding(4.dp)
 
                 Row(modifier = componentModifiers) {
                     Text(stringResource(R.string.number_of_switch_preferences))
@@ -356,15 +356,12 @@ class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelect
 
     override fun onDialogButtonClicked(button: DialogClickListener.Button) {
         when(button) {
-            DialogClickListener.Button.POSITIVE -> {
+            DialogClickListener.Button.POSITIVE ->
                 Toast.makeText(this, R.string.yes, Toast.LENGTH_SHORT).show()
-            }
-            DialogClickListener.Button.NEGATIVE -> {
+            DialogClickListener.Button.NEGATIVE ->
                 Toast.makeText(this, R.string.no, Toast.LENGTH_SHORT).show()
-            }
-            DialogClickListener.Button.NEUTRAL -> {
+            DialogClickListener.Button.NEUTRAL ->
                 Toast.makeText(this, R.string.cancel, Toast.LENGTH_SHORT).show()
-            }
         }
     }
 
