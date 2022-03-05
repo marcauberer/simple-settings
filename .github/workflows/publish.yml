@@ -35,7 +35,7 @@ jobs:
         run: ./gradlew simplesettings:assembleRelease
 
       - name: Publish to MavenCentral
-        run: ./gradlew simplesettings:publishReleasePublicationToSonatypeRepository -Plibrary_only --no-configure-on-demand --no-parallel dokkaHtml --stacktrace
+        run: ./gradlew simplesettings:publishReleasePublicationToSonatypeRepository -Plibrary_only --no-configure-on-demand --no-parallel dokkaHtml
         env:
           NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
           NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
