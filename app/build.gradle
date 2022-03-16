@@ -65,7 +65,7 @@ dependencies {
     implementation 'androidx.activity:activity-compose:1.4.0'
 
     // ChilliBits dependencies
-    implementation 'com.chillibits:composenumberpicker:1.1.0'
+    implementation 'com.chillibits:composenumberpicker:1.1.1'
 
     // Test dependencies
     testImplementation 'junit:junit:4.13.2'
