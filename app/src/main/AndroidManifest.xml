@@ -4,7 +4,6 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.chillibits.simplesettingssample"
     android:installLocation="auto" >
 
     <application
