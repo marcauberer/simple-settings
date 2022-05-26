@@ -81,6 +81,8 @@ class SimpleLibsPreference(
 
     var libraryComparator: Comparator<Library>? = null
 
+    var searchEnabled = false
+
     var ownLibsActivityClass: Class<*> = LibsActivity::class.java
 
     var showLicense = false
