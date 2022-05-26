@@ -258,13 +258,8 @@ internal class SimpleSettingsFragment : PreferenceFragmentCompat() {
                 aboutShowVersionCode = sp.aboutShowVersionCode
                 aboutShowVersionName = sp.aboutShowVersionName
                 aboutVersionString = sp.aboutVersionString
-                autoDetect = sp.autoDetect
-                checkCachedDetection = sp.checkCachedDetection
-                fields = sp.fields
-                internalLibraries = sp.internalLibraries
-                excludeLibraries = sp.excludeLibraries
                 libraryComparator = sp.libraryComparator
-                ownLibsActivityClass = sp.ownLibsActivityClass
+                searchEnabled = sp.searchEnabled
                 showLicense = sp.showLicense
                 showLicenseDialog = sp.showLicenseDialog
                 showLoadingProgress = sp.showLoadingProgress
