@@ -52,7 +52,7 @@ dependencies {
 
     // External dependencies
     api 'com.mikepenz:aboutlibraries-core:10.3.1'
-    api 'com.mikepenz:aboutlibraries:10.3.0'
+    api 'com.mikepenz:aboutlibraries:10.3.1'
     api 'com.mikepenz:fastadapter:5.6.0'
     api 'com.github.ibrahimsn98:live-preferences:1.9'
     api 'com.github.skydoves:colorpickerpreference:2.0.6'
