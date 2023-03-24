@@ -1,5 +1,5 @@
 /*
- * Copyright © Marc Auberer 2020-2022. All rights reserved
+ * Copyright © Marc Auberer 2020-2023. All rights reserved
  */
 
 package com.chillibits.simplesettings.preference
@@ -11,7 +11,6 @@ import androidx.preference.Preference
 import com.chillibits.simplesettings.R
 import com.mikepenz.aboutlibraries.LibsBuilder
 import com.mikepenz.aboutlibraries.entity.Library
-import com.mikepenz.aboutlibraries.ui.LibsActivity
 
 class LibsPreference: Preference {
 

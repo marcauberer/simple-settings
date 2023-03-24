@@ -1,5 +1,5 @@
 /*
- * Copyright © Marc Auberer 2020-2022. All rights reserved
+ * Copyright © Marc Auberer 2020-2023. All rights reserved
  */
 
 package com.chillibits.simplesettings.item
@@ -9,7 +9,6 @@ import androidx.annotation.StringRes
 import com.chillibits.simplesettings.R
 import com.mikepenz.aboutlibraries.entity.Library
 import com.mikepenz.aboutlibraries.ui.LibsActivity
-import java.util.*
 
 class SimpleLibsPreference(
     private val context: Context,

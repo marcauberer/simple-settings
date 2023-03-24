@@ -1,5 +1,5 @@
 /*
- * Copyright © Marc Auberer 2020-2022. All rights reserved
+ * Copyright © Marc Auberer 2020-2023. All rights reserved
  */
 
 package com.chillibits.simplesettingssample
@@ -16,9 +16,14 @@ import androidx.annotation.IdRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.layoutId
@@ -40,7 +45,9 @@ import com.chillibits.simplesettings.clicklistener.WebsiteClickListener
 import com.chillibits.simplesettings.core.SimpleSettings
 import com.chillibits.simplesettings.core.SimpleSettingsConfig
 import com.chillibits.simplesettings.item.SimpleSwitchPreference
-import com.chillibits.simplesettings.tool.*
+import com.chillibits.simplesettings.tool.getPreferenceLiveData
+import com.chillibits.simplesettings.tool.openGooglePlayAppSite
+import com.chillibits.simplesettings.tool.toCamelCase
 
 class MainActivity : AppCompatActivity(), SimpleSettingsConfig.OptionsItemSelectedCallback,
     SimpleSettingsConfig.PreferenceCallback, DialogClickListener.DialogResultCallback {
