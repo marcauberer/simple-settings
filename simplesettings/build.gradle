@@ -47,7 +47,7 @@ dependencies {
     implementation 'androidx.activity:activity-ktx:1.7.1'
 
     // Google dependencies
-    api 'com.google.android.material:material:1.8.0'
+    api 'com.google.android.material:material:1.9.0'
     api 'androidx.preference:preference-ktx:1.2.0'
 
     // External dependencies
