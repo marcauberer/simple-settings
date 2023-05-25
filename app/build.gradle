@@ -62,7 +62,7 @@ dependencies {
     implementation "androidx.compose.material:material:$composeVersion"
     implementation "androidx.compose.runtime:runtime-livedata:$composeVersion"
     implementation 'androidx.constraintlayout:constraintlayout-compose:1.0.1'
-    implementation 'androidx.activity:activity-compose:1.7.1'
+    implementation 'androidx.activity:activity-compose:1.7.2'
 
     // ChilliBits dependencies
     implementation 'com.chillibits:composenumberpicker:1.1.1'
