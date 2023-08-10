@@ -48,7 +48,7 @@ dependencies {
 
     // Google dependencies
     api 'com.google.android.material:material:1.9.0'
-    api 'androidx.preference:preference-ktx:1.2.0'
+    api 'androidx.preference:preference-ktx:1.2.1'
 
     // External dependencies
     api 'com.mikepenz:aboutlibraries-core:10.8.3'
