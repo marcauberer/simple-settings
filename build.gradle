@@ -6,8 +6,8 @@ buildscript {
     ext {
         libraryVersion = "$VERSION"
         libraryVersionCode = Integer.parseInt(rootProject.properties["VERSION_CODE"])
-        kotlinVersion = '1.8.0'
-        composeVersion = '1.4.1'
+        kotlinVersion = '1.9.0'
+        composeVersion = '1.5.1'
     }
     repositories {
         google()
@@ -17,7 +17,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.2'
+        classpath 'com.android.tools.build:gradle:8.1.1'
         classpath 'com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:10.8.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath 'org.jetbrains.dokka:dokka-gradle-plugin:1.9.0'
