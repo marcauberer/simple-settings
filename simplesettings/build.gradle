@@ -51,7 +51,7 @@ dependencies {
     api 'androidx.preference:preference-ktx:1.2.1'
 
     // External dependencies
-    api 'com.mikepenz:aboutlibraries-core:10.8.3'
+    api 'com.mikepenz:aboutlibraries-core:10.9.0'
     api 'com.mikepenz:aboutlibraries:10.8.3'
     api 'com.mikepenz:fastadapter:5.7.0'
     api 'com.github.ibrahimsn98:live-preferences:1.9'
