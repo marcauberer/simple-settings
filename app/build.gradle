@@ -15,7 +15,7 @@ android {
     defaultConfig {
         applicationId "com.chillibits.simplesettingssample"
         minSdk 21
-        targetSdk 33
+        targetSdk 34
         versionCode libraryVersionCode
         versionName libraryVersion
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
