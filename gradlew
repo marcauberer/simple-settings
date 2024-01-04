@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 #
-# Copyright © Marc Auberer 2020-2021. All rights reserved
+# Copyright © Marc Auberer 2020-2024. All rights reserved
 #
 
 ##############################################################################

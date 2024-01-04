@@ -1,5 +1,5 @@
 /*
- * Copyright © Marc Auberer 2020-2023. All rights reserved
+ * Copyright © Marc Auberer 2020-2024. All rights reserved
  */
 
 package com.chillibits.simplesettings
